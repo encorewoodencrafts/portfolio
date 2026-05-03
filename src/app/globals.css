@@ -36,16 +36,16 @@
 /* THEME · forest (deep moss green + cream + brass — organic luxe)     */
 /* ------------------------------------------------------------------ */
 [data-theme="forest"] {
-  --paper: #f4efe6;
-  --paper-2: #ece5d6;
-  --ink: #1f2a23;
+  --paper: #ecebd9;
+  --paper-2: #dfdec3;
+  --ink: #1a2a20;
   --ink-2: #4a5a4f;
   --walnut: #2a4634;
   --oak: #5a7a64;
   --brass: #b08d57;
-  --stone: #d8d8c8;
-  --stone-2: #c4c8b6;
-  --line: rgba(31, 42, 35, 0.16);
+  --stone: #c8cab2;
+  --stone-2: #b6b89a;
+  --line: rgba(26, 42, 32, 0.18);
 }
 
 [data-theme="forest"][data-mode="dark"] {
@@ -63,47 +63,49 @@
 
 /* ------------------------------------------------------------------ */
 /* THEME · ebony (luxe black + brass gold — boutique evening)          */
+/* ebony is intentionally dark in both light and dark modes — the      */
+/* "light" variant is a deep charcoal, the "dark" variant pure black.  */
 /* ------------------------------------------------------------------ */
 [data-theme="ebony"] {
-  --paper: #f6f1e6;
-  --paper-2: #ece4d2;
-  --ink: #0e0c0a;
-  --ink-2: #4a3e2e;
-  --walnut: #8c6a3e;
-  --oak: #b08d57;
-  --brass: #c8964d;
-  --stone: #d4c8a8;
-  --stone-2: #c0b288;
-  --line: rgba(14, 12, 10, 0.18);
-}
-
-[data-theme="ebony"][data-mode="dark"] {
-  --paper: #0a0908;
-  --paper-2: #15110c;
+  --paper: #15110c;
+  --paper-2: #1f1812;
   --ink: #f0e3c2;
   --ink-2: #c2a878;
   --walnut: #d4a86a;
   --oak: #e8c280;
   --brass: #f0d28c;
-  --stone: #1f1a12;
-  --stone-2: #2c2418;
-  --line: rgba(240, 227, 194, 0.18);
+  --stone: #2c2418;
+  --stone-2: #3a2f1d;
+  --line: rgba(240, 227, 194, 0.16);
+}
+
+[data-theme="ebony"][data-mode="dark"] {
+  --paper: #0a0908;
+  --paper-2: #14110c;
+  --ink: #f5e8c8;
+  --ink-2: #c8b07a;
+  --walnut: #e0b478;
+  --oak: #f0c688;
+  --brass: #f5d894;
+  --stone: #1a1610;
+  --stone-2: #2a2418;
+  --line: rgba(245, 232, 200, 0.18);
 }
 
 /* ------------------------------------------------------------------ */
 /* THEME · linen (soft sage + terracotta — minimal residential)        */
 /* ------------------------------------------------------------------ */
 [data-theme="linen"] {
-  --paper: #f8f4ed;
-  --paper-2: #ede6d6;
+  --paper: #efe9dd;
+  --paper-2: #dfd4be;
   --ink: #2c2a26;
   --ink-2: #6e7c6a;
   --walnut: #a8552c;
   --oak: #c4795a;
   --brass: #c89a6f;
-  --stone: #dcd4c2;
-  --stone-2: #c8c0a8;
-  --line: rgba(44, 42, 38, 0.14);
+  --stone: #d2c4ac;
+  --stone-2: #b8aa92;
+  --line: rgba(44, 42, 38, 0.16);
 }
 
 [data-theme="linen"][data-mode="dark"] {
@@ -128,6 +130,14 @@
   --muted: var(--ink-2);
   --accent: var(--walnut);
   --highlight: var(--brass);
+
+  /* fixed colours — never theme-shift. used on permanently-dark surfaces
+     such as the home hero and the transparent header over it, so text
+     stays cream regardless of the active theme or light/dark mode. */
+  --cream: #faf7f2;
+  --cream-2: #f4efe6;
+  --charcoal: #0c0a08;
+  --charcoal-2: #1a1612;
 }
 
 @theme inline {
@@ -141,6 +151,10 @@
   --color-stone: var(--stone);
   --color-stone-2: var(--stone-2);
   --color-line: var(--line);
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-2: var(--charcoal-2);
   --color-background: var(--paper);
   --color-foreground: var(--ink);
   --color-muted: var(--ink-2);

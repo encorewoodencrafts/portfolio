@@ -13,7 +13,7 @@ export function FeaturedSpotlights() {
       {spotlights.map((p) => (
         <article
           key={p.slug}
-          className="relative h-[80svh] md:h-[88svh] overflow-hidden bg-ink text-paper"
+          className="relative h-[60svh] md:h-[72svh] overflow-hidden bg-charcoal text-cream"
         >
           <ClipReveal className="absolute inset-0">
             <Image
@@ -23,29 +23,49 @@ export function FeaturedSpotlights() {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/75 via-charcoal/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent" />
           </ClipReveal>
-          <div className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24">
+          <div className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-center px-5 md:px-8 lg:px-12 py-12 md:py-16">
             <Reveal>
-              <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-paper/80">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-cream/80">
                 {p.code} series
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h3 className="mt-4 display-tight text-[clamp(2.6rem,7vw,7.2rem)] font-light text-paper leading-none">
+              <h3 className="mt-4 display-tight text-[clamp(2.4rem,5.5vw,5.5rem)] font-light text-cream leading-[0.95]">
                 {p.name}
               </h3>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-xl text-paper/85 leading-relaxed">
+              <p className="mt-5 max-w-xl text-cream/85 leading-relaxed">
                 {p.excerpt}
               </p>
             </Reveal>
-            <Reveal delay={0.15}>
+            <Reveal delay={0.14}>
+              <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-4">
+                <div>
+                  <dt className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-cream/60">
+                    vertical sightline
+                  </dt>
+                  <dd className="mt-1 display text-xl text-cream">
+                    {p.sightline}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-cream/60">
+                    max panel
+                  </dt>
+                  <dd className="mt-1 display text-xl text-cream">
+                    {p.maxPanel}
+                  </dd>
+                </div>
+              </dl>
+            </Reveal>
+            <Reveal delay={0.18}>
               <Link
                 href={`/products/${p.slug}`}
-                className="mt-10 inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper border-b border-paper/60 pb-1 hover:text-walnut hover:border-walnut transition-colors w-fit"
+                className="mt-8 inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream border-b border-cream/60 pb-1 hover:text-brass hover:border-brass transition-colors w-fit"
               >
                 discover more
                 <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />

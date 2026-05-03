@@ -15,10 +15,14 @@ export default function NewsPage() {
   return (
     <>
       <PageHero
+        kicker="dispatch · atelier diary"
         eyebrow="what's new at encore"
+        index="07"
         title={
           <>
-            news.
+            news,
+            <br />
+            <span className="italic">from the bench.</span>
           </>
         }
         description="dispatches from the atelier — new products, completed projects, events and announcements."

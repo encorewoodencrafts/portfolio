@@ -11,15 +11,27 @@ import { PartnersTeaser } from "@/components/site/partners-teaser";
 import { AboutTeaser } from "@/components/site/about-teaser";
 import { FaqTeaser } from "@/components/site/faq-teaser";
 import { BlogTeaser } from "@/components/site/blog-teaser";
+import { Marquee } from "@/components/site/marquee";
+
+const TIMBER_VALUES = [
+  "the warmth of bespoke timber",
+  "minimalist · monolithic · mortised",
+  "made in hyderabad",
+  "9 m single panels",
+  "ten-year warranty",
+  "fsc-certified species",
+];
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <div id="news" className="scroll-mt-24" />
       <NewsRail />
       <ProductOverview />
       <FeaturedSpotlights />
       <AddOnsGrid />
+      <Marquee phrases={TIMBER_VALUES} size="lg" />
       <ProjectsRail />
       <Testimonials />
       <Process />

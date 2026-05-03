@@ -42,15 +42,22 @@ export function Header() {
   return (
     <>
       <header
+        data-surface={transparent ? "on-hero" : "on-paper"}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500",
+          "fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter,border-color,color] duration-500",
+          // when transparent, sit over the dark hero with FIXED cream text
+          // (so it stays readable in dark mode + every theme); otherwise
+          // the header paints itself in the active theme's paper/ink.
           transparent
-            ? "border-b border-transparent"
-            : "border-b border-line bg-paper/85 backdrop-blur-xl"
+            ? "border-b border-transparent text-cream"
+            : "border-b border-line bg-paper/85 backdrop-blur-xl text-ink"
         )}
       >
         <div className="mx-auto flex h-16 max-w-[1640px] items-center justify-between px-5 md:px-8 lg:px-12">
-          <Logo />
+          <Logo
+            tone={transparent ? "light" : "dark"}
+            className="transition-colors"
+          />
 
           <nav
             aria-label="primary"
@@ -64,9 +71,13 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "font-sans text-[0.78rem] tracking-tight transition-colors",
-                    active
-                      ? "text-ink"
-                      : "text-ink-2 hover:text-ink"
+                    transparent
+                      ? active
+                        ? "text-cream"
+                        : "text-cream/75 hover:text-cream"
+                      : active
+                        ? "text-ink"
+                        : "text-ink-2 hover:text-ink"
                   )}
                 >
                   {item.label}
@@ -76,24 +87,45 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-3">
-            <SearchTrigger className="h-9 w-9 inline-flex items-center justify-center" />
+            <SearchTrigger
+              className={cn(
+                "h-9 w-9 inline-flex items-center justify-center",
+                transparent
+                  ? "text-cream/75 hover:text-cream"
+                  : "text-ink-2 hover:text-ink"
+              )}
+            />
             <Link
               href="/login"
               aria-label="architects login"
-              className="hidden md:inline-flex h-9 items-center gap-1.5 px-2 text-ink-2 hover:text-ink transition-colors"
+              className={cn(
+                "hidden md:inline-flex h-9 items-center gap-1.5 px-2 transition-colors",
+                transparent
+                  ? "text-cream/75 hover:text-cream"
+                  : "text-ink-2 hover:text-ink"
+              )}
             >
               <User className="h-3.5 w-3.5" strokeWidth={1.5} />
               <span className="hidden lg:inline font-mono text-[0.65rem] uppercase tracking-[0.18em]">
                 log-in
               </span>
             </Link>
-            <LanguageSwitcher className="hidden md:block" />
-            <ThemePicker className="hidden sm:block" />
-            <ThemeToggle />
+            <LanguageSwitcher
+              className="hidden md:block"
+              tone={transparent ? "light" : "dark"}
+            />
+            <ThemePicker
+              className="hidden sm:block"
+              tone={transparent ? "light" : "dark"}
+            />
+            <ThemeToggle tone={transparent ? "light" : "dark"} />
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="xl:hidden inline-flex h-10 w-10 items-center justify-center text-ink"
+              className={cn(
+                "xl:hidden inline-flex h-10 w-10 items-center justify-center transition-colors",
+                transparent ? "text-cream" : "text-ink"
+              )}
               aria-label="open menu"
             >
               <Menu className="h-5 w-5" strokeWidth={1.4} />

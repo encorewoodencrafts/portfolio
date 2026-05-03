@@ -8,9 +8,11 @@ import { cn } from "@/lib/cn";
 export function ThemePicker({
   className,
   variant = "compact",
+  tone = "dark",
 }: {
   className?: string;
   variant?: "compact" | "full";
+  tone?: "light" | "dark";
 }) {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -64,7 +66,12 @@ export function ThemePicker({
         onClick={() => setOpen((o) => !o)}
         aria-label="change theme"
         aria-expanded={open}
-        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-2 transition-colors hover:text-ink hover:border-ink/40"
+        className={cn(
+          "inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
+          tone === "light"
+            ? "border-cream/30 text-cream/75 hover:text-cream hover:border-cream/70"
+            : "border-line text-ink-2 hover:text-ink hover:border-ink/40"
+        )}
       >
         <Palette className="h-3.5 w-3.5" strokeWidth={1.4} />
       </button>

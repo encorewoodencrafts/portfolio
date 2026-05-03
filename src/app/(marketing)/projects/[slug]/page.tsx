@@ -42,7 +42,7 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <section className="relative h-[88svh] w-full overflow-hidden bg-ink text-paper">
+      <section className="relative h-[88svh] w-full overflow-hidden bg-charcoal text-cream">
         <ClipReveal className="absolute inset-0">
           <Image
             src={project.hero}
@@ -52,20 +52,20 @@ export default async function ProjectDetailPage({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-ink/10 to-ink/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-charcoal/15 to-charcoal/80" />
         </ClipReveal>
         <div className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24">
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-paper/80 anim-fade-up">
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-cream/80 anim-fade-up">
             reference works · {project.year}
           </p>
           <h1
-            className="mt-4 display-tight text-[clamp(2.6rem,8vw,7.6rem)] font-light text-paper leading-none anim-fade-up"
+            className="mt-4 display-tight text-[clamp(2.6rem,8vw,7.6rem)] font-light text-cream leading-none anim-fade-up"
             style={{ animationDelay: "150ms" }}
           >
             {project.title}
           </h1>
           <p
-            className="mt-6 max-w-2xl text-paper/85 text-base md:text-lg leading-relaxed anim-fade-up"
+            className="mt-6 max-w-2xl text-cream/85 text-base md:text-lg leading-relaxed anim-fade-up"
             style={{ animationDelay: "300ms" }}
           >
             {project.excerpt}

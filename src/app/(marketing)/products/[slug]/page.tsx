@@ -44,7 +44,7 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <section className="relative h-[88svh] w-full overflow-hidden bg-ink text-paper">
+      <section className="relative h-[88svh] w-full overflow-hidden bg-charcoal text-cream">
         <ClipReveal className="absolute inset-0">
           <Image
             src={product.detailHero}
@@ -54,20 +54,20 @@ export default async function ProductDetailPage({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-ink/10 to-ink/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-charcoal/15 to-charcoal/80" />
         </ClipReveal>
         <div className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24">
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-paper/80 anim-fade-up">
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-cream/80 anim-fade-up">
             {product.code} series · encore window system
           </p>
           <h1
-            className="mt-4 display-tight text-[clamp(3rem,9vw,9rem)] font-light text-paper leading-none anim-fade-up"
+            className="mt-4 display-tight text-[clamp(3rem,9vw,9rem)] font-light text-cream leading-none anim-fade-up"
             style={{ animationDelay: "150ms" }}
           >
             {product.name}
           </h1>
           <p
-            className="mt-6 max-w-2xl text-paper/85 text-base md:text-lg leading-relaxed anim-fade-up"
+            className="mt-6 max-w-2xl text-cream/85 text-base md:text-lg leading-relaxed anim-fade-up"
             style={{ animationDelay: "300ms" }}
           >
             {product.tagline}
@@ -201,10 +201,10 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line bg-ink text-paper py-20 md:py-28">
+      <section className="border-t border-line bg-charcoal text-cream py-20 md:py-28">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-7">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper/70">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
               specify {product.name}
             </p>
             <h2 className="mt-4 display text-4xl md:text-6xl font-light tracking-tight leading-[0.95]">
@@ -214,7 +214,7 @@ export default async function ProductDetailPage({
             </h2>
           </div>
           <div className="col-span-12 lg:col-span-5 flex items-end">
-            <p className="text-paper/80 leading-relaxed max-w-md">
+            <p className="text-cream/80 leading-relaxed max-w-md">
               our atelier produces a tailored quote within five working days,
               based on your drawings, climate and timber preferences.
             </p>
@@ -222,14 +222,14 @@ export default async function ProductDetailPage({
           <div className="col-span-12 mt-10 flex flex-wrap gap-6">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper border-b border-paper/60 pb-1 hover:text-walnut hover:border-walnut transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream border-b border-cream/60 pb-1 hover:text-brass hover:border-brass transition-colors"
             >
               request a quote
               <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />
             </Link>
             <Link
               href="/architects"
-              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper/80 border-b border-paper/40 pb-1 hover:text-paper hover:border-paper transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/80 border-b border-cream/40 pb-1 hover:text-cream hover:border-cream transition-colors"
             >
               architects info & cad library
               <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />

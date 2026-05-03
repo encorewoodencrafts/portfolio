@@ -23,7 +23,9 @@ export default function FaqPage() {
   return (
     <>
       <PageHero
+        kicker="no.10 · faq"
         eyebrow="for architects · for owners"
+        index="10"
         title={
           <>
             things people
@@ -32,6 +34,22 @@ export default function FaqPage() {
           </>
         }
         description="lead times, materials, warranty, pricing, install and aftercare. if you don't see your question, write to studio@encorewoodcrafts.in or message us on whatsapp."
+        meta={
+          <ul className="space-y-3 text-sm text-ink-2">
+            <li className="flex justify-between gap-4">
+              <span>questions covered</span>
+              <span className="text-ink font-mono text-xs">{faqItems.length}</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>topics</span>
+              <span className="text-ink font-mono text-xs">{categories.length}</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>last updated</span>
+              <span className="text-ink font-mono text-xs">2026</span>
+            </li>
+          </ul>
+        }
       />
 
       <section className="border-t border-line py-16 md:py-20">
@@ -94,7 +112,7 @@ export default function FaqPage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper bg-ink rounded-sm px-5 py-3 hover:bg-walnut transition-colors"
+              className="inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream bg-charcoal rounded-sm px-5 py-3 hover:bg-walnut transition-colors"
             >
               start a conversation →
             </Link>

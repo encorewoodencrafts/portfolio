@@ -16,7 +16,9 @@ export default function AddOnsPage() {
   return (
     <>
       <PageHero
+        kicker="no.02 · accessories"
         eyebrow="expanding the system"
+        index="02"
         title={
           <>
             add-ons,
@@ -25,6 +27,22 @@ export default function AddOnsPage() {
           </>
         }
         description="nine accessories engineered to integrate invisibly with the encore family. none alter the sightlines."
+        meta={
+          <ul className="space-y-3 text-sm text-ink-2">
+            <li className="flex justify-between gap-4">
+              <span>accessories</span>
+              <span className="text-ink font-mono text-xs">{addOns.length}</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>compatibility</span>
+              <span className="text-ink font-mono text-xs">all 5 systems</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>added at</span>
+              <span className="text-ink font-mono text-xs">spec time</span>
+            </li>
+          </ul>
+        }
       />
 
       <section className="py-12 md:py-16">
@@ -71,10 +89,10 @@ export default function AddOnsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-ink text-paper py-20 md:py-24 mt-12">
+      <section className="border-t border-line bg-charcoal text-cream py-20 md:py-24 mt-12">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper/70">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
               specify your add-ons
             </p>
             <h2 className="mt-4 display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
@@ -86,7 +104,7 @@ export default function AddOnsPage() {
           <div className="col-span-12 lg:col-span-4 flex lg:justify-end">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper border-b border-paper/60 pb-1 hover:text-walnut hover:border-walnut transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream border-b border-cream/60 pb-1 hover:text-brass hover:border-brass transition-colors"
             >
               talk to the atelier
               <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />

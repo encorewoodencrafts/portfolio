@@ -67,7 +67,9 @@ export default function ArchitectsPage() {
   return (
     <>
       <PageHero
+        kicker="no.04 · for architects"
         eyebrow="all the encore goodies"
+        index="04"
         title={
           <>
             architects
@@ -76,6 +78,22 @@ export default function ArchitectsPage() {
           </>
         }
         description="catalogues, monographs, and a fully indexed CAD library — sections, plans, isometric assemblies for all five systems. registration is required to access the CAD library."
+        meta={
+          <ul className="space-y-3 text-sm text-ink-2">
+            <li className="flex justify-between gap-4">
+              <span>catalogues</span>
+              <span className="text-ink font-mono text-xs">8</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>cad blocks</span>
+              <span className="text-ink font-mono text-xs">240+</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>formats</span>
+              <span className="text-ink font-mono text-xs">dwg · pdf · 3dm</span>
+            </li>
+          </ul>
+        }
       />
 
       <section

@@ -129,8 +129,8 @@ export function FloatingCTA() {
         aria-label={open ? "close contact options" : "talk to encore atelier"}
         aria-expanded={open}
         className={cn(
-          "inline-flex h-14 w-14 items-center justify-center rounded-full text-paper shadow-2xl ring-soft transition-all duration-500",
-          "bg-walnut hover:bg-ink hover:scale-105"
+          "inline-flex h-14 w-14 items-center justify-center rounded-full text-cream shadow-2xl ring-soft transition-all duration-500",
+          "bg-walnut hover:bg-charcoal hover:scale-105"
         )}
       >
         {open ? (

@@ -15,7 +15,9 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
+        kicker="long form · monthly journal"
         eyebrow="the atelier journal"
+        index="08"
         title={
           <>
             timber

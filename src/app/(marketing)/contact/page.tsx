@@ -42,7 +42,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        kicker="no.09 · contact"
         eyebrow="talk to the atelier"
+        index="09"
         title={
           <>
             request a
@@ -51,6 +53,22 @@ export default function ContactPage() {
           </>
         }
         description="every encore opening is a bespoke commission. share what you are dreaming of and we will reply within five working days with an initial proposal."
+        meta={
+          <ul className="space-y-3 text-sm text-ink-2">
+            <li className="flex justify-between gap-4">
+              <span>response</span>
+              <span className="text-ink font-mono text-xs">≤ 1 working day</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>email</span>
+              <span className="text-ink font-mono text-xs truncate">{site.email}</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>whatsapp</span>
+              <span className="text-ink font-mono text-xs">{site.phone}</span>
+            </li>
+          </ul>
+        }
       />
 
       <section className="py-16 md:py-24">

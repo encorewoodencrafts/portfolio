@@ -17,7 +17,9 @@ export default function PartnersPage() {
   return (
     <>
       <PageHero
+        kicker="no.05 · global network"
         eyebrow="meet our chain of partners"
+        index="05"
         title={
           <>
             around the
@@ -25,7 +27,23 @@ export default function PartnersPage() {
             <span className="italic">world.</span>
           </>
         }
-        description={`a network of partners to bring you encore anywhere you are in the globe. each partner is a cabinet-maker, glazier or fenestration specialist inducted into our atelier programme. ${site.email} · ${site.phone}`}
+        description="a certified network of cabinet-makers, glaziers and fenestration specialists who have been inducted into the encore atelier programme — bringing the same standard wherever you build."
+        meta={
+          <ul className="space-y-3 text-sm text-ink-2">
+            <li className="flex justify-between gap-4">
+              <span>countries</span>
+              <span className="text-ink font-mono text-xs">30+</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>cities</span>
+              <span className="text-ink font-mono text-xs">35+</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>email</span>
+              <span className="text-ink font-mono text-xs truncate">{site.email}</span>
+            </li>
+          </ul>
+        }
       />
 
       <section className="py-12 md:py-20 border-b border-line">
@@ -97,10 +115,10 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-24 bg-ink text-paper">
+      <section className="border-t border-line py-20 md:py-24 bg-charcoal text-cream">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper/70">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
               not in our network yet?
             </p>
             <h2 className="mt-4 display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
@@ -112,7 +130,7 @@ export default function PartnersPage() {
           <div className="col-span-12 lg:col-span-4 lg:text-right">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper border-b border-paper/60 pb-1 hover:text-walnut hover:border-walnut transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream border-b border-cream/60 pb-1 hover:text-brass hover:border-brass transition-colors"
             >
               partner programme →
             </Link>

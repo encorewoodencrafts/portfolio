@@ -43,8 +43,8 @@ export const themes: {
     label: "forest",
     description: "deep moss · brass · for organic projects",
     swatches: {
-      paper: "#F4EFE6",
-      ink: "#1F2A23",
+      paper: "#ECEBD9",
+      ink: "#1A2A20",
       walnut: "#2A4634",
       brass: "#B08D57",
     },
@@ -54,7 +54,7 @@ export const themes: {
     label: "ebony",
     description: "luxe black · gold · evening boutique",
     swatches: {
-      paper: "#0A0908",
+      paper: "#15110C",
       ink: "#F0E3C2",
       walnut: "#D4A86A",
       brass: "#F0D28C",
@@ -65,7 +65,7 @@ export const themes: {
     label: "linen",
     description: "soft sage · terracotta · minimal residential",
     swatches: {
-      paper: "#F8F4ED",
+      paper: "#EFE9DD",
       ink: "#2C2A26",
       walnut: "#A8552C",
       brass: "#C89A6F",

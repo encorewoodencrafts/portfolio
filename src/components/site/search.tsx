@@ -107,7 +107,9 @@ export function SearchTrigger({ className }: { className?: string }) {
         onClick={() => setOpen(true)}
         aria-label="search"
         className={cn(
-          "inline-flex items-center justify-center gap-2 text-ink-2 hover:text-ink transition-colors",
+          "inline-flex items-center justify-center gap-2 transition-colors",
+          // header passes a per-tone text colour; fall back here for other contexts
+          !className?.includes("text-") && "text-ink-2 hover:text-ink",
           className
         )}
       >
@@ -119,7 +121,7 @@ export function SearchTrigger({ className }: { className?: string }) {
 
       {open && (
         <div
-          className="fixed inset-0 z-[100] bg-ink/30 backdrop-blur-md"
+          className="fixed inset-0 z-[100] bg-charcoal/40 backdrop-blur-md"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"

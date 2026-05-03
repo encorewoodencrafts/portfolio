@@ -5,7 +5,13 @@ import { ChevronDown } from "lucide-react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/cn";
 
-export function LanguageSwitcher({ className }: { className?: string }) {
+export function LanguageSwitcher({
+  className,
+  tone = "dark",
+}: {
+  className?: string;
+  tone?: "light" | "dark";
+}) {
   const [active, setActive] = React.useState("en");
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -26,7 +32,12 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-label="select language"
-        className="inline-flex h-9 items-center gap-1 px-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-2 hover:text-ink transition-colors"
+        className={cn(
+          "inline-flex h-9 items-center gap-1 px-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] transition-colors",
+          tone === "light"
+            ? "text-cream/75 hover:text-cream"
+            : "text-ink-2 hover:text-ink"
+        )}
       >
         {active.toUpperCase()}
         <ChevronDown className="h-3 w-3" strokeWidth={1.5} />

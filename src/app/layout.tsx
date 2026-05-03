@@ -4,7 +4,6 @@ import {
   ThemeProvider,
   themeInitScript,
 } from "@/components/site/theme-provider";
-import { LenisProvider } from "@/components/site/lenis-provider";
 import { OrganizationJsonLd } from "@/components/site/json-ld";
 import { ConsentedAnalytics } from "@/components/site/consented-analytics";
 import "./globals.css";
@@ -93,9 +92,7 @@ export default function RootLayout({
         className="min-h-full bg-paper text-ink selection:bg-walnut selection:text-paper"
       >
         <OrganizationJsonLd />
-        <ThemeProvider>
-          <LenisProvider>{children}</LenisProvider>
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
         <ConsentedAnalytics />
       </body>
     </html>

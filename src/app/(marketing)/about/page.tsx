@@ -66,7 +66,9 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
+        kicker="no.06 · the studio"
         eyebrow="why we build encore"
+        index="06"
         title={
           <>
             an indian timber atelier,
@@ -75,6 +77,26 @@ export default function AboutPage() {
           </>
         }
         description="encore woodcrafts llp is the only manufacturer of minimalist timber windows in india that processes and manufactures the main components of its systems in-house — wood, aluminium spine, glass and hardware. having full accountability turns a once-risky craft into a routine task."
+        meta={
+          <ul className="space-y-3 text-sm text-ink-2">
+            <li className="flex justify-between gap-4">
+              <span>founded</span>
+              <span className="text-ink font-mono text-xs">2014</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>atelier floor</span>
+              <span className="text-ink font-mono text-xs">9,400 m²</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>headcount</span>
+              <span className="text-ink font-mono text-xs">110+</span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>fsc-certified</span>
+              <span className="text-ink font-mono text-xs">98%</span>
+            </li>
+          </ul>
+        }
       />
 
       <section className="border-t border-line py-20 md:py-28 bg-paper-2/40">
