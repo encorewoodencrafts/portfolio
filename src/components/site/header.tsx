@@ -164,18 +164,10 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
-              onClick={closeMenu}
-              className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink hairline"
-              style={{ animationDelay: `${navigation.length * 40}ms` }}
-            >
-              contact
-            </Link>
-            <Link
               href="/login"
               onClick={closeMenu}
               className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink-2 hairline"
-              style={{ animationDelay: `${(navigation.length + 1) * 40}ms` }}
+              style={{ animationDelay: `${navigation.length * 40}ms` }}
             >
               architects log-in
             </Link>

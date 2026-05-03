@@ -51,4 +51,6 @@ export const navigation = [
   { href: "/about", label: "about us" },
   { href: "/faq", label: "faq" },
   { href: "/blog", label: "journal" },
+  { href: "/news", label: "news" },
+  { href: "/contact", label: "contact" },
 ] as const;
