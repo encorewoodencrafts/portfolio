@@ -17,10 +17,11 @@ const cookies = [
     duration: "until you clear your browser data",
   },
   {
-    name: "encore-cookies",
+    name: "encore-mode",
     type: "local storage",
-    purpose: "remembers that you have dismissed the cookie banner.",
-    duration: "1 year",
+    purpose:
+      "remembers whether you chose light mode, dark mode, or system default.",
+    duration: "until you clear your browser data",
   },
   {
     name: "encore-locale",
@@ -34,12 +35,12 @@ const analytics = [
   {
     name: "vercel analytics",
     purpose:
-      "anonymous, cookie-less pageview counts and country detection. no personal identifiers, no cross-site tracking.",
+      "anonymous, cookieless pageview counts, referrer and country detection. runs on every visit by default. no personal identifiers, no cross-site tracking, no cookies set.",
   },
   {
     name: "vercel speed insights",
     purpose:
-      "real-user core web vitals (lcp, inp, cls). fully anonymised; samples are aggregated.",
+      "real-user core web vitals (lcp, inp, cls) sampled on every visit by default. fully anonymised and aggregated; no personal identifiers.",
   },
 ];
 
@@ -59,8 +60,10 @@ export default function CookiesPage() {
       <section className="space-y-4">
         <p>
           we keep cookies and tracking to a deliberate minimum. we use only
-          what is needed to remember your preferences and to understand how
-          the site is used in aggregate. we do not use advertising cookies or
+          what is needed to remember your preferences (stored locally in your
+          browser, never on our servers) and to understand how the site is
+          used in aggregate. our analytics is anonymous and cookieless — no
+          personal identifiers are set. we do not use advertising cookies or
           cross-site tracking.
         </p>
       </section>
@@ -116,13 +119,15 @@ export default function CookiesPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="display text-2xl text-ink">how to control cookies</h2>
+        <h2 className="display text-2xl text-ink">how to opt out</h2>
         <p>
           you can clear our local-storage entries from your browser&rsquo;s
-          site-data settings, and you can opt out of vercel analytics by
-          enabling do-not-track or by using a privacy extension that blocks
-          third-party requests. our forms and product pages will continue to
-          work without analytics enabled.
+          site-data settings at any time. to opt out of analytics and speed
+          insights, enable do-not-track in your browser, use a privacy
+          extension (uBlock Origin, Privacy Badger, Brave Shields), or block
+          requests to <code className="font-mono">/_vercel/insights/</code>{" "}
+          on this domain. the site, forms and product pages will continue to
+          work normally with analytics blocked.
         </p>
       </section>
     </div>

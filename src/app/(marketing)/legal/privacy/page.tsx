@@ -70,12 +70,15 @@ export default function PrivacyPage() {
             <strong className="text-ink">automatic information.</strong>{" "}
             anonymised page views, performance metrics (largest contentful
             paint, etc.), referrer, country and device class — collected via
-            vercel analytics and vercel speed insights.
+            vercel analytics and vercel speed insights. these are cookieless,
+            do not set persistent identifiers and run by default; you can opt
+            out via your browser&rsquo;s do-not-track signal or any privacy
+            extension.
           </li>
           <li>
             <strong className="text-ink">cookies & local storage.</strong>{" "}
-            we store your preferred theme and cookie-banner choice on your
-            device. see our{" "}
+            we store your preferred theme and language on your device. we do
+            not set advertising or cross-site tracking cookies. see our{" "}
             <a
               href="/legal/cookies"
               className="underline underline-offset-2"

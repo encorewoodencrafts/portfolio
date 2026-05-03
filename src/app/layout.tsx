@@ -5,7 +5,8 @@ import {
   themeInitScript,
 } from "@/components/site/theme-provider";
 import { OrganizationJsonLd } from "@/components/site/json-ld";
-import { ConsentedAnalytics } from "@/components/site/consented-analytics";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const SITE_URL =
@@ -91,7 +92,8 @@ export default function RootLayout({
       >
         <OrganizationJsonLd />
         <ThemeProvider>{children}</ThemeProvider>
-        <ConsentedAnalytics />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
