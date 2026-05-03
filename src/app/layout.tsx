@@ -57,12 +57,10 @@ export const metadata: Metadata = {
     locale: "en_IN",
   },
   twitter: { card: "summary_large_image" },
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
-    ],
-  },
+  // Icons are inferred from Next 16 file conventions:
+  //   src/app/icon.svg       → <link rel="icon" type="image/svg+xml">
+  //   src/app/apple-icon.tsx → <link rel="apple-touch-icon" sizes="180x180">
+  // Adding an explicit `icons` block here would shadow the file convention.
 };
 
 export const viewport: Viewport = {
