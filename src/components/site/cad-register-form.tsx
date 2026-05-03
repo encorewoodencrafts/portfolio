@@ -7,6 +7,7 @@ import { z } from "zod";
 import { ArrowUpRight } from "lucide-react";
 import { countries } from "@/data/countries";
 import { HONEYPOT_FIELD, TIMESTAMP_FIELD } from "@/lib/spam-check";
+import { useFormTimestamp } from "@/lib/use-form-timestamp";
 
 const schema = z.object({
   email: z.string().email({ message: "valid email required" }),
@@ -34,7 +35,7 @@ export function CadRegisterForm() {
   const [submitted, setSubmitted] = React.useState(false);
   const [serverError, setServerError] = React.useState<string | null>(null);
   const [honeypot, setHoneypot] = React.useState("");
-  const mountedAtRef = React.useRef<number>(Date.now());
+  const { getMountedAt, reset: resetMountedAt } = useFormTimestamp();
 
   const onSubmit = async (values: FormValues) => {
     setServerError(null);
@@ -45,13 +46,13 @@ export function CadRegisterForm() {
         body: JSON.stringify({
           ...values,
           [HONEYPOT_FIELD]: honeypot,
-          [TIMESTAMP_FIELD]: mountedAtRef.current,
+          [TIMESTAMP_FIELD]: getMountedAt(),
         }),
       });
       if (!res.ok) throw new Error("submit failed");
       setSubmitted(true);
       reset();
-      mountedAtRef.current = Date.now();
+      resetMountedAt();
     } catch {
       setServerError("we could not submit your request. please try again.");
     }

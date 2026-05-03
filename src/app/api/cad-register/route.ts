@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { spamCheck, stripSpamFields } from "@/lib/spam-check";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://encorewoodcrafts.in";
+import { escapeHtml } from "@/lib/escape-html";
+import { env } from "@/lib/env";
 
 const schema = z.object({
   email: z.string().email(),
@@ -29,6 +28,8 @@ export async function POST(req: Request) {
   const body = raw as Record<string, unknown>;
   const spam = spamCheck(body);
   if (!spam.ok) {
+    // Return 200 OK to keep bots in the dark — they can't tell their
+    // submission was discarded.
     return NextResponse.json({ ok: true });
   }
 
@@ -40,29 +41,34 @@ export async function POST(req: Request) {
     );
   }
 
-  const { email, name, practice, country } = parsed.data;
-  const apiKey = process.env.RESEND_API_KEY;
+  const { email, name, country } = parsed.data;
 
-  if (!apiKey) {
+  if (!env.resendApiKey) {
     console.warn(
-      "[cad-register] RESEND_API_KEY not set — lead captured in logs only:",
-      { email, name, practice, country }
+      "[cad-register] RESEND_API_KEY not set — lead dropped after capture",
+      { country }
     );
     return NextResponse.json({ ok: true, channel: "logs" });
   }
 
   try {
     const { Resend } = await import("resend");
-    const resend = new Resend(apiKey);
+    const resend = new Resend(env.resendApiKey);
+    // The link is a URL context (not HTML), so the email itself is encoded
+    // with `encodeURIComponent`. The greeting + country are HTML PCDATA, so
+    // they go through the HTML escaper.
+    const safeName = escapeHtml(name);
+    const safeCountry = escapeHtml(country);
+    const loginUrl = `${env.siteUrl}/login?email=${encodeURIComponent(email)}`;
     const result = await resend.emails.send({
-      from: process.env.ENCORE_FROM_EMAIL ?? "studio@encorewoodcrafts.in",
+      from: env.fromEmail,
       to: email,
       subject: "your encore CAD library access",
       html: `
-        <p>hello ${name},</p>
+        <p>hello ${safeName},</p>
         <p>thank you for registering to access the encore CAD library. you can sign in here:</p>
-        <p><a href="${SITE_URL}/login?email=${encodeURIComponent(email)}">access the library →</a></p>
-        <p>our regional partner for ${country} will be in touch within two working days.</p>
+        <p><a href="${loginUrl}">access the library →</a></p>
+        <p>our regional partner for ${safeCountry} will be in touch within two working days.</p>
         <p>— the encore atelier</p>
       `,
     });

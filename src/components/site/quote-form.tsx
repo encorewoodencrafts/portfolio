@@ -8,6 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import { countries } from "@/data/countries";
 import { products } from "@/data/products";
 import { HONEYPOT_FIELD, TIMESTAMP_FIELD } from "@/lib/spam-check";
+import { useFormTimestamp } from "@/lib/use-form-timestamp";
 
 const schema = z.object({
   name: z.string().min(2, { message: "name required" }),
@@ -44,7 +45,7 @@ export function QuoteForm() {
   const [submitted, setSubmitted] = React.useState(false);
   const [serverError, setServerError] = React.useState<string | null>(null);
   const [honeypot, setHoneypot] = React.useState("");
-  const mountedAtRef = React.useRef<number>(Date.now());
+  const { getMountedAt, reset: resetMountedAt } = useFormTimestamp();
 
   const onSubmit = async (values: FormValues) => {
     setServerError(null);
@@ -55,13 +56,13 @@ export function QuoteForm() {
         body: JSON.stringify({
           ...values,
           [HONEYPOT_FIELD]: honeypot,
-          [TIMESTAMP_FIELD]: mountedAtRef.current,
+          [TIMESTAMP_FIELD]: getMountedAt(),
         }),
       });
       if (!res.ok) throw new Error("submit failed");
       setSubmitted(true);
       reset();
-      mountedAtRef.current = Date.now();
+      resetMountedAt();
     } catch {
       setServerError("we could not submit your enquiry. please try again.");
     }
