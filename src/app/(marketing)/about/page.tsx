@@ -76,7 +76,7 @@ export default function AboutPage() {
             <span className="italic">verticalised since 2014.</span>
           </>
         }
-        description="encore woodcrafts llp is the only manufacturer of minimalist timber windows in india that processes and manufactures the main components of its systems in-house — wood, aluminium spine, glass and hardware. having full accountability turns a once-risky craft into a routine task."
+        description="encore wood crafts llp is the only manufacturer of minimalist timber windows in india that processes and manufactures the main components of its systems in-house — wood, aluminium spine, glass and hardware. having full accountability turns a once-risky craft into a routine task."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">

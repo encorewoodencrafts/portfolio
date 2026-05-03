@@ -15,7 +15,7 @@ export const continents: Continent[] = [
   {
     name: "india",
     partners: [
-      { country: "telangana", city: "hyderabad (hq)", company: "encore woodcrafts llp", email: "studio@encorewoodcrafts.in", phone: "+91 91234 56780" },
+      { country: "telangana", city: "hyderabad (hq)", company: "encore wood crafts llp", email: "studio@encorewoodcrafts.in", phone: "+91 91234 56780" },
       { country: "karnataka", city: "bengaluru", company: "encore karnataka", email: "bengaluru@encorewoodcrafts.in", phone: "+91 91234 56781" },
       { country: "tamil nadu", city: "chennai", company: "encore tamil nadu", email: "chennai@encorewoodcrafts.in", phone: "+91 91234 56782" },
       { country: "maharashtra", city: "mumbai", company: "encore maharashtra", email: "mumbai@encorewoodcrafts.in", phone: "+91 91234 56783" },

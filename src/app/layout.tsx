@@ -34,7 +34,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "encore woodcrafts llp — bespoke timber windows & doors · india",
+    default: "encore wood crafts llp — bespoke timber windows & doors · india",
     template: "%s · encore woodcrafts",
   },
   description:

@@ -67,7 +67,7 @@ export default function TermsPage() {
           all content on the site — text, photography, drawings, cad
           libraries, system diagrams, the encore name, logo and product line
           names (encore sw, encore nm, encore 60, encore 38, encore um, and
-          all add-ons) — is the property of encore woodcrafts llp or its
+          all add-ons) — is the property of encore wood crafts llp or its
           licensors and is protected by copyright, trade-mark and design
           right. you may view and download for the sole purpose of
           specifying an encore project; all other use requires our prior

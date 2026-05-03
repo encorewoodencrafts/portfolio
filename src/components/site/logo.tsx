@@ -169,7 +169,7 @@ export function Logo({ className, variant = "default", tone = "dark" }: LogoProp
       href="/"
       aria-label="encore woodcrafts — home"
       className={cn(
-        "inline-flex items-baseline gap-2.5 group transition-colors",
+        "inline-flex items-center sm:items-baseline gap-2.5 group transition-colors",
         colour,
         className
       )}
@@ -178,16 +178,24 @@ export function Logo({ className, variant = "default", tone = "dark" }: LogoProp
         animated
         className="h-7 w-7 self-center transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:rotate-[3deg]"
       />
-      <span className="display text-[1.45rem] leading-none font-light tracking-tight">
-        encore
-      </span>
-      <span
-        className={cn(
-          "font-mono text-[0.6rem] uppercase tracking-[0.3em] hidden sm:inline",
-          subtle
-        )}
-      >
-        · woodcrafts
+      {/* Mobile stacks the wordmark over the tagline; sm+ collapses both onto
+          a single baseline-aligned line. The inline dot only renders inline
+          (no separator needed in the stacked lockup). */}
+      <span className="flex flex-col leading-none sm:flex-row sm:items-baseline sm:gap-2.5">
+        <span className="display text-[1.35rem] font-light tracking-tight sm:text-[1.45rem]">
+          encore
+        </span>
+        <span
+          className={cn(
+            "mt-0.5 font-mono text-[0.55rem] uppercase tracking-[0.28em] sm:mt-0 sm:text-[0.6rem] sm:tracking-[0.3em]",
+            subtle
+          )}
+        >
+          <span aria-hidden="true" className="hidden sm:inline">
+            ·{" "}
+          </span>
+          woodcrafts
+        </span>
       </span>
     </Link>
   );

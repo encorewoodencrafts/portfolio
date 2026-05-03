@@ -62,7 +62,7 @@ export function Header() {
 
           <nav
             aria-label="primary"
-            className="hidden xl:flex items-center gap-5 2xl:gap-7"
+            className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10"
           >
             {navigation.map((item) => {
               const active = pathname.startsWith(item.href);
@@ -124,7 +124,7 @@ export function Header() {
               type="button"
               onClick={() => setOpen(true)}
               className={cn(
-                "xl:hidden inline-flex h-10 w-10 items-center justify-center transition-colors",
+                "lg:hidden inline-flex h-10 w-10 items-center justify-center transition-colors",
                 transparent ? "text-cream" : "text-ink"
               )}
               aria-label="open menu"
@@ -136,7 +136,7 @@ export function Header() {
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-[60] bg-paper xl:hidden overflow-y-auto">
+        <div className="fixed inset-0 z-[60] bg-paper lg:hidden overflow-y-auto">
           <div className="sticky top-0 flex h-16 items-center justify-between px-5 md:px-8 border-b border-line bg-paper z-10">
             <Logo />
             <button

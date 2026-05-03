@@ -18,16 +18,24 @@ interface SearchItem {
   hint?: string;
 }
 
+// Order matters: when the search input is empty, the panel previews the first
+// eight entries. We surface the most-likely-searched pages first; secondary
+// utilities (legal, login) live further down but are still findable on query.
 const pageItems: SearchItem[] = [
   { type: "page", title: "products", href: "/products" },
-  { type: "page", title: "add-ons", href: "/add-ons" },
   { type: "page", title: "reference works", href: "/projects" },
   { type: "page", title: "architects info", href: "/architects" },
-  { type: "page", title: "around the world", href: "/partners" },
   { type: "page", title: "about us", href: "/about" },
-  { type: "page", title: "news", href: "/news" },
   { type: "page", title: "blog", href: "/blog" },
   { type: "page", title: "contact", href: "/contact" },
+  { type: "page", title: "add-ons", href: "/add-ons" },
+  { type: "page", title: "faq", href: "/faq", hint: "frequently asked" },
+  { type: "page", title: "news", href: "/news" },
+  { type: "page", title: "around the world", href: "/partners" },
+  { type: "page", title: "architects log-in", href: "/login", hint: "sign in" },
+  { type: "page", title: "privacy & cookies", href: "/legal/privacy" },
+  { type: "page", title: "cookies notice", href: "/legal/cookies" },
+  { type: "page", title: "terms of service", href: "/legal/terms" },
 ];
 
 const allItems: SearchItem[] = [

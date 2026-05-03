@@ -104,7 +104,7 @@ export default function LoginPage() {
       </main>
 
       <footer className="border-t border-line px-5 md:px-8 lg:px-12 py-5 text-xs text-ink-2 flex items-center justify-between">
-        <span>© {new Date().getFullYear()} encore wood crafts.</span>
+        <span>© {new Date().getFullYear()} encore wood crafts llp.</span>
         <Link href="/legal/privacy" className="hover:text-ink">
           privacy & cookie policy
         </Link>

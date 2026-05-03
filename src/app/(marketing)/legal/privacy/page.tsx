@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "privacy policy",
   description:
-    "how encore woodcrafts llp collects, uses and protects your personal information.",
+    "how encore wood crafts llp collects, uses and protects your personal information.",
   robots: { index: true, follow: true },
 };
 
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
       <section className="space-y-4">
         <h2 className="display text-2xl text-ink">who we are</h2>
         <p>
-          encore woodcrafts llp (&ldquo;encore&rdquo;, &ldquo;we&rdquo;,
+          encore wood crafts llp (&ldquo;encore&rdquo;, &ldquo;we&rdquo;,
           &ldquo;us&rdquo;) is a limited liability partnership registered in
           india, with its atelier at no. 9, timberyard lane, jubilee hills,
           hyderabad, telangana 500033.
@@ -172,7 +172,7 @@ export default function PrivacyPage() {
       <section className="space-y-4">
         <h2 className="display text-2xl text-ink">contact</h2>
         <address className="not-italic">
-          encore woodcrafts llp
+          encore wood crafts llp
           <br />
           no. 9, timberyard lane, jubilee hills
           <br />

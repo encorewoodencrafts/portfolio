@@ -6,7 +6,7 @@ export function OrganizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: site.fullName,
-    legalName: "encore wood crafts",
+    legalName: site.legalName,
     url: site.url,
     email: site.email,
     telephone: site.phone,

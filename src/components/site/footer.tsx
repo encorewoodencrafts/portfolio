@@ -29,6 +29,7 @@ const footerLinks = [
     title: "support",
     items: [
       { label: "architects info", href: "/architects" },
+      { label: "faq", href: "/faq" },
       { label: "request a quote", href: "/contact" },
       { label: "press & architecture", href: "/architects#press" },
       { label: "privacy & cookies", href: "/legal/privacy" },
@@ -172,7 +173,7 @@ export function Footer() {
           <div className="md:text-right">
             <div className="flex md:justify-end items-center gap-4">
               <LanguageSwitcher />
-              <span>© {new Date().getFullYear()} encore wood crafts.</span>
+              <span>© {new Date().getFullYear()} encore wood crafts llp.</span>
             </div>
           </div>
         </div>

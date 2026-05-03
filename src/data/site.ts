@@ -1,7 +1,7 @@
 export const site = {
   name: "encore",
-  fullName: "encore woodcrafts llp",
-  legalName: "ENCORE WOODCRAFTS LLP",
+  fullName: "encore wood crafts llp",
+  legalName: "ENCORE WOOD CRAFTS LLP",
   tagline: "the warmth of bespoke timber",
   description:
     "encore woodcrafts is a bespoke indian atelier crafting minimalist timber windows, doors and architectural carpentry — engineered in-house in teak, sal, mahogany, accoya and oak.",
@@ -42,15 +42,14 @@ export const site = {
   ],
 } as const;
 
+// Primary nav for the desktop header + mobile drawer. Kept slim (6 items) for
+// editorial calm; secondary destinations (add-ons, news, faq, partners) live
+// in the footer and remain in the sitemap, so SEO and reachability are intact.
 export const navigation = [
   { href: "/products", label: "products" },
-  { href: "/add-ons", label: "add-ons" },
   { href: "/projects", label: "reference works" },
   { href: "/architects", label: "architects info" },
   { href: "/about", label: "about us" },
-  { href: "/faq", label: "faq" },
   { href: "/blog", label: "blog" },
-  { href: "/news", label: "news" },
   { href: "/contact", label: "contact" },
-  { href: "/partners", label: "around the world" },
 ] as const;
