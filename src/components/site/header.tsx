@@ -62,7 +62,7 @@ export function Header() {
 
           <nav
             aria-label="primary"
-            className="hidden xl:flex items-center gap-7"
+            className="hidden xl:flex items-center gap-5 2xl:gap-7"
           >
             {navigation.map((item) => {
               const active = pathname.startsWith(item.href);

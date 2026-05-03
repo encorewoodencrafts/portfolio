@@ -47,10 +47,10 @@ export const navigation = [
   { href: "/add-ons", label: "add-ons" },
   { href: "/projects", label: "reference works" },
   { href: "/architects", label: "architects info" },
-  { href: "/partners", label: "around the world" },
   { href: "/about", label: "about us" },
   { href: "/faq", label: "faq" },
   { href: "/blog", label: "blog" },
   { href: "/news", label: "news" },
   { href: "/contact", label: "contact" },
+  { href: "/partners", label: "around the world" },
 ] as const;
