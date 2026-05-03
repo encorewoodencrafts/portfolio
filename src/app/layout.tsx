@@ -6,7 +6,11 @@ import {
 } from "@/components/site/theme-provider";
 import { LenisProvider } from "@/components/site/lenis-provider";
 import { OrganizationJsonLd } from "@/components/site/json-ld";
+import { ConsentedAnalytics } from "@/components/site/consented-analytics";
 import "./globals.css";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://encorewoodcrafts.in";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -28,7 +32,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://encorewoodcrafts.in"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "encore woodcrafts llp — bespoke timber windows & doors · india",
     template: "%s · encore woodcrafts",
@@ -76,8 +80,6 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      data-theme="atelier"
-      data-mode="light"
       className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <head>
@@ -86,11 +88,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
         />
       </head>
-      <body className="min-h-full bg-paper text-ink selection:bg-walnut selection:text-paper">
+      <body
+        suppressHydrationWarning
+        className="min-h-full bg-paper text-ink selection:bg-walnut selection:text-paper"
+      >
         <OrganizationJsonLd />
         <ThemeProvider>
           <LenisProvider>{children}</LenisProvider>
         </ThemeProvider>
+        <ConsentedAnalytics />
       </body>
     </html>
   );

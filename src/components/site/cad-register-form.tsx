@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowUpRight } from "lucide-react";
 import { countries } from "@/data/countries";
+import { HONEYPOT_FIELD, TIMESTAMP_FIELD } from "@/lib/spam-check";
 
 const schema = z.object({
   email: z.string().email({ message: "valid email required" }),
@@ -32,6 +33,8 @@ export function CadRegisterForm() {
   });
   const [submitted, setSubmitted] = React.useState(false);
   const [serverError, setServerError] = React.useState<string | null>(null);
+  const [honeypot, setHoneypot] = React.useState("");
+  const mountedAtRef = React.useRef<number>(Date.now());
 
   const onSubmit = async (values: FormValues) => {
     setServerError(null);
@@ -39,11 +42,16 @@ export function CadRegisterForm() {
       const res = await fetch("/api/cad-register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          [HONEYPOT_FIELD]: honeypot,
+          [TIMESTAMP_FIELD]: mountedAtRef.current,
+        }),
       });
       if (!res.ok) throw new Error("submit failed");
       setSubmitted(true);
       reset();
+      mountedAtRef.current = Date.now();
     } catch {
       setServerError("we could not submit your request. please try again.");
     }
@@ -72,6 +80,23 @@ export function CadRegisterForm() {
       className="space-y-6 border border-line p-8 md:p-10 bg-paper"
       noValidate
     >
+      <div
+        aria-hidden="true"
+        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+      >
+        <label>
+          do not fill this field
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            name="website"
+          />
+        </label>
+      </div>
+
       <div className="space-y-1">
         <p className="eyebrow">cad library access</p>
         <p className="text-ink-2 text-sm leading-relaxed max-w-md">

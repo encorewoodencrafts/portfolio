@@ -7,6 +7,7 @@ import { z } from "zod";
 import { ArrowUpRight } from "lucide-react";
 import { countries } from "@/data/countries";
 import { products } from "@/data/products";
+import { HONEYPOT_FIELD, TIMESTAMP_FIELD } from "@/lib/spam-check";
 
 const schema = z.object({
   name: z.string().min(2, { message: "name required" }),
@@ -42,6 +43,8 @@ export function QuoteForm() {
   });
   const [submitted, setSubmitted] = React.useState(false);
   const [serverError, setServerError] = React.useState<string | null>(null);
+  const [honeypot, setHoneypot] = React.useState("");
+  const mountedAtRef = React.useRef<number>(Date.now());
 
   const onSubmit = async (values: FormValues) => {
     setServerError(null);
@@ -49,11 +52,16 @@ export function QuoteForm() {
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          [HONEYPOT_FIELD]: honeypot,
+          [TIMESTAMP_FIELD]: mountedAtRef.current,
+        }),
       });
       if (!res.ok) throw new Error("submit failed");
       setSubmitted(true);
       reset();
+      mountedAtRef.current = Date.now();
     } catch {
       setServerError("we could not submit your enquiry. please try again.");
     }
@@ -82,6 +90,23 @@ export function QuoteForm() {
       className="space-y-6"
       noValidate
     >
+      <div
+        aria-hidden="true"
+        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+      >
+        <label>
+          do not fill this field
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            name="website"
+          />
+        </label>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <Field
           label="full name"

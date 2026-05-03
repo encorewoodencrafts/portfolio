@@ -22,6 +22,7 @@ export function CookieBanner() {
       STORAGE,
       JSON.stringify({ choice, ts: Date.now() })
     );
+    window.dispatchEvent(new Event("encore-cookie-consent"));
     setShow(false);
   };
 
