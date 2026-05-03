@@ -12,7 +12,7 @@ export function BlogTeaser() {
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
         <div className="mb-12 flex items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">the latest from our atelier journal</p>
+            <p className="eyebrow">the latest from our atelier blog</p>
             <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight">
               timber views
             </h2>

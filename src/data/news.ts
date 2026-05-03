@@ -19,7 +19,7 @@ export const news: NewsItem[] = [
       "the slimmest timber sightline in the encore family is now in series production: 15 mm vertical, vacuum-glazed.",
     body: [
       "after three years of joint development with our glass partner in saint-gobain, encore UM is now in series production. the system pairs vacuum insulating glass — a sealed evacuated cavity between two panes — with our slimmest-ever timber profile.",
-      "encore UM debuts in private commission this autumn and will be available globally from january 2027. specification samples are available on request to studio@encorewoodcrafts.com.",
+      "encore UM debuts in private commission this autumn and will be available globally from january 2027. specification samples are available on request to studio@encorewoodcrafts.in.",
     ],
     image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1800&q=80",
     category: "atelier",

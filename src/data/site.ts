@@ -50,7 +50,7 @@ export const navigation = [
   { href: "/partners", label: "around the world" },
   { href: "/about", label: "about us" },
   { href: "/faq", label: "faq" },
-  { href: "/blog", label: "journal" },
+  { href: "/blog", label: "blog" },
   { href: "/news", label: "news" },
   { href: "/contact", label: "contact" },
 ] as const;
