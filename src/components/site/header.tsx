@@ -33,9 +33,10 @@ export function Header() {
     };
   }, [open]);
 
-  React.useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  // Close the mobile drawer on each navigation. Wired to the Link's onClick
+  // handler below — driving this from a `pathname` effect would re-enter
+  // render with a setState (lint: react-hooks/set-state-in-effect).
+  const closeMenu = React.useCallback(() => setOpen(false), []);
 
   const transparent = isHome && !scrolled;
 
@@ -155,6 +156,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={closeMenu}
                 style={{ animationDelay: `${i * 40}ms` }}
                 className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink hairline"
               >
@@ -163,6 +165,7 @@ export function Header() {
             ))}
             <Link
               href="/contact"
+              onClick={closeMenu}
               className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink hairline"
               style={{ animationDelay: `${navigation.length * 40}ms` }}
             >
@@ -170,6 +173,7 @@ export function Header() {
             </Link>
             <Link
               href="/login"
+              onClick={closeMenu}
               className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink-2 hairline"
               style={{ animationDelay: `${(navigation.length + 1) * 40}ms` }}
             >

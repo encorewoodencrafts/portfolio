@@ -28,11 +28,13 @@ export function StatCounter({
 
   React.useEffect(() => {
     if (!inView || num === null) return;
-    if (prefersReduced) {
-      setDisplay(value);
-      return;
-    }
     let frame = 0;
+    if (prefersReduced) {
+      // Snap to final value on the next frame — avoids a synchronous setState
+      // in the effect body (lint: react-hooks/set-state-in-effect).
+      frame = requestAnimationFrame(() => setDisplay(value));
+      return () => cancelAnimationFrame(frame);
+    }
     const start = performance.now();
     const animate = (t: number) => {
       const elapsed = t - start;

@@ -1,26 +1,26 @@
 import { cn } from "@/lib/cn";
 
 /**
- * A slow, hypnotic horizontal marquee — used as a section divider on long pages.
+ * A slow, hypnotic horizontal marquee — used as a section divider on long
+ * pages.
  *
- * The component renders the phrase array twice in sequence so the css animation
- * (which translates by -50%) tiles seamlessly. It is decorative; the children
- * are aria-hidden.
+ * The phrase array is rendered twice in sequence so the css animation
+ * (which translates by -50%) tiles seamlessly. The component is decorative;
+ * the wrapper is `aria-hidden`.
  */
 export function Marquee({
   phrases,
-  separator = "·",
   reverse = false,
   className,
   size = "md",
   tone = "ink",
 }: {
   phrases: string[];
-  separator?: string;
+  /** Reverse the scroll direction (right → left becomes left → right). */
   reverse?: boolean;
   className?: string;
   size?: "sm" | "md" | "lg";
-  /** "ink" theme-aware, "cream" for use on dark surfaces, "walnut" accent */
+  /** "ink" theme-aware, "cream" for use on dark surfaces, "walnut" accent. */
   tone?: "ink" | "cream" | "walnut";
 }) {
   const sizes = {
@@ -34,21 +34,6 @@ export function Marquee({
     cream: "text-cream",
     walnut: "text-walnut",
   } as const;
-
-  // Render the loop content as two identical halves
-  const Content = () => (
-    <div className="flex shrink-0 items-center whitespace-nowrap">
-      {phrases.map((p, i) => (
-        <span key={i} className="flex items-center">
-          <span>{p}</span>
-          <span
-            className="mx-8 md:mx-12 inline-block h-[0.6em] w-px bg-current opacity-30 align-middle"
-            aria-hidden
-          />
-        </span>
-      ))}
-    </div>
-  );
 
   return (
     <div
@@ -67,9 +52,25 @@ export function Marquee({
           tones[tone]
         )}
       >
-        <Content />
-        <Content />
+        <MarqueeContent phrases={phrases} />
+        <MarqueeContent phrases={phrases} />
       </div>
+    </div>
+  );
+}
+
+function MarqueeContent({ phrases }: { phrases: string[] }) {
+  return (
+    <div className="flex shrink-0 items-center whitespace-nowrap">
+      {phrases.map((p, i) => (
+        <span key={i} className="flex items-center">
+          <span>{p}</span>
+          <span
+            className="mx-8 md:mx-12 inline-block h-[0.6em] w-px bg-current opacity-30 align-middle"
+            aria-hidden
+          />
+        </span>
+      ))}
     </div>
   );
 }

@@ -20,6 +20,10 @@ const ThemeContext = React.createContext<ThemeContextValue | undefined>(
 
 const STORAGE_THEME = "encore-theme";
 const STORAGE_MODE = "encore-mode";
+// Custom event so writes from setTheme/setMode in this tab notify
+// useSyncExternalStore subscribers (the native `storage` event only fires
+// in *other* tabs).
+const THEME_CHANGE_EVENT = "encore-theme-change";
 
 export const themes: {
   id: ThemeName;
@@ -73,13 +77,6 @@ export const themes: {
   },
 ];
 
-function getSystemMode(): "light" | "dark" {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
 function isThemeName(v: string | null): v is ThemeName {
   return v === "atelier" || v === "forest" || v === "ebony" || v === "linen";
 }
@@ -88,64 +85,106 @@ function isThemeMode(v: string | null): v is ThemeMode {
   return v === "light" || v === "dark" || v === "system";
 }
 
-function applyTheme(theme: ThemeName, mode: ThemeMode) {
-  const root = document.documentElement;
-  const resolved = mode === "system" ? getSystemMode() : mode;
-  root.dataset.theme = theme;
-  root.dataset.mode = resolved;
-  root.style.colorScheme = resolved;
+function getSystemMode(): "light" | "dark" {
+  if (typeof window === "undefined") return "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
+function readTheme(): ThemeName {
+  if (typeof window === "undefined") return "atelier";
+  try {
+    const v = localStorage.getItem(STORAGE_THEME);
+    return isThemeName(v) ? v : "atelier";
+  } catch {
+    return "atelier";
+  }
+}
+
+function readMode(): ThemeMode {
+  if (typeof window === "undefined") return "light";
+  try {
+    const v = localStorage.getItem(STORAGE_MODE);
+    return isThemeMode(v) ? v : "light";
+  } catch {
+    return "light";
+  }
+}
+
+/** Subscribes to all signals that can shift theme/mode/resolvedMode. */
+function subscribeThemeChange(onChange: () => void): () => void {
+  if (typeof window === "undefined") return () => {};
+  window.addEventListener("storage", onChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onChange);
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  mq.addEventListener("change", onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onChange);
+    mq.removeEventListener("change", onChange);
+  };
+}
+
+function applyToDom(theme: ThemeName, resolvedMode: "light" | "dark") {
+  const root = document.documentElement;
+  root.dataset.theme = theme;
+  root.dataset.mode = resolvedMode;
+  root.style.colorScheme = resolvedMode;
+}
+
+// SSR snapshots — identical to the no-flash defaults so hydration matches.
+const SSR_THEME: ThemeName = "atelier";
+const SSR_MODE: ThemeMode = "light";
+const SSR_RESOLVED: "light" | "dark" = "light";
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = React.useState<ThemeName>("atelier");
-  const [mode, setModeState] = React.useState<ThemeMode>("light");
-  const [resolvedMode, setResolvedMode] = React.useState<"light" | "dark">(
-    "light"
+  // Theme + mode are external state (localStorage + system pref); using
+  // useSyncExternalStore avoids the setState-in-effect bootstrap cascade
+  // and gives us correct SSR snapshots out of the box.
+  const theme = React.useSyncExternalStore(
+    subscribeThemeChange,
+    readTheme,
+    () => SSR_THEME
   );
+  const mode = React.useSyncExternalStore(
+    subscribeThemeChange,
+    readMode,
+    () => SSR_MODE
+  );
+  const systemMode = React.useSyncExternalStore(
+    subscribeThemeChange,
+    getSystemMode,
+    () => SSR_RESOLVED
+  );
+  const resolvedMode: "light" | "dark" = mode === "system" ? systemMode : mode;
 
+  // Sync DOM dataset whenever theme or resolved mode changes. The no-flash
+  // inline script does the very first paint; this effect keeps DOM in step
+  // for runtime changes.
   React.useEffect(() => {
-    const savedTheme = localStorage.getItem(STORAGE_THEME);
-    const savedMode = localStorage.getItem(STORAGE_MODE);
-    const t: ThemeName = isThemeName(savedTheme) ? savedTheme : "atelier";
-    const m: ThemeMode = isThemeMode(savedMode) ? savedMode : "light";
-    setThemeState(t);
-    setModeState(m);
-    setResolvedMode(m === "system" ? getSystemMode() : m);
-    applyTheme(t, m);
+    applyToDom(theme, resolvedMode);
+  }, [theme, resolvedMode]);
 
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onSystemChange = () => {
-      const cur = localStorage.getItem(STORAGE_MODE);
-      if (cur === "system") {
-        const sys = getSystemMode();
-        setResolvedMode(sys);
-        const curTheme = (localStorage.getItem(STORAGE_THEME) ?? "atelier") as ThemeName;
-        applyTheme(curTheme, "system");
-      }
-    };
-    mq.addEventListener("change", onSystemChange);
-    return () => mq.removeEventListener("change", onSystemChange);
+  const setTheme = React.useCallback((t: ThemeName) => {
+    try {
+      localStorage.setItem(STORAGE_THEME, t);
+    } catch {
+      // localStorage may be unavailable in sandboxed iframes — in that case
+      // we still dispatch the event so in-memory subscribers update via the
+      // next read, which will fall back to defaults.
+    }
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   }, []);
 
-  const setTheme = React.useCallback(
-    (t: ThemeName) => {
-      setThemeState(t);
-      localStorage.setItem(STORAGE_THEME, t);
-      applyTheme(t, mode);
-    },
-    [mode]
-  );
-
-  const setMode = React.useCallback(
-    (m: ThemeMode) => {
-      setModeState(m);
+  const setMode = React.useCallback((m: ThemeMode) => {
+    try {
       localStorage.setItem(STORAGE_MODE, m);
-      const resolved = m === "system" ? getSystemMode() : m;
-      setResolvedMode(resolved);
-      applyTheme(theme, m);
-    },
-    [theme]
-  );
+    } catch {
+      // see setTheme
+    }
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
+  }, []);
 
   const toggleMode = React.useCallback(() => {
     setMode(resolvedMode === "dark" ? "light" : "dark");

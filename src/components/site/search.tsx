@@ -70,21 +70,30 @@ export function SearchTrigger({ className }: { className?: string }) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const router = useRouter();
 
+  // Single close path — resets query alongside `open`. Co-locating the reset
+  // here (rather than in a `[open]` effect) keeps the lint rule
+  // `react-hooks/set-state-in-effect` happy and makes intent obvious.
+  const close = React.useCallback(() => {
+    setOpen(false);
+    setQuery("");
+  }, []);
+
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen(true);
       }
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
+  }, [close]);
 
   React.useEffect(() => {
-    if (open) requestAnimationFrame(() => inputRef.current?.focus());
-    else setQuery("");
+    if (!open) return;
+    const id = requestAnimationFrame(() => inputRef.current?.focus());
+    return () => cancelAnimationFrame(id);
   }, [open]);
 
   const filtered = React.useMemo(() => {
@@ -122,7 +131,7 @@ export function SearchTrigger({ className }: { className?: string }) {
       {open && (
         <div
           className="fixed inset-0 z-[100] bg-charcoal/40 backdrop-blur-md"
-          onClick={() => setOpen(false)}
+          onClick={close}
           role="dialog"
           aria-modal="true"
         >
@@ -146,7 +155,7 @@ export function SearchTrigger({ className }: { className?: string }) {
                 />
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
+                  onClick={close}
                   aria-label="close"
                   className="text-ink-2 hover:text-ink"
                 >
@@ -164,7 +173,7 @@ export function SearchTrigger({ className }: { className?: string }) {
                     <button
                       type="button"
                       onClick={() => {
-                        setOpen(false);
+                        close();
                         router.push(item.href);
                       }}
                       className="flex w-full items-center justify-between gap-4 px-5 py-3 text-left hover:bg-stone/40 transition-colors"
@@ -190,7 +199,7 @@ export function SearchTrigger({ className }: { className?: string }) {
                 <span>↵ to navigate</span>
                 <Link
                   href="/contact"
-                  onClick={() => setOpen(false)}
+                  onClick={close}
                   className="hover:text-ink"
                 >
                   request a quote →
