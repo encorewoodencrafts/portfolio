@@ -1,11 +1,28 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { products } from "@/data/products";
+import { products, type ProductFamily } from "@/data/products";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 import { cn } from "@/lib/cn";
+
+const FAMILY_LABELS: Record<ProductFamily, string> = {
+  "timber-window": "timber windows · sliding systems",
+  "wood-door": "wood doors · pivot & hinged",
+  aluminium: "aluminium · windows & doors",
+};
+
+// Order intentionally puts the new core business (wood doors + aluminium)
+// ahead of the legacy timber-clad sliding windows on the home page. The
+// `/products` page mirrors the same order so the catalogue scroll flows
+// the same way.
+const FAMILY_ORDER: ProductFamily[] = [
+  "wood-door",
+  "aluminium",
+  "timber-window",
+];
 
 export function ProductOverview() {
   return (
@@ -16,38 +33,82 @@ export function ProductOverview() {
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 py-20 md:py-28">
         <div className="grid grid-cols-12 gap-6 mb-16">
           <div className="col-span-12 md:col-span-4">
-            <p className="eyebrow">encore window system</p>
+            <p className="eyebrow">the encore catalogue</p>
           </div>
           <div className="col-span-12 md:col-span-8">
             <Reveal>
               <h2 className="display text-4xl md:text-6xl font-light tracking-tight text-ink leading-tight">
-                five timber systems,
+                timber, wood doors
                 <br />
-                <span className="italic">one craft.</span>
+                <span className="italic">&amp; aluminium.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.05}>
               <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">
-                each encore line shares the same machined-aluminium spine and
-                solid-timber cladding. they differ only in how they read light:
-                slim, structural, thermal, hybrid, ultra-minimal.
+                three families, one atelier: slim sliding window systems clad
+                in solid timber, monolithic wood entrance doors, and a matching
+                thermally-broken aluminium suite for projects that prefer a
+                metallic line.
               </p>
             </Reveal>
           </div>
         </div>
 
         <div className="space-y-24 md:space-y-32">
-          {products.map((p, i) => (
-            <ProductRow
-              key={p.slug}
-              product={p}
-              flipped={i % 2 === 1}
-              index={i}
-            />
-          ))}
+          {(() => {
+            // Build a flat ordered render list so the system index reads
+            // 01 → 08 in scroll order (regardless of the underlying data
+            // array order).
+            const nodes: React.ReactNode[] = [];
+            let displayIndex = 0;
+            FAMILY_ORDER.forEach((family, familyIndex) => {
+              const items = products.filter((p) => p.family === family);
+              if (items.length === 0) return;
+              nodes.push(
+                <FamilyDivider
+                  key={`divider-${family}`}
+                  label={FAMILY_LABELS[family]}
+                  index={familyIndex}
+                />
+              );
+              items.forEach((p) => {
+                const idx = displayIndex;
+                displayIndex += 1;
+                nodes.push(
+                  <ProductRow
+                    key={p.slug}
+                    product={p}
+                    flipped={idx % 2 === 1}
+                    index={idx}
+                  />
+                );
+              });
+            });
+            return nodes;
+          })()}
         </div>
       </div>
     </section>
+  );
+}
+
+function FamilyDivider({
+  label,
+  index,
+}: {
+  label: string;
+  index: number;
+}) {
+  return (
+    <Reveal>
+      <div className="flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2 pt-4">
+        <span className="font-mono text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-walnut">
+          {String(index + 1).padStart(2, "0")} · {label}
+        </span>
+        <span className="hidden sm:block h-px flex-1 bg-line" />
+        <span className="block sm:hidden h-px w-12 bg-line" />
+      </div>
+    </Reveal>
   );
 }
 

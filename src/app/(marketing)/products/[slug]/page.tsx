@@ -42,6 +42,13 @@ export default async function ProductDetailPage({
 
   const otherProducts = products.filter((p) => p.slug !== slug).slice(0, 4);
 
+  const familyEyebrow =
+    product.family === "wood-door"
+      ? "encore wood door system"
+      : product.family === "aluminium"
+        ? "encore aluminium system"
+        : "encore window system";
+
   return (
     <>
       <section className="relative h-[88svh] w-full overflow-hidden bg-charcoal text-cream">
@@ -58,7 +65,7 @@ export default async function ProductDetailPage({
         </ClipReveal>
         <div className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24">
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-cream/80 anim-fade-up">
-            {product.code} series · encore window system
+            {product.code} series · {familyEyebrow}
           </p>
           <h1
             className="mt-4 display-tight text-[clamp(3rem,9vw,9rem)] font-light text-cream leading-none anim-fade-up"
@@ -162,11 +169,13 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
-        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <WoodSpeciesSelector species={product.species} />
-        </div>
-      </section>
+      {product.species && product.species.length > 0 ? (
+        <section className="border-t border-line py-20 md:py-28">
+          <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
+            <WoodSpeciesSelector species={product.species} />
+          </div>
+        </section>
+      ) : null}
 
       <section className="border-t border-line py-20 md:py-28">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">

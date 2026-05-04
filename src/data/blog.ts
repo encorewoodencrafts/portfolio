@@ -40,7 +40,8 @@ export const blogPosts: BlogPost[] = [
       "we follow a single board of slovenian oak across eight months and four thousand miles: from felling on a thirty-degree slope above the soča valley, through air-drying for sixty weeks under a slate roof in friuli, to kiln conditioning at our atelier, to the cnc bench, the assembly hall, and finally a san francisco living room.",
       "every step matters. the same board cut three months earlier, dried six weeks shorter, or finished in a high-humidity month would not behave the same way over a hundred years of seasonal cycles.",
     ],
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1764566917581-2cfd7ba4edd8?auto=format&fit=crop&w=1800&q=80",
   },
   {
     slug: "vacuum-glass-and-the-15mm-sightline",
@@ -55,7 +56,8 @@ export const blogPosts: BlogPost[] = [
       "for fifty years the geometry of insulated glazing has been governed by an air gap. between two panes of glass, you trap a few millimetres of dry argon and call it triple glazing. as panes get thicker, edges grow.",
       "vacuum insulating glass replaces the gas with a near-vacuum. the cavity collapses to 0.3 mm. the total glass thickness drops from 44 mm to 12 mm. the frame can shrink with it. the encore UM vertical sightline is 15 mm. that is the diameter of a pencil.",
     ],
-    image: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1744063897843-c2c7353f1bdb?auto=format&fit=crop&w=1800&q=80",
   },
   {
     slug: "patina-as-design",
@@ -70,7 +72,8 @@ export const blogPosts: BlogPost[] = [
       "we are often asked to send a sample of how the timber will look in five years, or in twenty. we send three samples instead: a piece freshly oiled, a piece weathered for a season, and a piece taken from a façade we built in 2014. the differences are sometimes startling.",
       "specifying timber is specifying time. the wood you receive on day one is the beginning of a curve that arcs across decades. our role is to shape that curve, not to deny it.",
     ],
-    image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1756706718604-ef4af3970e33?auto=format&fit=crop&w=1800&q=80",
   },
 ];
 

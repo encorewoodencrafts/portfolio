@@ -32,8 +32,8 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 
 | path | description |
 | --- | --- |
-| `/` | hero + 11 home sections (news rail, 5 product showcases, spotlights, add-ons grid, projects rail, architects CTAs, partners map, all-that-wood story, blog teaser) |
-| `/products` | listing of all 5 systems |
+| `/` | hero + 11 home sections (news rail, product showcases grouped by family, spotlights, add-ons grid, projects rail, architects CTAs, partners map, all-that-wood story, blog teaser) |
+| `/products` | listing of every system across timber windows, wood doors and aluminium |
 | `/products/[slug]` | system detail (sightline diagram, specs, wood species selector, gallery, quote CTA) |
 | `/add-ons` | 9 accessory cards with iso-line drawings |
 | `/projects` | masonry gallery of reference works |
@@ -51,6 +51,10 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 
 ## product lineup
 
+three families, one atelier: timber sliding window systems, solid-wood entrance doors and a thermally-broken aluminium window & door suite.
+
+### timber windows · sliding systems
+
 | code | system | positioning |
 | --- | --- | --- |
 | `SW` | encore SW *(solid wood)* | flagship — full timber frame |
@@ -58,6 +62,19 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 | `60` | encore 60 | passivhaus & RC4 cold-climate sliders |
 | `38` | encore 38 | structural-glass sliding, max glass |
 | `UM` | encore UM *(ultra-minimal)* | vacuum-glazed, 15 mm sightline |
+
+### wood doors · pivot & hinged
+
+| code | system | positioning |
+| --- | --- | --- |
+| `PD` | encore PD *(pivot doors)* | monolithic solid-wood entrance & internal doors |
+
+### aluminium · windows & doors
+
+| code | system | positioning |
+| --- | --- | --- |
+| `AW` | encore AW *(aluminium windows)* | thermally-broken, 21 mm sightline — fixed / casement / tilt-and-turn |
+| `AD` | encore AD *(aluminium doors)* | lift-and-slide & bifold, panels up to 4 m wide |
 
 ## getting started
 

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/site/hero";
+import { FamiliesSpotlight } from "@/components/site/families-spotlight";
 import { NewsRail } from "@/components/site/news-rail";
 import { ProductOverview } from "@/components/site/product-overview";
 import { FeaturedSpotlights } from "@/components/site/featured-spotlights";
@@ -26,6 +27,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <FamiliesSpotlight />
       <div id="news" className="scroll-mt-24" />
       <NewsRail />
       <ProductOverview />

@@ -57,8 +57,8 @@ export function ArchitectsCTA() {
                 </h3>
                 <p className="mt-6 text-ink-2 text-sm max-w-md leading-relaxed">
                   registration is required to access our extensive library of
-                  CAD details — sections, plans, isometric assemblies for all
-                  five systems.
+                  CAD details — sections, plans, isometric assemblies for every
+                  system in the encore catalogue.
                 </p>
                 <span className="mt-8 inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink">
                   <span className="border-b border-ink pb-1 group-hover:text-walnut group-hover:border-walnut transition-colors">

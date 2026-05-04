@@ -35,7 +35,7 @@ export default function AddOnsPage() {
             </li>
             <li className="flex justify-between gap-4">
               <span>compatibility</span>
-              <span className="text-ink font-mono text-xs">all 5 systems</span>
+              <span className="text-ink font-mono text-xs">every system</span>
             </li>
             <li className="flex justify-between gap-4">
               <span>added at</span>

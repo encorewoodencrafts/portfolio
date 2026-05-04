@@ -11,6 +11,21 @@ export interface NewsItem {
 
 export const news: NewsItem[] = [
   {
+    slug: "wood-doors-and-aluminium-lines",
+    title: "wood doors & aluminium, now in series",
+    kicker: "atelier · three new product lines",
+    date: "2026-05-02",
+    excerpt:
+      "encore PD solid-wood pivot & entrance doors, encore AW slim aluminium windows and encore AD lift-and-slide aluminium doors are now in series production — built alongside our timber sliding family.",
+    body: [
+      "today the atelier opens series production on three new lines: encore PD (solid-wood pivot and hinged entrance doors), encore AW (thermally-broken aluminium windows in any RAL or anodised finish) and encore AD (lift-and-slide and bifold aluminium doors with single panels up to 4 metres).",
+      "the new lines complement our timber-clad sliding family rather than replacing it — clients can now specify a single visual language across windows, doors and entrances, in either solid timber or thermally-broken aluminium, from one atelier.",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1652400095202-4569b8489d00?auto=format&fit=crop&w=1800&q=80",
+    category: "atelier",
+  },
+  {
     slug: "encore-um-launch",
     title: "introducing encore UM",
     kicker: "ultra-minimal · vacuum-glazed",
@@ -21,7 +36,8 @@ export const news: NewsItem[] = [
       "after three years of joint development with our glass partner in saint-gobain, encore UM is now in series production. the system pairs vacuum insulating glass — a sealed evacuated cavity between two panes — with our slimmest-ever timber profile.",
       "encore UM debuts in private commission this autumn and will be available globally from january 2027. specification samples are available on request to studio@encorewoodcrafts.in.",
     ],
-    image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1758957762198-c0cda25b023f?auto=format&fit=crop&w=1800&q=80",
     category: "atelier",
   },
   {
@@ -35,7 +51,8 @@ export const news: NewsItem[] = [
       "to mark ten years of encore, we have published a monograph documenting fifty projects across twenty-three countries. the book is bound in solid oak and walnut covers manufactured in our cabinet shop.",
       "the launch event will take place at our atelier on 22 may at 18:30. registration is open to architects, journalists and clients.",
     ],
-    image: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?auto=format&fit=crop&w=1800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1746439326833-d8d7742d8e5c?auto=format&fit=crop&w=1800&q=80",
     category: "event",
   },
   {
@@ -57,7 +74,7 @@ export const news: NewsItem[] = [
     kicker: "atelier · sustainability commitment",
     date: "2026-02-28",
     excerpt:
-      "we are committing to 100% fsc-certified or equivalent timber across all five product lines by january 2027.",
+      "we are committing to 100% fsc-certified or equivalent timber across every wood product line — windows, entrance doors and timber-clad systems — by january 2027.",
     body: [
       "today we publish our forest-to-facade pledge: every plank entering our atelier will carry fsc, peFC or equivalent certification by 1 january 2027. we are also planting one tree for every panel manufactured, in partnership with the european reforestation initiative.",
     ],

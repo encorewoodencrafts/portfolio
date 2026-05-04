@@ -12,6 +12,7 @@ export function WoodSpeciesSelector({
 }) {
   const [active, setActive] = React.useState(0);
   const current = species[active];
+  const speciesWord = numberWord(species.length);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div className="relative">
@@ -37,7 +38,7 @@ export function WoodSpeciesSelector({
       <div>
         <p className="eyebrow">specify your wood</p>
         <h3 className="mt-4 display text-3xl md:text-4xl font-light tracking-tight">
-          five species,
+          {speciesWord} species,
           <br />
           <span className="italic">infinite character.</span>
         </h3>
@@ -75,6 +76,24 @@ export function WoodSpeciesSelector({
       </div>
     </div>
   );
+}
+
+const NUMBER_WORDS = [
+  "zero",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+];
+
+function numberWord(n: number): string {
+  return NUMBER_WORDS[n] ?? String(n);
 }
 
 function WoodGrainSwatch({ hue }: { hue: string }) {

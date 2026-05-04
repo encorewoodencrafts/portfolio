@@ -9,7 +9,7 @@ import { CadRegisterForm } from "@/components/site/cad-register-form";
 export const metadata: Metadata = {
   title: "architects info",
   description:
-    "catalogues, monographs and CAD details for the encore family of timber window systems. for architects, specifiers and consultants.",
+    "catalogues, monographs and CAD details for the encore family of timber windows, wood doors and aluminium systems. for architects, specifiers and consultants.",
 };
 
 const catalogues = [
@@ -21,7 +21,7 @@ const catalogues = [
   },
   {
     title: "product overview",
-    subtitle: "all five systems · technical summary",
+    subtitle: "every system · technical summary",
     file: "encore-systems-overview.pdf",
     size: "12 mb",
   },
@@ -56,6 +56,24 @@ const catalogues = [
     size: "7 mb",
   },
   {
+    title: "encore PD · pivot doors",
+    subtitle: "wood entrance door technical sheet",
+    file: "encore-pd.pdf",
+    size: "8 mb",
+  },
+  {
+    title: "encore AW · aluminium windows",
+    subtitle: "system technical sheet",
+    file: "encore-aw.pdf",
+    size: "7 mb",
+  },
+  {
+    title: "encore AD · aluminium doors",
+    subtitle: "system technical sheet",
+    file: "encore-ad.pdf",
+    size: "7 mb",
+  },
+  {
     title: "sustainability report",
     subtitle: "forest-to-facade pledge · 2026",
     file: "encore-sustainability-2026.pdf",
@@ -77,12 +95,14 @@ export default function ArchitectsPage() {
             <span className="italic">info.</span>
           </>
         }
-        description="catalogues, monographs, and a fully indexed CAD library — sections, plans, isometric assemblies for all five systems. registration is required to access the CAD library."
+        description="catalogues, monographs, and a fully indexed CAD library — sections, plans, isometric assemblies for every encore system, including timber windows, solid-wood doors and the aluminium suite. registration is required to access the CAD library."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
               <span>catalogues</span>
-              <span className="text-ink font-mono text-xs">8</span>
+              <span className="text-ink font-mono text-xs">
+                {catalogues.length}
+              </span>
             </li>
             <li className="flex justify-between gap-4">
               <span>cad blocks</span>

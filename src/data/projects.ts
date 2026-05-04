@@ -14,6 +14,48 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "courtyard-pivot-residence",
+    title: "courtyard pivot residence",
+    architect: "studio mira",
+    location: "bengaluru, india",
+    year: "2026",
+    system: "encore PD",
+    photographer: "© ananya gupta",
+    excerpt:
+      "a 3.6 m solid-teak pivot door becomes the single architectural gesture of a private residence in jayanagar.",
+    body: [
+      "the brief was uncomplicated: one front door, large enough to be the building's only ornament. encore PD delivered a 1.6 × 3.6 m monolithic teak pivot leaf, balanced on a hydraulic floor pivot that opens silently with a single touch.",
+      "internal openings between the courtyard and the living wing are concealed-hinge swing doors from the same encore PD line, finished in book-matched walnut to give the house a single timber language.",
+    ],
+    hero: "https://images.unsplash.com/photo-1746172851688-7d3948f7febb?auto=format&fit=crop&w=2400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1768666821325-dc4c35fb1629?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1776632001065-ad9efe3ee60e?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1755488657807-098fc8643230?auto=format&fit=crop&w=1800&q=80",
+    ],
+  },
+  {
+    slug: "skyline-aluminium-loft",
+    title: "skyline aluminium loft",
+    architect: "atelier verde",
+    location: "mumbai, india",
+    year: "2025",
+    system: "encore AW + encore AD",
+    photographer: "© rahul bhattacharya",
+    excerpt:
+      "a 22nd-floor loft fully glazed in encore AW windows and encore AD lift-and-slide doors — black anodised throughout.",
+    body: [
+      "the south and west elevations are continuous walls of encore AW: 21 mm sightlines in black anodised aluminium, mitred at the corner so the city skyline reads as a single uninterrupted picture frame.",
+      "the terrace threshold is an encore AD lift-and-slide system, three panels each 2.4 m wide, on a flush stone sill that erases the line between living room and balcony.",
+    ],
+    hero: "https://images.unsplash.com/photo-1768674254513-635be3276d6f?auto=format&fit=crop&w=2400&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1700308232171-aa0d87ee1a88?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1652400095202-4569b8489d00?auto=format&fit=crop&w=1800&q=80",
+      "https://images.unsplash.com/photo-1601736600187-310bc28b5fda?auto=format&fit=crop&w=1800&q=80",
+    ],
+  },
+  {
     slug: "cabin-on-the-ridge",
     title: "cabin on the ridge",
     architect: "atelier nord",

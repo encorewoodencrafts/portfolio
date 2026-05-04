@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { products } from "@/data/products";
+import { products, type ProductFamily } from "@/data/products";
 import { PageHero } from "@/components/site/page-hero";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 import { Marquee } from "@/components/site/marquee";
@@ -10,37 +11,54 @@ import { Marquee } from "@/components/site/marquee";
 export const metadata: Metadata = {
   title: "products",
   description:
-    "five timber window systems engineered in-house at the encore atelier. solid wood, hybrid metal, ultra-minimal vacuum glass, passivhaus and structural-glass.",
+    "timber sliding window systems, solid-wood entrance doors and a thermally-broken aluminium window & door suite — engineered in-house at the encore atelier.",
 };
 
+const FAMILY_LABELS: Record<ProductFamily, string> = {
+  "timber-window": "timber windows · sliding systems",
+  "wood-door": "wood doors · pivot & hinged",
+  aluminium: "aluminium · windows & doors",
+};
+
+const FAMILY_ORDER: ProductFamily[] = [
+  "wood-door",
+  "aluminium",
+  "timber-window",
+];
+
 export default function ProductsPage() {
+  const totalSystems = products.length;
   return (
     <>
       <PageHero
         kicker="no.01 · the encore family"
-        eyebrow="encore window systems"
+        eyebrow="encore systems"
         index="01"
         title={
           <>
-            five timber systems,
+            timber, wood doors
             <br />
-            <span className="italic">one craft.</span>
+            <span className="italic">&amp; aluminium.</span>
           </>
         }
-        description="every encore line shares the same machined-aluminium spine and solid-timber cladding. they differ only in how they read light: slim, structural, thermal, hybrid, ultra-minimal."
+        description="three families, one atelier: slim sliding timber window systems, monolithic solid-wood entrance doors and a thermally-broken aluminium window & door suite — every line engineered, machined and finished in-house."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
               <span>systems shipped</span>
-              <span className="text-ink font-mono text-xs">5</span>
+              <span className="text-ink font-mono text-xs">
+                {totalSystems}
+              </span>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>families</span>
+              <span className="text-ink font-mono text-xs">
+                timber · wood · aluminium
+              </span>
             </li>
             <li className="flex justify-between gap-4">
               <span>min sightline</span>
               <span className="text-ink font-mono text-xs">15 mm</span>
-            </li>
-            <li className="flex justify-between gap-4">
-              <span>max single panel</span>
-              <span className="text-ink font-mono text-xs">9 m</span>
             </li>
             <li className="flex justify-between gap-4">
               <span>uw-value (best)</span>
@@ -55,8 +73,11 @@ export default function ProductsPage() {
           "encore SW · solid wood",
           "encore NM · noble materials",
           "encore 60 · passivhaus",
-          "encore HSL · structural glass",
+          "encore 38 · structural glass",
           "encore UM · ultra-minimal",
+          "encore PD · pivot doors",
+          "encore AW · aluminium windows",
+          "encore AD · aluminium doors",
         ]}
         size="md"
         tone="walnut"
@@ -64,11 +85,35 @@ export default function ProductsPage() {
 
       <section className="py-12 md:py-16 border-t border-line">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 space-y-20 md:space-y-24">
-          {products.map((p, i) => (
-            <article
-              key={p.slug}
-              className="grid grid-cols-12 gap-6 lg:gap-12 items-stretch"
-            >
+          {(() => {
+            const nodes: React.ReactNode[] = [];
+            let displayIdx = 0;
+            FAMILY_ORDER.forEach((family, familyIdx) => {
+              const items = products.filter((p) => p.family === family);
+              if (items.length === 0) return;
+              nodes.push(
+                <Reveal key={`heading-${family}`}>
+                  <div className="flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2 pt-4">
+                    <span className="font-mono text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-walnut">
+                      {String(familyIdx + 1).padStart(2, "0")} ·{" "}
+                      {FAMILY_LABELS[family]}
+                    </span>
+                    <span className="order-3 sm:order-none w-full sm:w-auto h-px flex-1 bg-line hidden sm:block" />
+                    <span className="block sm:hidden h-px w-12 bg-line" />
+                    <span className="font-mono text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-ink-2 ml-auto sm:ml-0">
+                      {items.length} system{items.length === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                </Reveal>
+              );
+              items.forEach((p) => {
+                const i = displayIdx;
+                displayIdx += 1;
+                nodes.push(
+                  <article
+                    key={p.slug}
+                    className="grid grid-cols-12 gap-6 lg:gap-12 items-stretch"
+                  >
               <div className="col-span-12 lg:col-span-7">
                 <ClipReveal>
                   <Link
@@ -132,8 +177,12 @@ export default function ProductsPage() {
                   </Link>
                 </Reveal>
               </div>
-            </article>
-          ))}
+                  </article>
+                );
+              });
+            });
+            return nodes;
+          })()}
         </div>
       </section>
     </>
