@@ -10,10 +10,11 @@ const footerLinks = [
   {
     title: "explore",
     items: [
-      { label: "products", href: "/products" },
-      { label: "add-ons", href: "/add-ons" },
+      { label: "wooden doors", href: "/products/wooden-doors" },
+      { label: "glass doors", href: "/products/glass-doors" },
+      { label: "railings", href: "/products/railings" },
+      { label: "customisation options", href: "/add-ons" },
       { label: "reference works", href: "/projects" },
-      { label: "around the world", href: "/partners" },
     ],
   },
   {
@@ -21,7 +22,7 @@ const footerLinks = [
     items: [
       { label: "about us", href: "/about" },
       { label: "news", href: "/news" },
-      { label: "blog · timber views", href: "/blog" },
+      { label: "blog · atelier views", href: "/blog" },
       { label: "careers", href: "/about#careers" },
     ],
   },

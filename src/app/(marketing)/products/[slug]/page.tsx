@@ -3,10 +3,13 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
-import { products, productBySlug } from "@/data/products";
+import {
+  products,
+  productBySlug,
+  customDesignsByFamily,
+} from "@/data/products";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 import { WoodSpeciesSelector } from "@/components/site/wood-species-selector";
-import { SightlineDiagram } from "@/components/site/sightline-diagram";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -40,14 +43,15 @@ export default async function ProductDetailPage({
   const product = productBySlug(slug);
   if (!product) notFound();
 
-  const otherProducts = products.filter((p) => p.slug !== slug).slice(0, 4);
+  const otherFamilies = products.filter((p) => p.slug !== slug);
+  const designs = customDesignsByFamily(product.family);
 
   const familyEyebrow =
-    product.family === "wood-door"
-      ? "encore wood door system"
-      : product.family === "aluminium"
-        ? "encore aluminium system"
-        : "encore window system";
+    product.family === "wooden-doors"
+      ? "encore wooden door programme"
+      : product.family === "glass-doors"
+        ? "encore glass door programme"
+        : "encore railings programme";
 
   return (
     <>
@@ -65,7 +69,7 @@ export default async function ProductDetailPage({
         </ClipReveal>
         <div className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24">
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-cream/80 anim-fade-up">
-            {product.code} series · {familyEyebrow}
+            {product.code} · {familyEyebrow}
           </p>
           <h1
             className="mt-4 display-tight text-[clamp(3rem,9vw,9rem)] font-light text-cream leading-none anim-fade-up"
@@ -112,27 +116,93 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line bg-paper-2/40 py-20 md:py-28">
+      <section
+        id="sub-types"
+        className="border-t border-line bg-paper-2/40 py-20 md:py-28 scroll-mt-24"
+      >
+        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
+          <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6 items-end">
+            <div className="col-span-12 md:col-span-7">
+              <p className="eyebrow">sub-types</p>
+              <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
+                {product.subTypes.length === 5 ? "five" : product.subTypes.length === 3 ? "three" : product.subTypes.length}{" "}
+                <span className="italic">variations.</span>
+              </h2>
+            </div>
+            <div className="col-span-12 md:col-span-5">
+              <p className="text-ink-2 leading-relaxed max-w-md md:ml-auto md:text-right">
+                each variation is a starting point — combine sub-types,
+                hardware and finishes into a single bespoke piece.
+              </p>
+            </div>
+          </div>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {product.subTypes.map((s, i) => (
+              <li key={s.slug}>
+                <ClipReveal delay={(i % 5) * 0.05}>
+                  <article className="group bg-paper border border-line h-full flex flex-col">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-stone">
+                      <Image
+                        src={s.image}
+                        alt={s.name}
+                        fill
+                        sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]"
+                      />
+                    </div>
+                    <div className="p-5 md:p-6 flex flex-col gap-3">
+                      <p className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-walnut">
+                        {String(i + 1).padStart(2, "0")} ·{" "}
+                        {String(product.subTypes.length).padStart(2, "0")}
+                      </p>
+                      <h3 className="display text-2xl font-light tracking-tight text-ink">
+                        {s.name}
+                      </h3>
+                      <p className="text-sm text-ink-2 leading-relaxed">
+                        {s.description}
+                      </p>
+                    </div>
+                  </article>
+                </ClipReveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-t border-line py-20 md:py-28">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-5">
-            <p className="eyebrow">technical drawing</p>
+            <p className="eyebrow">key facts</p>
             <h2 className="mt-3 display text-3xl md:text-4xl font-light tracking-tight">
-              the <span className="italic">{product.sightline}</span> sightline
+              built for <span className="italic">indian living</span>
             </h2>
             <p className="mt-4 max-w-md text-ink-2 leading-relaxed text-sm">
-              the vertical interface between two adjacent panels — measured at
-              the meeting stile. encore {product.code} reduces this to{" "}
-              <span className="text-ink">{product.sightline}</span>, the slimmest
-              in its class.
+              the {product.name} programme is engineered for indian
+              residential and commercial code — monsoon-class gaskets,
+              high-rise wind ratings and the same finish palette across
+              wood, glass and railings.
             </p>
-            <Reveal delay={0.08}>
-              <div className="mt-10">
-                <SightlineDiagram
-                  sightline={product.sightline}
-                  code={product.code}
-                />
+
+            <dl className="mt-10 grid grid-cols-2 gap-4 max-w-md">
+              <div className="border-t border-line pt-3">
+                <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-2">
+                  range
+                </dt>
+                <dd className="mt-1 display text-2xl text-ink">
+                  {product.sightline}
+                </dd>
               </div>
-            </Reveal>
+              <div className="border-t border-line pt-3">
+                <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-2">
+                  max size
+                </dt>
+                <dd className="mt-1 display text-2xl text-ink">
+                  {product.maxPanel}
+                </dd>
+              </div>
+            </dl>
           </div>
           <div className="col-span-12 lg:col-span-7">
             <p className="eyebrow">specifications</p>
@@ -173,6 +243,58 @@ export default async function ProductDetailPage({
         <section className="border-t border-line py-20 md:py-28">
           <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
             <WoodSpeciesSelector species={product.species} />
+          </div>
+        </section>
+      ) : null}
+
+      {designs.length > 0 ? (
+        <section className="border-t border-line bg-paper-2/40 py-20 md:py-28">
+          <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
+            <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6 items-end">
+              <div className="col-span-12 md:col-span-7">
+                <p className="eyebrow">customised collection</p>
+                <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
+                  reference designs in{" "}
+                  <span className="italic">{product.name}.</span>
+                </h2>
+                <p className="mt-4 max-w-md text-ink-2 leading-relaxed">
+                  {designs.length} of our 22 reference designs sit inside this
+                  family. each is a starting point — bring us your size,
+                  finish and hardware and we will build a one-of-one piece.
+                </p>
+              </div>
+            </div>
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
+              {designs.map((d, i) => (
+                <li
+                  key={d.slug}
+                  id={`design-${d.slug}`}
+                  className="scroll-mt-32"
+                >
+                  <ClipReveal delay={(i % 8) * 0.04}>
+                    <article className="group">
+                      <div className="relative aspect-[3/4] overflow-hidden bg-stone">
+                        <Image
+                          src={d.image}
+                          alt={`${d.code} — ${d.caption}`}
+                          fill
+                          sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
+                          className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]"
+                        />
+                      </div>
+                      <div className="mt-3 flex items-baseline justify-between gap-3">
+                        <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-walnut">
+                          {d.code}
+                        </p>
+                      </div>
+                      <p className="mt-1 text-sm text-ink leading-snug">
+                        {d.caption}
+                      </p>
+                    </article>
+                  </ClipReveal>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       ) : null}
@@ -225,7 +347,7 @@ export default async function ProductDetailPage({
           <div className="col-span-12 lg:col-span-5 flex items-end">
             <p className="text-cream/80 leading-relaxed max-w-md">
               our atelier produces a tailored quote within five working days,
-              based on your drawings, climate and timber preferences.
+              based on your drawings, finishes and hardware preferences.
             </p>
           </div>
           <div className="col-span-12 mt-10 flex flex-wrap gap-6">
@@ -240,7 +362,7 @@ export default async function ProductDetailPage({
               href="/architects"
               className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/80 border-b border-cream/40 pb-1 hover:text-cream hover:border-cream transition-colors"
             >
-              architects info & cad library
+              architects info & spec library
               <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />
             </Link>
           </div>
@@ -253,30 +375,27 @@ export default async function ProductDetailPage({
             <div>
               <p className="eyebrow">explore the encore family</p>
               <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight">
-                other systems
+                other families
               </h2>
             </div>
           </div>
-          <ul className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {otherProducts.map((p) => (
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {otherFamilies.map((p) => (
               <li key={p.slug}>
-                <Link
-                  href={`/products/${p.slug}`}
-                  className="group block"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden bg-stone">
+                <Link href={`/products/${p.slug}`} className="group block">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-stone">
                     <Image
                       src={p.hero}
                       alt={p.name}
                       fill
-                      sizes="(min-width:1024px) 25vw, 50vw"
+                      sizes="(min-width:768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]"
                     />
                   </div>
-                  <h3 className="mt-3 display text-xl font-light tracking-tight">
+                  <h3 className="mt-3 display text-2xl font-light tracking-tight">
                     {p.name}
                   </h3>
-                  <p className="mt-1 text-xs text-ink-2">{p.tagline}</p>
+                  <p className="mt-1 text-sm text-ink-2">{p.tagline}</p>
                 </Link>
               </li>
             ))}

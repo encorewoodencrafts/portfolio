@@ -4,25 +4,14 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { products, type ProductFamily } from "@/data/products";
+import { products } from "@/data/products";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 import { cn } from "@/lib/cn";
 
-const FAMILY_LABELS: Record<ProductFamily, string> = {
-  "timber-window": "timber windows · sliding systems",
-  "wood-door": "wood doors · pivot & hinged",
-  aluminium: "aluminium · windows & doors",
-};
-
-// Order intentionally puts the new core business (wood doors + aluminium)
-// ahead of the legacy timber-clad sliding windows on the home page. The
-// `/products` page mirrors the same order so the catalogue scroll flows
-// the same way.
-const FAMILY_ORDER: ProductFamily[] = [
-  "wood-door",
-  "aluminium",
-  "timber-window",
-];
+// The home-page catalogue overview. Renders one editorial row per family
+// (wooden / glass / railings), with the sub-types listed alongside the
+// hero image as a tabular sub-menu. The order follows the Shopify nav.
+const FAMILY_ORDER = ["wooden-doors", "glass-doors", "railings"] as const;
 
 export function ProductOverview() {
   return (
@@ -38,81 +27,42 @@ export function ProductOverview() {
           <div className="col-span-12 md:col-span-8">
             <Reveal>
               <h2 className="display text-4xl md:text-6xl font-light tracking-tight text-ink leading-tight">
-                timber, wood doors
+                three families,
                 <br />
-                <span className="italic">&amp; aluminium.</span>
+                <span className="italic">one atelier.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.05}>
               <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">
-                three families, one atelier: slim sliding window systems clad
-                in solid timber, monolithic wood entrance doors, and a matching
-                thermally-broken aluminium suite for projects that prefer a
-                metallic line.
+                wooden doors in five finish families, aluminium-framed glass
+                sliders in five hardware variants, and architectural railings
+                in wood, glass and metal — every product made-to-measure in
+                our hyderabad workshop.
               </p>
             </Reveal>
           </div>
         </div>
 
         <div className="space-y-24 md:space-y-32">
-          {(() => {
-            // Build a flat ordered render list so the system index reads
-            // 01 → 08 in scroll order (regardless of the underlying data
-            // array order).
-            const nodes: React.ReactNode[] = [];
-            let displayIndex = 0;
-            FAMILY_ORDER.forEach((family, familyIndex) => {
-              const items = products.filter((p) => p.family === family);
-              if (items.length === 0) return;
-              nodes.push(
-                <FamilyDivider
-                  key={`divider-${family}`}
-                  label={FAMILY_LABELS[family]}
-                  index={familyIndex}
-                />
-              );
-              items.forEach((p) => {
-                const idx = displayIndex;
-                displayIndex += 1;
-                nodes.push(
-                  <ProductRow
-                    key={p.slug}
-                    product={p}
-                    flipped={idx % 2 === 1}
-                    index={idx}
-                  />
-                );
-              });
-            });
-            return nodes;
-          })()}
+          {FAMILY_ORDER.map((slug, i) => {
+            const product = products.find((p) => p.slug === slug);
+            if (!product) return null;
+            return (
+              <FamilyRow
+                key={slug}
+                product={product}
+                flipped={i % 2 === 1}
+                index={i}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-function FamilyDivider({
-  label,
-  index,
-}: {
-  label: string;
-  index: number;
-}) {
-  return (
-    <Reveal>
-      <div className="flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2 pt-4">
-        <span className="font-mono text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-walnut">
-          {String(index + 1).padStart(2, "0")} · {label}
-        </span>
-        <span className="hidden sm:block h-px flex-1 bg-line" />
-        <span className="block sm:hidden h-px w-12 bg-line" />
-      </div>
-    </Reveal>
-  );
-}
-
-function ProductRow({
+function FamilyRow({
   product,
   flipped,
   index,
@@ -125,7 +75,7 @@ function ProductRow({
     <div
       className={cn(
         "grid grid-cols-12 gap-6 lg:gap-12 items-center",
-        flipped && "lg:[&>*:first-child]:order-2"
+        flipped && "lg:[&>*:first-child]:order-2",
       )}
     >
       <div className="col-span-12 lg:col-span-7">
@@ -161,24 +111,19 @@ function ProductRow({
           </p>
         </Reveal>
         <Reveal delay={0.14}>
-          <dl className="mt-8 grid grid-cols-2 gap-4 max-w-md">
-            <div className="border-t border-line pt-3">
-              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-2">
-                vertical sightline
-              </dt>
-              <dd className="mt-1 display text-2xl text-ink">
-                {product.sightline}
-              </dd>
-            </div>
-            <div className="border-t border-line pt-3">
-              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-2">
-                max panel
-              </dt>
-              <dd className="mt-1 display text-2xl text-ink">
-                {product.maxPanel}
-              </dd>
-            </div>
-          </dl>
+          <ul className="mt-8 divide-y divide-line border-t border-b border-line max-w-md">
+            {product.subTypes.map((s) => (
+              <li
+                key={s.slug}
+                className="flex items-baseline justify-between gap-4 py-3"
+              >
+                <span className="display text-base text-ink">{s.name}</span>
+                <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-ink-2">
+                  custom-made
+                </span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
         <Reveal delay={0.18}>
           <Link

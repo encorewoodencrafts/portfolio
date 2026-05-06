@@ -2,15 +2,15 @@ export const site = {
   name: "encore",
   fullName: "encore wood crafts llp",
   legalName: "ENCORE WOOD CRAFTS LLP",
-  tagline: "the warmth of bespoke timber",
+  tagline: "wooden doors · glass doors · railings",
   description:
-    "encore woodcrafts is a bespoke indian atelier crafting minimalist timber windows, doors and architectural carpentry — engineered in-house in teak, sal, mahogany, accoya and oak.",
+    "encore is an indian atelier crafting bespoke wooden doors, aluminium-framed glass sliding doors and architectural railings — engineered, finished and installed by a single in-house team.",
   url: "https://encorewoodcrafts.in",
   email: "studio@encorewoodcrafts.in",
   phone: "+91 91234 56780",
   whatsapp: "+919123456780",
   whatsappMessage:
-    "hello encore — i'd like to discuss a project. could the atelier reach out?",
+    "hello encore — i'd like to discuss a door, glass slider or railing project. could the atelier reach out?",
   address: {
     line1: "atelier encore woodcrafts",
     line2: "no. 9, timberyard lane, jubilee hills",
@@ -35,16 +35,16 @@ export const site = {
     { code: "ta", label: "TA" },
   ],
   stats: [
+    { value: "3", label: "product families" },
+    { value: "22", label: "reference designs" },
     { value: "12+", label: "indian cities served" },
-    { value: "9 m", label: "max single panel" },
     { value: "2014", label: "atelier founded" },
-    { value: "98%", label: "fsc-certified timber" },
   ],
 } as const;
 
-// Primary nav for the desktop header + mobile drawer. Kept slim (6 items) for
-// editorial calm; secondary destinations (add-ons, news, faq, partners) live
-// in the footer and remain in the sitemap, so SEO and reachability are intact.
+// Primary nav for the desktop header + mobile drawer. Kept slim — the three
+// product families are reached from `/products`, and secondary destinations
+// (architects, news, faq, partners) live in the footer.
 export const navigation = [
   { href: "/products", label: "products" },
   { href: "/projects", label: "reference works" },

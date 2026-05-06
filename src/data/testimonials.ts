@@ -9,7 +9,7 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "encore delivered a single 7-metre teak slider for our jubilee hills villa with a 32 mm sightline — and the install crew finished in two days. nobody else in india was even willing to quote.",
+      "encore delivered a 1.6 × 3.6 m solid-teak pivot door for our jubilee hills villa with a hydraulic floor pivot, and the install crew finished in two days. nobody else in india was even willing to quote.",
     author: "rohan menon",
     role: "principal architect",
     studio: "studio mātrā",
@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "we specified encore NM with hand-patinated bronze for a heritage bungalow restoration. the metalwork came out of their atelier closer to museum-grade than mass-market.",
+      "we specified hand-patinated bronze balusters for a heritage bungalow restoration. the metalwork came out of their atelier closer to museum-grade than mass-market.",
     author: "arjun bhasin",
     role: "design director",
     studio: "frame studio",
@@ -33,15 +33,15 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "for a passivhaus retrofit in shimla, encore 60 was the only system that worked at altitude with timber on the inside face. their thermal data was rigorous.",
+      "their lift-and-slide hardware on a 4 m glass panel feels weightless. one finger of effort to slide a 200 kg leaf — and the threshold is wheelchair-flush. our client cried at first demo.",
     author: "kavya rao",
-    role: "passivhaus consultant",
+    role: "principal",
     studio: "atelier zero",
     city: "delhi ncr",
   },
   {
     quote:
-      "rare to find an indian craftsman who treats glass as a structural material. our 14 m frameless seafront elevation in goa would have been impossible without their team.",
+      "rare to find an indian craftsman who treats frameless glass as a structural material. our 14 m balcony rail in goa would have been impossible without their concealed u-channel detail.",
     author: "isabela d'souza",
     role: "founder",
     studio: "casa azul",

@@ -15,12 +15,12 @@ import { BlogTeaser } from "@/components/site/blog-teaser";
 import { Marquee } from "@/components/site/marquee";
 
 const TIMBER_VALUES = [
-  "the warmth of bespoke timber",
-  "minimalist · monolithic · mortised",
-  "made in hyderabad",
-  "9 m single panels",
+  "wooden doors · glass doors · railings",
+  "made-to-measure in hyderabad",
+  "22 reference designs",
+  "five wood species",
   "ten-year warranty",
-  "fsc-certified species",
+  "installed across india",
 ];
 
 export default function HomePage() {

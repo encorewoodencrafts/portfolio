@@ -10,70 +10,69 @@ export interface BlogPost {
   image: string;
 }
 
+const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
+
 export const blogPosts: BlogPost[] = [
   {
     slug: "the-grain-of-time",
     title: "the grain of time",
-    series: "timber views",
+    series: "atelier views",
     index: "01",
     date: "2026-04-12",
     readingTime: "8 min",
     excerpt:
-      "every plank we receive carries a record of weather. before we ever cut, we read it.",
+      "every plank we cut into a door carries a record of weather. before we ever cut, we read it.",
     body: [
-      "every european oak that arrives at our atelier carries within it a complete weather report. the spacing of its rings records dry years and wet ones, the prevailing wind on its hillside, the years it grew slowly in shade and the years it surged into the canopy.",
-      "before any plank meets a saw, our master carpenter walks the stack with a ruler and a soft pencil. she marks where the grain is loud — the years of fast growth — and where it is quiet, dense, and dark. windows live for a century or more; they should be cut from the quiet wood.",
-      "the loud wood is not waste. it becomes shutters, threshold inlays, the back panels of cabinets — places where movement is welcome, where the eye does not linger.",
+      "every burmese teak that arrives at our atelier carries within it a complete weather report. the spacing of its rings records dry years and wet ones, the prevailing wind on its hillside, the years it grew slowly in shade and the years it surged into the canopy.",
+      "before any plank meets a saw, our master carpenter walks the stack with a ruler and a soft pencil. she marks where the grain is loud — the years of fast growth — and where it is quiet, dense, and dark. doors live for half a century or more; they should be cut from the quiet wood.",
+      "the loud wood is not waste. it becomes balcony handrails, threshold inlays, the back panels of cabinets — places where movement is welcome, where the eye does not linger.",
     ],
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80",
+    image: `${SHOPIFY}/files/generate_solid_wooden_202603181109.jpg`,
   },
   {
-    slug: "from-forest-to-facade",
-    title: "from forest to facade",
-    series: "timber views",
+    slug: "five-finishes-five-doors",
+    title: "five finishes, five different doors",
+    series: "atelier views",
     index: "02",
     date: "2026-03-28",
     readingTime: "11 min",
     excerpt:
-      "the eight-month journey of a single oak board, from a slovenian hillside to a san francisco living room.",
+      "the same teak slab finishes five different ways — veneer, laminated, solid panel, skin and paint — and reads as five different objects.",
     body: [
-      "we follow a single board of slovenian oak across eight months and four thousand miles: from felling on a thirty-degree slope above the soča valley, through air-drying for sixty weeks under a slate roof in friuli, to kiln conditioning at our atelier, to the cnc bench, the assembly hall, and finally a san francisco living room.",
-      "every step matters. the same board cut three months earlier, dried six weeks shorter, or finished in a high-humidity month would not behave the same way over a hundred years of seasonal cycles.",
+      "we sometimes show clients a single core of indian teak with five finishes applied — veneer book-matched on the face, high-pressure laminate, solid panel construction, moulded skin and a deep painted finish. they are the same wood and the same dimension, but they read as five different objects.",
+      "the choice is rarely about the wood. it is about how much grain you want in the room, how much wear you expect at the threshold, and how often you plan to refinish. paint can be repainted; veneer cannot. solid-panel construction repairs; skin pressings replace.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1764566917581-2cfd7ba4edd8?auto=format&fit=crop&w=1800&q=80",
+    image: `${SHOPIFY}/files/create_veener_door_202603181113.jpg`,
   },
   {
-    slug: "vacuum-glass-and-the-15mm-sightline",
-    title: "vacuum glass & the 15 mm sightline",
-    series: "timber views",
+    slug: "anatomy-of-a-glass-slider",
+    title: "anatomy of a glass slider",
+    series: "atelier views",
     index: "03",
     date: "2026-03-04",
     readingTime: "9 min",
     excerpt:
-      "how a 0.3 mm evacuated cavity between two panes redefines what a window edge can look like.",
+      "what actually happens when a 4 m glass panel slides into a wall pocket — and why the hardware costs more than the glass.",
     body: [
-      "for fifty years the geometry of insulated glazing has been governed by an air gap. between two panes of glass, you trap a few millimetres of dry argon and call it triple glazing. as panes get thicker, edges grow.",
-      "vacuum insulating glass replaces the gas with a near-vacuum. the cavity collapses to 0.3 mm. the total glass thickness drops from 44 mm to 12 mm. the frame can shrink with it. the encore UM vertical sightline is 15 mm. that is the diameter of a pencil.",
+      "an aluminium-framed glass slider is, structurally, a moving wall. the panel is 200 kg of laminated glass and aluminium extrusion that travels two or three metres on hardware that must work twenty thousand times without ceremony.",
+      "in our lift-and-slide system, the panel rises three millimetres before it moves — long enough to disengage the seal, short enough to feel weightless. the gear is german, the wheels are stainless, and the sealing brushes are replaced as a service kit at year five.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1744063897843-c2c7353f1bdb?auto=format&fit=crop&w=1800&q=80",
+    image: `${SHOPIFY}/files/the_wheels_sliding_202603190052.jpg`,
   },
   {
-    slug: "patina-as-design",
-    title: "patina as design",
-    series: "timber views",
+    slug: "frameless-glass-railings",
+    title: "frameless, but never weightless",
+    series: "atelier views",
     index: "04",
     date: "2026-02-14",
     readingTime: "6 min",
     excerpt:
-      "we don't sell wood. we sell a hundred-year curve of light and weather written into the grain.",
+      "frameless glass railings look effortless. the engineering that makes them effortless is anything but.",
     body: [
-      "we are often asked to send a sample of how the timber will look in five years, or in twenty. we send three samples instead: a piece freshly oiled, a piece weathered for a season, and a piece taken from a façade we built in 2014. the differences are sometimes startling.",
-      "specifying timber is specifying time. the wood you receive on day one is the beginning of a curve that arcs across decades. our role is to shape that curve, not to deny it.",
+      "a frameless glass railing reads as the absence of a railing — a single sheet of weather between guest and the view below. but inside the floor, a stainless u-channel cast into the slab carries the entire load, and 12 mm laminated heat-soaked glass distributes it.",
+      "we engineer every railing to indian residential and commercial code. the maths is mostly invisible from the balcony, but it is what allows the glass to be invisible.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1756706718604-ef4af3970e33?auto=format&fit=crop&w=1800&q=80",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM_3.jpg`,
   },
 ];
 

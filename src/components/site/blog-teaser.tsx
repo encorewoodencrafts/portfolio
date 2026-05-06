@@ -14,7 +14,7 @@ export function BlogTeaser() {
           <div>
             <p className="eyebrow">the latest from our atelier blog</p>
             <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight">
-              timber views
+              atelier views
             </h2>
           </div>
           <Link

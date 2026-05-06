@@ -28,7 +28,7 @@ const pageItems: SearchItem[] = [
   { type: "page", title: "about us", href: "/about" },
   { type: "page", title: "blog", href: "/blog" },
   { type: "page", title: "contact", href: "/contact" },
-  { type: "page", title: "add-ons", href: "/add-ons" },
+  { type: "page", title: "customisation options", href: "/add-ons" },
   { type: "page", title: "faq", href: "/faq", hint: "frequently asked" },
   { type: "page", title: "news", href: "/news" },
   { type: "page", title: "around the world", href: "/partners" },
@@ -68,7 +68,7 @@ const allItems: SearchItem[] = [
     type: "blog" as const,
     title: b.title,
     href: `/blog/${b.slug}`,
-    hint: `timber views ${b.index}`,
+    hint: `${b.series} ${b.index}`,
   })),
 ];
 

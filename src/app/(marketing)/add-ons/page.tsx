@@ -7,35 +7,35 @@ import { PageHero } from "@/components/site/page-hero";
 import { Reveal } from "@/components/site/reveal";
 
 export const metadata: Metadata = {
-  title: "add-ons",
+  title: "customisation options",
   description:
-    "nine accessories engineered to integrate invisibly with the encore family — insect screens, motorisation, security, soft close, pivot, drainage, silence kit, hurricane, ultra-light.",
+    "nine customisation options engineered to integrate invisibly with our wooden doors, glass sliders and railings — smart locks, italian floor pivots, soft close, motorisation, insect screens, acoustic kit, drainage, monsoon rating and ultra-light bearings.",
 };
 
 export default function AddOnsPage() {
   return (
     <>
       <PageHero
-        kicker="no.02 · accessories"
-        eyebrow="expanding the system"
+        kicker="no.02 · customisation"
+        eyebrow="expanding every product"
         index="02"
         title={
           <>
-            add-ons,
+            customisations,
             <br />
             <span className="italic">never afterthoughts.</span>
           </>
         }
-        description="nine accessories engineered to integrate invisibly with the encore family. none alter the sightlines."
+        description="nine customisation options engineered to integrate invisibly with our wooden doors, glass sliders and railings. add at specification time — smart locks, italian floor pivots, motorisation, soft close, screens, acoustic kits, threshold drainage, monsoon class C5 rating and ultra-light sliding bearings."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
-              <span>accessories</span>
+              <span>options</span>
               <span className="text-ink font-mono text-xs">{addOns.length}</span>
             </li>
             <li className="flex justify-between gap-4">
               <span>compatibility</span>
-              <span className="text-ink font-mono text-xs">every system</span>
+              <span className="text-ink font-mono text-xs">every family</span>
             </li>
             <li className="flex justify-between gap-4">
               <span>added at</span>
@@ -93,10 +93,10 @@ export default function AddOnsPage() {
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
-              specify your add-ons
+              specify your options
             </p>
             <h2 className="mt-4 display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
-              every accessory we make
+              every option we make
               <br />
               <span className="italic">disappears into the architecture.</span>
             </h2>

@@ -8,7 +8,7 @@ import { ClipReveal, Reveal } from "@/components/site/reveal";
 export const metadata: Metadata = {
   title: "reference works",
   description:
-    "selected projects featuring encore timber window systems — bespoke architecture from cabins to passivhaus chalets, photographed by leading architectural photographers.",
+    "selected projects featuring encore wooden doors, glass sliding-door systems and architectural railings — bespoke residential and commercial work, photographed by leading architectural photographers.",
 };
 
 const layouts = [

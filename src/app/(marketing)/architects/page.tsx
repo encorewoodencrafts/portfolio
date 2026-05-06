@@ -9,7 +9,7 @@ import { CadRegisterForm } from "@/components/site/cad-register-form";
 export const metadata: Metadata = {
   title: "architects info",
   description:
-    "catalogues, monographs and CAD details for the encore family of timber windows, wood doors and aluminium systems. for architects, specifiers and consultants.",
+    "specification sheets, monograph and a fully indexed CAD library for encore wooden doors, glass doors and railings. for architects, specifiers and consultants.",
 };
 
 const catalogues = [
@@ -21,57 +21,33 @@ const catalogues = [
   },
   {
     title: "product overview",
-    subtitle: "every system · technical summary",
-    file: "encore-systems-overview.pdf",
+    subtitle: "every family · technical summary",
+    file: "encore-overview.pdf",
     size: "12 mb",
   },
   {
-    title: "encore SW · solid wood",
-    subtitle: "system technical sheet",
-    file: "encore-sw.pdf",
-    size: "8 mb",
-  },
-  {
-    title: "encore NM · noble materials",
-    subtitle: "system technical sheet",
-    file: "encore-nm.pdf",
-    size: "8 mb",
-  },
-  {
-    title: "encore 60 · passivhaus",
-    subtitle: "system technical sheet",
-    file: "encore-60.pdf",
+    title: "wooden doors · spec sheet",
+    subtitle: "veneer · laminated · solid panel · skin · paint",
+    file: "encore-wooden-doors.pdf",
     size: "9 mb",
   },
   {
-    title: "encore 38 · structural glass",
-    subtitle: "system technical sheet",
-    file: "encore-38.pdf",
-    size: "8 mb",
+    title: "glass doors · spec sheet",
+    subtitle: "centre · lift-slide · multi-track · corner · bifold",
+    file: "encore-glass-doors.pdf",
+    size: "9 mb",
   },
   {
-    title: "encore UM · vacuum glass",
-    subtitle: "system technical sheet",
-    file: "encore-um.pdf",
+    title: "railings · spec sheet",
+    subtitle: "wood · frameless glass · metal balustrades",
+    file: "encore-railings.pdf",
     size: "7 mb",
   },
   {
-    title: "encore PD · pivot doors",
-    subtitle: "wood entrance door technical sheet",
-    file: "encore-pd.pdf",
-    size: "8 mb",
-  },
-  {
-    title: "encore AW · aluminium windows",
-    subtitle: "system technical sheet",
-    file: "encore-aw.pdf",
-    size: "7 mb",
-  },
-  {
-    title: "encore AD · aluminium doors",
-    subtitle: "system technical sheet",
-    file: "encore-ad.pdf",
-    size: "7 mb",
+    title: "customised collection",
+    subtitle: "22 reference designs · large-format catalogue",
+    file: "encore-customised-collection.pdf",
+    size: "14 mb",
   },
   {
     title: "sustainability report",
@@ -95,7 +71,7 @@ export default function ArchitectsPage() {
             <span className="italic">info.</span>
           </>
         }
-        description="catalogues, monographs, and a fully indexed CAD library — sections, plans, isometric assemblies for every encore system, including timber windows, solid-wood doors and the aluminium suite. registration is required to access the CAD library."
+        description="specification sheets, the encore monograph, and a fully indexed CAD library — sections, plans and isometric assemblies for every wooden door, glass slider hardware variant and railing system in our catalogue. registration is required to access the CAD library."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -122,7 +98,7 @@ export default function ArchitectsPage() {
       >
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <div className="mb-12">
-            <p className="eyebrow">catalogues & product overviews</p>
+            <p className="eyebrow">catalogues & spec sheets</p>
             <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight">
               view documents
             </h2>
@@ -181,7 +157,7 @@ export default function ArchitectsPage() {
             <p className="mt-6 max-w-md text-ink-2 leading-relaxed">
               our CAD library contains horizontal and vertical sections, plan
               details, isometric assemblies and threshold drawings for every
-              encore system — in dwg, rvt and ifc.
+              encore family — in dwg, rvt and ifc.
             </p>
             <ul className="mt-8 space-y-2 text-sm text-ink-2">
               {products.map((p) => (
@@ -192,7 +168,7 @@ export default function ArchitectsPage() {
               ))}
               <li className="flex items-center gap-3">
                 <span className="inline-block h-px w-4 bg-walnut" />
-                <span>add-ons — sections per accessory</span>
+                <span>customisation options — sections per accessory</span>
               </li>
             </ul>
           </div>

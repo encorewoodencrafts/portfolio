@@ -7,8 +7,8 @@ export interface FaqItem {
 export const faqItems: FaqItem[] = [
   {
     category: "lead-time",
-    q: "what is your typical lead time for an indian project?",
-    a: "from first signed shop drawing, sixteen to eighteen weeks for a full residential commission (twenty to twenty-five panels). large or technically demanding projects can run twenty-two weeks. expedited builds are possible for one or two panels.",
+    q: "what is your typical lead time?",
+    a: "from first signed shop drawing, eight to twelve weeks for a single wooden door, ten to fourteen weeks for a glass-door system, and six to eight weeks for a railing. large or technically demanding projects can run up to eighteen weeks. expedited builds are possible for one or two pieces.",
   },
   {
     category: "lead-time",
@@ -17,48 +17,48 @@ export const faqItems: FaqItem[] = [
   },
   {
     category: "materials",
-    q: "which timber species do you offer?",
-    a: "burmese teak, indian sal, mahogany, and accoya as standard. european oak and walnut by request. all timber is fsc-certified and kiln-dried in three controlled stages over twelve weeks before machining.",
+    q: "which timber species do you offer for wooden doors?",
+    a: "burmese teak, indian sal, honne (indian rosewood), european oak and american walnut as standard, with mahogany and accoya by request. all timber is fsc-certified and kiln-dried in three controlled stages over twelve weeks before machining.",
   },
   {
     category: "materials",
-    q: "how do you handle india's monsoon humidity?",
-    a: "every encore profile is built around a structural aluminium spine. timber sits as a non-structural cladding, which decouples movement from the seal. moisture content is kept at 9–12% and the timber-to-aluminium bond is x-rayed before the section leaves the joinery hall.",
+    q: "what aluminium frame finishes are available for glass doors?",
+    a: "any RAL polyester powder-coat plus mill, champagne, bronze and black anodised options. the same finish palette is available across all five sliding hardware variants, so a single project can specify centre-opening, lift-and-slide and corner sliders in one consistent finish.",
   },
   {
     category: "materials",
-    q: "what glass do you specify?",
-    a: "double or triple insulated glazing as standard, with low-iron, solar-control or acoustic laminations available. we partner with saint-gobain, asahi and guardian for indian projects. structural glass up to 6 m × 3 m can be specified for our HSL line.",
+    q: "what glass do you use in the sliders and railings?",
+    a: "double or triple insulated glazing for sliding doors, and 12 mm laminated heat-soaked glass for frameless railings. low-iron, solar-control and acoustic laminations are all specifiable. we partner with saint-gobain, asahi and guardian for indian projects.",
   },
   {
     category: "warranty",
     q: "what does the warranty cover?",
-    a: "ten years on the timber, aluminium spine and structural seal; lifetime on the structural integrity of the panel. hardware (handles, hinges, gear) carries a five-year warranty. we follow up at six months, two years and ten years to inspect and re-oil.",
+    a: "ten years on the timber, aluminium frame and structural seal; lifetime on the structural integrity of the panel. hardware (handles, hinges, gear) carries a five-year warranty. we follow up at six months, two years and ten years to inspect and re-oil.",
   },
   {
     category: "warranty",
-    q: "are encore systems passivhaus-compatible?",
-    a: "the encore 60 thermal line achieves uw-values down to 0.78 w/m²k with triple glazing, which sits below the 0.80 passivhaus comfort threshold. we have supplied projects in shimla, manali and the ladakh valley.",
+    q: "are the glass-door systems rated for monsoons and high-rises?",
+    a: "yes. every aluminium-framed glass slider in our catalogue ships with class C5 wind resistance and class E1050 watertight rating as standard — engineered for indian coastal and high-rise installations.",
   },
   {
     category: "pricing",
     q: "how is a project priced?",
-    a: "by linear metre of frame plus panel area and hardware schedule. typical indian residential projects run ₹25 lakh to ₹1 crore. we issue a detailed line-by-line quote before any commitment.",
+    a: "wooden doors are priced per leaf with options for finish, hardware and species. glass sliders are priced per linear metre of frame plus panel area and hardware schedule. railings are priced per running metre. typical indian residential projects run ₹2 lakh to ₹1 crore depending on scope.",
   },
   {
     category: "pricing",
     q: "is there a minimum order value?",
-    a: "for full installation packages within india, ₹15 lakh. for atelier-supply only (architect-led install) we will consider single-panel commissions for restoration work.",
+    a: "for full installation packages within india, ₹2 lakh. for atelier-supply only (architect-led install) we will consider single-leaf commissions for restoration work.",
   },
   {
     category: "install",
-    q: "can our own team install encore panels?",
+    q: "can our own team install encore products?",
     a: "we strongly recommend our travelling crew or a certified partner. site supervision by our team is included in every full-service contract; supply-only contracts include a half-day briefing with the architect's contractor.",
   },
   {
     category: "install",
     q: "what site readiness do you require?",
-    a: "rough openings squared to ±5 mm, finished floor levels, lintels in place, and a power point within 8 m of the install point. we issue a site readiness checklist eight weeks before delivery.",
+    a: "rough openings squared to ±5 mm, finished floor levels, lintels in place, and a power point within 8 m of the install point. for railings, finished floor and parapet levels with cast-in plates or u-channels per our drawings. we issue a site readiness checklist eight weeks before delivery.",
   },
   {
     category: "service",

@@ -1,8 +1,8 @@
 # encore wood crafts
 
-editorial-grade marketing site for **encore wood crafts** — a bespoke manufacturer of minimalist timber windows and doors. mirrors the information architecture of [panoramah.com](https://www.panoramah.com) but pivots the visual language from cold aluminum-minimalism to warm, tactile, wood-forward luxury.
+editorial-grade marketing site for **encore wood crafts** — a bespoke indian atelier crafting wooden doors, aluminium-framed glass sliding doors and architectural railings. the site mirrors the catalogue at [steel-doors-2.myshopify.com](https://steel-doors-2.myshopify.com) but pairs the existing Shopify storefront with a magazine-grade marketing layer.
 
-> the warmth of bespoke timber.
+> wooden doors, glass doors & railings — beautifully made.
 
 ## stack
 
@@ -32,17 +32,17 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 
 | path | description |
 | --- | --- |
-| `/` | hero + 11 home sections (news rail, product showcases grouped by family, spotlights, add-ons grid, projects rail, architects CTAs, partners map, all-that-wood story, blog teaser) |
-| `/products` | listing of every system across timber windows, wood doors and aluminium |
-| `/products/[slug]` | system detail (sightline diagram, specs, wood species selector, gallery, quote CTA) |
-| `/add-ons` | 9 accessory cards with iso-line drawings |
+| `/` | hero + 11 home sections (news rail, families spotlight, product overview, customised collection feature, options grid, projects rail, architects CTA, partners map, blog teaser) |
+| `/products` | three-family overview + 22-design customised collection gallery |
+| `/products/[slug]` | family detail page (overview, sub-types, specifications, customised designs, gallery) — `slug` ∈ `wooden-doors` / `glass-doors` / `railings` |
+| `/add-ons` | 9 customisation options that apply across all three families |
 | `/projects` | masonry gallery of reference works |
 | `/projects/[slug]` | full case study |
-| `/architects` | catalogues + gated CAD library form |
+| `/architects` | spec sheets + gated CAD library form |
 | `/partners` | global partner directory + interactive SVG map |
 | `/about` | atelier story, sustainability, master-carpenter portraits |
 | `/news` + `/news/[slug]` | dispatches from the atelier |
-| `/blog` + `/blog/[slug]` | *timber views* essay series |
+| `/blog` + `/blog/[slug]` | *atelier views* essay series |
 | `/contact` | quote-request form + offices |
 | `/login` | personal-area portal stub |
 | `/api/quote` | POST → resend (or console log if no key) |
@@ -51,30 +51,39 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 
 ## product lineup
 
-three families, one atelier: timber sliding window systems, solid-wood entrance doors and a thermally-broken aluminium window & door suite.
+three families, one atelier — every product is made-to-measure in our hyderabad workshop.
 
-### timber windows · sliding systems
+### wooden doors
 
-| code | system | positioning |
-| --- | --- | --- |
-| `SW` | encore SW *(solid wood)* | flagship — full timber frame |
-| `NM` | encore NM *(noble materials)* | timber + bronze / steel / brass hybrid |
-| `60` | encore 60 | passivhaus & RC4 cold-climate sliders |
-| `38` | encore 38 | structural-glass sliding, max glass |
-| `UM` | encore UM *(ultra-minimal)* | vacuum-glazed, 15 mm sightline |
+| sub-type | description |
+| --- | --- |
+| veneer doors | premium real-wood veneer over a stable engineered core |
+| laminated doors | high-pressure laminate over an engineered core |
+| solid panel doors | traditional rail-and-stile timber construction |
+| skin doors | moulded skin over a hollow or filled core |
+| paint doors | primed and finished in any RAL or Asian-Paints colour |
 
-### wood doors · pivot & hinged
+### glass doors (aluminium-framed)
 
-| code | system | positioning |
-| --- | --- | --- |
-| `PD` | encore PD *(pivot doors)* | monolithic solid-wood entrance & internal doors |
+| sub-type | description |
+| --- | --- |
+| centre opening slide | two panels meeting in the middle, sliding into pockets either side |
+| lift & slide | german-engineered hardware lifts before sliding — single panels up to 4 m wide |
+| multi track slide | three- and four-track stacking systems for full-wall openings |
+| corner slide | structural mitred glass-to-glass corners with no vertical mullion |
+| slide & fold | bifold leaves stack flat into a single jamb |
 
-### aluminium · windows & doors
+### railings
 
-| code | system | positioning |
-| --- | --- | --- |
-| `AW` | encore AW *(aluminium windows)* | thermally-broken, 21 mm sightline — fixed / casement / tilt-and-turn |
-| `AD` | encore AD *(aluminium doors)* | lift-and-slide & bifold, panels up to 4 m wide |
+| sub-type | description |
+| --- | --- |
+| wood railings | solid teak or sal handrails over stainless or blackened-steel sub-frame |
+| glass railings | frameless laminated glass set into a concealed u-channel |
+| metal railings | stainless, blackened steel or patina-bronze balusters |
+
+### customised collection
+
+twenty-two reference designs (`ENCORE-D01` – `ENCORE-D23`) browsable from `/products` and inside each family page — every design is a starting point for a one-of-one commission.
 
 ## getting started
 

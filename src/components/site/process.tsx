@@ -19,7 +19,7 @@ const steps = [
     n: "03",
     title: "design & specification",
     duration: "week 2–4",
-    body: "shop drawings, sightline diagrams, glass spec, hardware schedule. each iteration is signed off by the architect.",
+    body: "shop drawings, finish samples, glass and hardware schedules, plus a finish-and-fixings palette. each iteration is signed off by the architect.",
   },
   {
     n: "04",

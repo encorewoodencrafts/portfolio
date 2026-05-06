@@ -22,7 +22,8 @@ export function AddOnsGrid({ heading = true }: { heading?: boolean }) {
             </div>
             <p className="hidden md:block max-w-md text-ink-2 text-sm leading-relaxed">
               nine accessories engineered to integrate invisibly with the
-              encore family — none alter the sightlines.
+              encore family — none compromise the line of the door, slider
+              or railing.
             </p>
           </div>
         )}

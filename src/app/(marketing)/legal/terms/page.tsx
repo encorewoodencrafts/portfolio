@@ -28,9 +28,9 @@ export default function TermsPage() {
             these terms are a working draft pending review by our legal
             counsel. they govern only your use of this website and the
             information provided here — they do not form, and are not part
-            of, any commercial agreement for windows, doors or installation
-            work, which is documented separately in our written quotation
-            and contract.
+            of, any commercial agreement for doors, sliders, railings or
+            installation work, which is documented separately in our written
+            quotation and contract.
           </p>
         </div>
       </header>
@@ -47,11 +47,11 @@ export default function TermsPage() {
       <section className="space-y-4">
         <h2 className="display text-2xl text-ink">information on the site</h2>
         <p>
-          the site presents information about encore&rsquo;s timber-window
-          and door systems, completed projects, partner network and atelier.
-          all dimensions, performance figures, lead times and prices are
-          indicative; binding figures are issued only in a written quotation
-          for a specific project.
+          the site presents information about encore&rsquo;s wooden door,
+          glass door and railing programmes, completed projects, partner
+          network and atelier. all dimensions, performance figures, lead
+          times and prices are indicative; binding figures are issued only
+          in a written quotation for a specific project.
         </p>
         <p>
           photographs of completed projects credit the architect, location
@@ -65,13 +65,13 @@ export default function TermsPage() {
         <h2 className="display text-2xl text-ink">intellectual property</h2>
         <p>
           all content on the site — text, photography, drawings, cad
-          libraries, system diagrams, the encore name, logo and product line
-          names (encore sw, encore nm, encore 60, encore 38, encore um, and
-          all add-ons) — is the property of encore wood crafts llp or its
-          licensors and is protected by copyright, trade-mark and design
-          right. you may view and download for the sole purpose of
-          specifying an encore project; all other use requires our prior
-          written consent.
+          libraries, system diagrams, the encore name, logo and product
+          family names (wooden doors, glass doors, railings and the
+          customised collection codes ENCORE-D01 through ENCORE-D23) — is
+          the property of encore wood crafts llp or its licensors and is
+          protected by copyright, trade-mark and design right. you may view
+          and download for the sole purpose of specifying an encore
+          project; all other use requires our prior written consent.
         </p>
       </section>
 

@@ -34,25 +34,27 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "encore wood crafts llp — bespoke timber windows & doors · india",
+    default:
+      "encore wood crafts — wooden doors, glass doors & railings · india",
     template: "%s · encore woodcrafts",
   },
   description:
-    "encore woodcrafts is india's atelier for bespoke minimalist timber windows and doors. machined, glazed and finished in-house in hyderabad. the warmth of wood, refined for contemporary architecture.",
+    "encore is an indian atelier crafting bespoke wooden doors, aluminium-framed glass sliding doors and architectural railings — engineered, finished and installed in hyderabad.",
   keywords: [
     "encore woodcrafts",
-    "timber windows india",
-    "wood windows hyderabad",
-    "minimalist windows",
-    "luxury windows india",
-    "bespoke doors",
+    "wooden doors india",
+    "veneer doors hyderabad",
+    "aluminium glass sliding doors",
+    "lift and slide doors india",
+    "frameless glass railings",
+    "balcony railings india",
+    "bespoke doors india",
     "architectural carpentry",
-    "passivhaus india",
   ],
   openGraph: {
-    title: "encore woodcrafts — bespoke timber windows & doors",
+    title: "encore woodcrafts — wooden doors, glass doors & railings",
     description:
-      "the warmth of bespoke timber. minimalist wood windows, doors and architectural carpentry, made in hyderabad, india.",
+      "wooden doors, aluminium-framed glass sliding doors and architectural railings — made-to-measure in hyderabad, india.",
     siteName: "encore woodcrafts",
     type: "website",
     locale: "en_IN",

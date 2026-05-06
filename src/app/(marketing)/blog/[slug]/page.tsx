@@ -22,7 +22,7 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
     openGraph: {
-      title: `${post.title} · timber views`,
+      title: `${post.title} · ${post.series}`,
       description: post.excerpt,
       images: [{ url: post.image, width: 1800, height: 1200 }],
     },
@@ -46,7 +46,7 @@ export default async function BlogPostPage({
         <div className="mx-auto max-w-3xl px-5 md:px-8">
           <Reveal>
             <p className="font-mono text-[0.65rem] uppercase tracking-[0.22em] text-walnut">
-              timber views · {post.index}
+              {post.series} · {post.index}
             </p>
           </Reveal>
           <Reveal delay={0.05}>
@@ -102,13 +102,13 @@ export default async function BlogPostPage({
             className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink hover:text-walnut transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.5} />
-            all timber views
+            all atelier views
           </Link>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink border-b border-ink pb-1 hover:text-walnut hover:border-walnut transition-colors"
           >
-            specify a system
+            specify a project
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />
           </Link>
         </div>

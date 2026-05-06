@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "encore woodcrafts — bespoke timber windows & doors · india";
+export const alt =
+  "encore woodcrafts — wooden doors, glass doors & railings · india";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -65,7 +66,7 @@ export default async function OpenGraphImage() {
               color: "#6B4423",
             }}
           >
-            bespoke timber windows & doors
+            wooden doors · glass doors · railings
           </div>
           <div
             style={{
@@ -75,9 +76,9 @@ export default async function OpenGraphImage() {
               fontWeight: 300,
             }}
           >
-            the warmth of
+            wooden doors,
             <br />
-            <span style={{ fontStyle: "italic" }}>bespoke timber.</span>
+            <span style={{ fontStyle: "italic" }}>beautifully made.</span>
           </div>
         </div>
         <div
@@ -91,7 +92,7 @@ export default async function OpenGraphImage() {
         >
           <span>encorewoodcrafts.in</span>
           <span style={{ letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            12+ cities · 9 m max panel
+            3 families · 22 reference designs
           </span>
         </div>
       </div>

@@ -10,10 +10,12 @@ import {
 } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-// Dark, moody, wood-toned interior — chosen so the headline & nav are always
-// readable on first paint regardless of the user's network speed or theme.
+// The atelier's primary marketing banner from the Shopify storefront —
+// the hero pairs warm wood tones with deep shadow so the headline + nav
+// always read on first paint. Served from the steel-doors-2.myshopify.com
+// CDN, whitelisted in next.config.ts.
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2800&q=85";
+  "https://steel-doors-2.myshopify.com/cdn/shop/files/Fill_the_white_space_on_side_with_out_disturbing_t_delpmaspu.jpg";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -44,7 +46,7 @@ export function Hero() {
       >
         <Image
           src={HERO_IMAGE}
-          alt="dark timber-clad living room with floor-to-ceiling windows at dusk"
+          alt="encore atelier wooden craft door with warm grain and deep shadow"
           fill
           priority
           quality={92}
@@ -81,7 +83,7 @@ export function Hero() {
           className="flex items-center gap-3 font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.32em] text-cream/85"
         >
           <span className="inline-block h-px w-8 sm:w-12 bg-cream/60" />
-          est. 2014 · hyderabad · bespoke timber windows &amp; doors
+          est. 2014 · hyderabad · wooden doors · glass doors · railings
         </motion.p>
 
         <motion.h1
@@ -90,10 +92,10 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.32, ease: easeOut }}
           className="mt-5 display-tight text-[clamp(2.4rem,7.6vw,8rem)] font-light text-cream"
         >
-          the warmth of
+          wooden doors,
           <br />
           <span className="italic font-light text-cream">
-            bespoke timber.
+            beautifully made.
           </span>
         </motion.h1>
 
@@ -103,10 +105,10 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.55, ease: easeOut }}
           className="mt-7 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-cream/90"
         >
-          encore woodcrafts is india&rsquo;s atelier for minimalist
-          wood-clad windows and doors. we machine, join, glaze and finish the
-          main components of our systems in-house — timber profiles up to 9
-          metres, delivered across the subcontinent and beyond.
+          encore is an indian atelier crafting bespoke wooden doors,
+          aluminium-framed glass sliding doors and architectural railings.
+          three product families, one in-house team — engineered, finished
+          and installed by the people who designed them.
         </motion.p>
 
         <motion.div
@@ -131,8 +133,8 @@ export function Hero() {
             </span>
           </a>
           <div className="hidden md:flex items-center gap-10 lg:gap-14">
-            <Stat value="12+" label="cities served" />
-            <Stat value="9 m" label="max panel" />
+            <Stat value="3" label="product families" />
+            <Stat value="22" label="reference designs" />
             <Stat value="2014" label="atelier est." />
           </div>
         </motion.div>

@@ -6,69 +6,72 @@ export interface AddOn {
   icon: "screen" | "motor" | "lock" | "softclose" | "pivot" | "drain" | "silence" | "hurricane" | "feather";
 }
 
+// Customisation options that apply across all three product families
+// (wooden doors, glass doors, railings). Specified à la carte alongside
+// any product line at quotation stage.
 export const addOns: AddOn[] = [
   {
-    slug: "insect-screen",
-    name: "encore screen",
-    subtitle: "integrated, lasting protection",
-    description:
-      "tailor-made insect screen with low mounting depth — concealed in the timber reveal for invisible protection.",
-    icon: "screen",
-  },
-  {
-    slug: "motorisation",
-    name: "encore motor",
-    subtitle: "full integration, low interference",
-    description:
-      "silent motorisation hidden inside the timber profile. operable by app, scene or facade automation system.",
-    icon: "motor",
-  },
-  {
-    slug: "security",
+    slug: "smart-lock",
     name: "encore lock",
-    subtitle: "handles & locking devices",
+    subtitle: "biometric & multipoint locking",
     description:
-      "automatic and manual security accessories tested to RC4 / WK4 with concealed handles in matching wood or bronze.",
+      "fingerprint, rfid and ble-key access integrated flush with the door leaf, plus multipoint deadbolts tested to indian residential security standards.",
     icon: "lock",
-  },
-  {
-    slug: "soft-close",
-    name: "encore soft close",
-    subtitle: "comfort & speed control",
-    description:
-      "smooth, gentle braking that prevents backlash on panels up to 800 kg — feels like a magnet meeting a magnet.",
-    icon: "softclose",
   },
   {
     slug: "pivot",
     name: "encore pivot",
-    subtitle: "integrated minimalist pivot door",
+    subtitle: "italian floor pivots up to 350 kg",
     description:
-      "available in very large sizes while preserving the slim sightlines and timber face of the encore family.",
+      "hydraulic floor pivots with adjustable hold-open — turn any wooden door up to 1.6 × 3.6 m into a single-touch entrance.",
     icon: "pivot",
   },
   {
-    slug: "drainage",
-    name: "encore 2o",
-    subtitle: "integrated drainage system",
+    slug: "soft-close",
+    name: "encore soft close",
+    subtitle: "panel braking system",
     description:
-      "30 mm bronze grate connects to encore 38 and 60 profiles, blending seamlessly into stone or timber thresholds.",
-    icon: "drain",
+      "smooth, gentle braking for sliding glass doors up to 400 kg per panel — feels like a magnet meeting a magnet.",
+    icon: "softclose",
+  },
+  {
+    slug: "motorisation",
+    name: "encore motor",
+    subtitle: "app & scene-controlled glass sliders",
+    description:
+      "silent motorisation hidden inside the aluminium profile — operable by app, switch or facade automation system.",
+    icon: "motor",
+  },
+  {
+    slug: "insect-screen",
+    name: "encore screen",
+    subtitle: "concealed insect screens",
+    description:
+      "tailor-made retractable insect screens with low mounting depth — concealed in the door reveal for invisible protection.",
+    icon: "screen",
   },
   {
     slug: "silence",
     name: "encore silence",
-    subtitle: "sound reduction kit",
+    subtitle: "acoustic glazing kit",
     description:
-      "specialised acoustic gaskets and laminated glass options reaching Rw 47 dB without altering sightlines.",
+      "specialised acoustic gaskets and laminated glass options reaching Rw 47 dB without altering profile sightlines.",
     icon: "silence",
   },
   {
-    slug: "hurricane",
-    name: "encore hurricane",
-    subtitle: "largest minimalist storm panel",
+    slug: "drainage",
+    name: "encore 2o",
+    subtitle: "flush threshold drainage",
     description:
-      "HVHZ-certified storm panels with the minimal aesthetics of the encore system — tested to miami-dade tas-201.",
+      "30 mm bronze drainage grate built into the sliding-door threshold — blends seamlessly into stone, tile or timber floors.",
+    icon: "drain",
+  },
+  {
+    slug: "monsoon",
+    name: "encore monsoon",
+    subtitle: "wind & water class C5 / E1050",
+    description:
+      "upgraded gaskets, drainage and corner seals for coastal and high-rise installations — rated to indian monsoon wind loads.",
     icon: "hurricane",
   },
   {

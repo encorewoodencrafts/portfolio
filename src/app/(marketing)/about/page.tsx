@@ -11,7 +11,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "about us",
   description:
-    "encore is a bespoke timber atelier founded in 2014. we machine, join, glaze and finish every component of our windows in-house.",
+    "encore is a bespoke indian atelier founded in 2014, crafting wooden doors, aluminium-framed glass sliding doors and architectural railings — engineered, finished and installed by one in-house team.",
 };
 
 const carpenters = [
@@ -30,7 +30,7 @@ const carpenters = [
   {
     name: "fatima sheikh",
     role: "glass & glazing programme",
-    bio: "led structural glazing at saint-gobain india for over a decade. now leads encore UM and large-format laminated glass at the atelier.",
+    bio: "led structural glazing at saint-gobain india for over a decade. now leads our glass-door programme and frameless railings at the atelier.",
     image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
   },
 ];
@@ -51,13 +51,13 @@ const stages = [
   {
     n: "03",
     title: "the bench",
-    body: "machined timber profiles are bonded to the aluminium spine on a vacuum bench. each glue line is x-rayed before the section leaves the joinery hall in our hyderabad atelier.",
+    body: "machined timber leaves are joined and finished, and aluminium frames are extruded, mitred and glazed on adjacent benches. each glue line is x-rayed and each weld is dye-checked before it leaves the hall.",
     image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1800&q=80",
   },
   {
     n: "04",
-    title: "the facade",
-    body: "finished panels are delivered across india by our travelling install crew and overseen by a certified site lead. we follow up at six months, two years and ten years to inspect, re-oil and re-tune.",
+    title: "the install",
+    body: "finished doors, sliders and railings are delivered across india by our travelling install crew and overseen by a certified site lead. we follow up at six months, two years and ten years to inspect, re-oil and re-tune.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80",
   },
 ];
@@ -71,12 +71,12 @@ export default function AboutPage() {
         index="06"
         title={
           <>
-            an indian timber atelier,
+            an indian door & railings atelier,
             <br />
             <span className="italic">verticalised since 2014.</span>
           </>
         }
-        description="encore wood crafts llp is the only manufacturer of minimalist timber windows in india that processes and manufactures the main components of its systems in-house — wood, aluminium spine, glass and hardware. having full accountability turns a once-risky craft into a routine task."
+        description="encore wood crafts llp is an indian atelier that processes and manufactures wooden doors, aluminium-framed glass sliding doors and architectural railings under one roof. wood, aluminium, glass and hardware are all sourced, machined and finished in-house — having full accountability turns a once-risky craft into a routine task."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -130,11 +130,11 @@ export default function AboutPage() {
           <div className="col-span-12 lg:col-span-8 lg:pl-12 space-y-8 max-w-3xl">
             <Reveal>
               <p className="text-ink text-base md:text-lg leading-[1.8]">
-                when we founded encore in 2014, every component of a minimalist
-                window — the timber profile, the aluminium spine, the laminated
-                glass, the multipoint locking — came from a different supplier
-                in a different country. we spent the first three years
-                bringing every step of that supply chain in-house.
+                when we founded encore in 2014, the components of a custom
+                wooden door, an aluminium-framed glass slider and a frameless
+                railing came from three different suppliers in three different
+                cities. we spent the first three years bringing every step of
+                that supply chain into a single hyderabad workshop.
               </p>
             </Reveal>
             <Reveal delay={0.05}>
@@ -148,10 +148,11 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="text-ink-2 text-base md:text-lg leading-[1.8]">
-                this matters because windows live for a century. the certainty
-                that the timber, glue, gasket and lock all came from the same
-                hand — and will be supported by the same hand for fifty years —
-                is what allows our clients to commit a façade to wood.
+                this matters because doors and railings live for half a century
+                or more. the certainty that the timber, glue, gasket and lock
+                all came from the same hand — and will be supported by the same
+                hand for fifty years — is what allows our clients to commit a
+                house to one atelier.
               </p>
             </Reveal>
           </div>
@@ -174,8 +175,8 @@ export default function AboutPage() {
                 <p className="text-ink-2 text-base md:text-lg leading-relaxed">
                   every plank that enters our atelier is traceable to a single
                   hillside, certified by FSC, PEFC or equivalent. we plant one
-                  tree for every panel we manufacture, in partnership with the
-                  european reforestation initiative.
+                  tree for every door we manufacture, in partnership with the
+                  indian reforestation initiative.
                 </p>
               </Reveal>
             </div>

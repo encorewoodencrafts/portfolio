@@ -6,9 +6,9 @@ import { PageHero } from "@/components/site/page-hero";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 
 export const metadata: Metadata = {
-  title: "blog · timber views",
+  title: "blog · atelier views",
   description:
-    "timber views — long-form essays from the encore atelier on craft, materials, history and the philosophy of the timber window.",
+    "atelier views — long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider and railing.",
 };
 
 export default function BlogPage() {
@@ -20,12 +20,12 @@ export default function BlogPage() {
         index="08"
         title={
           <>
-            timber
+            atelier
             <br />
             <span className="italic">views.</span>
           </>
         }
-        description="long-form essays from the encore atelier on craft, materials, history and the philosophy of the timber window. one new entry each month."
+        description="long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider and railing. one new entry each month."
       />
 
       <section className="py-12 md:py-20">
@@ -58,7 +58,7 @@ export default function BlogPage() {
               <div className="col-span-12 lg:col-span-6">
                 <Reveal>
                   <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-walnut">
-                    timber views · {post.index}
+                    {post.series} · {post.index}
                   </p>
                 </Reveal>
                 <Reveal delay={0.05}>

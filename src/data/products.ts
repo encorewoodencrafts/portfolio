@@ -16,7 +16,34 @@ export interface ProductWoodSpecies {
   description: string;
 }
 
-export type ProductFamily = "timber-window" | "wood-door" | "aluminium";
+// The three real product families ENCORE manufactures and ships from its
+// Hyderabad atelier. Maps 1:1 to the top-level Shopify navigation
+// (Wooden Doors / Glass Doors / Railings).
+export type ProductFamily = "wooden-doors" | "glass-doors" | "railings";
+
+// Each family is broken into a small number of sub-types — the same
+// breakdown the Shopify nav exposes (Veneer / Laminated / etc. for wooden
+// doors, Centre-Opening / Lift-and-Slide / etc. for glass doors).
+export interface ProductSubType {
+  slug: string;
+  name: string;
+  description: string;
+  image: string;
+}
+
+// One of the 22 customised design variants in the Shopify "Customized
+// Collection". These are not separate SKUs — they are reference designs the
+// atelier can build in any of the three families. We tag each one with the
+// family it most often belongs to (wood, glass or railing) so the category
+// pages can each show a relevant subset.
+export interface CustomDesign {
+  code: string;
+  slug: string;
+  name: string;
+  family: ProductFamily;
+  image: string;
+  caption: string;
+}
 
 export interface Product {
   slug: string;
@@ -28,41 +55,64 @@ export interface Product {
   description: string;
   hero: string;
   detailHero: string;
+  // Three short call-out lines used on listing pages.
   highlights: string[];
+  // Re-purposed from the legacy "vertical sightline" field — kept for
+  // component compatibility, now shown as a top-line metric (e.g. "5 finishes").
   sightline: string;
+  // Re-purposed from the legacy "max panel" field — top-line metric.
   maxPanel: string;
   features: { title: string; body: string }[];
   specs: ProductSpecGroup[];
-  // Optional: aluminium-only systems intentionally omit a wood-species palette.
+  // Optional. Only the wooden-doors family carries a wood-species palette;
+  // glass doors and railings omit it and the species selector is hidden.
   species?: ProductWoodSpecies[];
+  // Two large in-situ photographs shown in the gallery section of the
+  // detail page.
   imageA: string;
   imageB: string;
+  // Sub-types inside this family, listed on the family page.
+  subTypes: ProductSubType[];
 }
 
-const heroImages = {
-  sw: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=80",
-  nm: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2400&q=80",
-  s60: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2400&q=80",
-  s38: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=2400&q=80",
-  um: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2400&q=80",
-};
+const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
 
-const detailHeros = {
-  sw: "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?auto=format&fit=crop&w=2400&q=80",
-  nm: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=80",
-  s60: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=2400&q=80",
-  s38: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2400&q=80",
-  um: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=2400&q=80",
-};
+const woodHero = `${SHOPIFY}/files/Fill_the_white_space_on_side_with_out_disturbing_t_delpmaspu.jpg`;
+const glassHero = `${SHOPIFY}/files/Fill_the_white_space_in_the_image_with_out_stretch_delpmaspu.jpg`;
+const railingsHero = `${SHOPIFY}/collections/Screenshot2026-03-12170628.png`;
 
-const baseSpecies: ProductWoodSpecies[] = [
+const indianWoodSpecies: ProductWoodSpecies[] = [
+  {
+    name: "burmese teak",
+    latin: "tectona grandis",
+    origin: "south-east asia (fsc)",
+    hue: "#8a6a3f",
+    description:
+      "naturally weather-resistant, golden-honey patina — the most-specified wood in our atelier and the default for entrance doors.",
+  },
+  {
+    name: "indian sal",
+    latin: "shorea robusta",
+    origin: "central india",
+    hue: "#7a4f2e",
+    description:
+      "dense, long-fibred hardwood with rich red-brown heart — favoured by builders for its rot-resistance in monsoon climates.",
+  },
+  {
+    name: "honne · indian rosewood",
+    latin: "dalbergia latifolia",
+    origin: "western ghats",
+    hue: "#4d2f1f",
+    description:
+      "deep chocolate tones flecked with darker streaks — finishes to a satin lustre, used for our premium heritage panels.",
+  },
   {
     name: "european oak",
     latin: "quercus robur",
     origin: "france / germany",
     hue: "#a87c4f",
     description:
-      "open grain, golden hue, exceptional dimensional stability — the encore default.",
+      "open grain, golden hue, exceptional dimensional stability — chosen when a lighter, more contemporary face is required.",
   },
   {
     name: "american walnut",
@@ -70,452 +120,123 @@ const baseSpecies: ProductWoodSpecies[] = [
     origin: "appalachian forests, usa",
     hue: "#5a3a24",
     description:
-      "deep chocolate tones, fine straight grain, finishes to a satin lustre.",
-  },
-  {
-    name: "european ash",
-    latin: "fraxinus excelsior",
-    origin: "scandinavia",
-    hue: "#cdb692",
-    description:
-      "pale, luminous grain with high tensile strength — ideal for slim sections.",
-  },
-  {
-    name: "accoya",
-    latin: "modified pinus radiata",
-    origin: "new zealand",
-    hue: "#d8c5a0",
-    description:
-      "non-toxic acetylated pine, class-1 durability, dimensional drift below 0.5%.",
-  },
-  {
-    name: "burmese teak",
-    latin: "tectona grandis",
-    origin: "south-east asia (fsc)",
-    hue: "#8a6a3f",
-    description:
-      "naturally weather-resistant, golden-honey patina, superior in marine climates.",
+      "deep chocolate tones, fine straight grain, finishes to a satin lustre — for projects with material ambition.",
   },
 ];
 
 export const products: Product[] = [
   {
-    slug: "encore-sw",
-    code: "SW",
-    name: "encore SW",
-    family: "timber-window",
-    tagline: "solid wood, full timber frame",
+    slug: "wooden-doors",
+    code: "WD",
+    name: "wooden doors",
+    family: "wooden-doors",
+    tagline: "five finishes · solid wood entrances",
     excerpt:
-      "the flagship — a fully timber-framed minimalist sliding system with the same engineering core as encore 38 and 60, dressed in solid wood.",
+      "solid-wood and engineered-core entrance, internal and pivot doors — built in five finish families and any indian or imported hardwood, hand-finished in the atelier.",
     description:
-      "encore SW (solid wood) is our flagship system. an aluminium structural core is wrapped in solid timber, marrying the precision of metal with the warmth of wood. it preserves the slim sightlines of the encore family while presenting an entirely natural face to the interior and exterior.",
-    hero: heroImages.sw,
-    detailHero: detailHeros.sw,
-    sightline: "32 mm",
-    maxPanel: "12 m² · 5.4 m height",
+      "our wooden door programme spans five finish families — veneer, laminated, solid panel, skin and paint — built around a multi-ply mortised core in burmese teak, indian sal, mahogany or honne. each leaf is balanced for a precision floor pivot or concealed european hinges, and ships pre-finished and pre-hung as a single architectural element. customisation is the rule, not the exception: any size, any joinery, any of the 22 reference designs in our customised collection.",
+    hero: woodHero,
+    detailHero: woodHero,
+    sightline: "5 finishes",
+    maxPanel: "any custom size",
     highlights: [
-      "fully clad solid timber frame",
-      "12 m² panel with single-handed operation",
-      "passivhaus-compatible",
-    ],
-    features: [
-      {
-        title: "structural timber cladding",
-        body: "20 mm laminated solid wood bonded to an aluminium core — never veneer.",
-      },
-      {
-        title: "concealed hardware",
-        body: "silent multipoint locking and motorisation hidden beneath flush timber profiles.",
-      },
-      {
-        title: "five wood species",
-        body: "specify oak, walnut, ash, accoya or fsc-certified teak per project.",
-      },
-    ],
-    specs: [
-      {
-        title: "performance",
-        rows: [
-          { label: "u-value (whole)", value: "0.86 W/m²K" },
-          { label: "air-tightness", value: "class 4" },
-          { label: "watertight", value: "class E1200" },
-          { label: "wind resistance", value: "class C5" },
-          { label: "acoustic", value: "Rw 44 dB" },
-          { label: "burglar resistance", value: "RC2 / WK2" },
-        ],
-      },
-      {
-        title: "dimensions",
-        rows: [
-          { label: "vertical sightline", value: "32 mm" },
-          { label: "max panel", value: "12 m² · 5.4 m height" },
-          { label: "glass thickness", value: "up to 56 mm triple" },
-          { label: "panel weight", value: "up to 700 kg" },
-        ],
-      },
-    ],
-    species: baseSpecies,
-    imageA: "https://images.unsplash.com/photo-1505692433770-36f19f51681d?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1503174971373-b1f69850bded?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    slug: "encore-nm",
-    code: "NM",
-    name: "encore NM",
-    family: "timber-window",
-    tagline: "noble materials — timber + bronze + steel",
-    excerpt:
-      "encore NM pairs solid timber with architectural bronze, blackened steel or stainless — a hybrid system for projects with material ambition.",
-    description:
-      "encore NM (noble materials) is our hybrid programme: a timber frame paired with hand-finished metal — architectural bronze, blackened steel, brushed stainless or burnished brass. each metal is sourced from european foundries and finished by hand in our atelier.",
-    hero: heroImages.nm,
-    detailHero: detailHeros.nm,
-    sightline: "38 mm",
-    maxPanel: "10 m²",
-    highlights: [
-      "wood + bronze / steel / brass hybrid",
-      "hand-finished metal sections",
-      "bespoke patina options",
-    ],
-    features: [
-      {
-        title: "metal partner programme",
-        body: "live samples of bronze, steel, brass and stainless prepared in-atelier per project.",
-      },
-      {
-        title: "dual-tone profiles",
-        body: "specify metal interior with timber exterior, or invert for a chiaroscuro effect.",
-      },
-      {
-        title: "patina control",
-        body: "choose from seven bronze patinas, from raw mill to deep verdigris.",
-      },
-    ],
-    specs: [
-      {
-        title: "performance",
-        rows: [
-          { label: "u-value (whole)", value: "0.92 W/m²K" },
-          { label: "acoustic", value: "Rw 42 dB" },
-          { label: "burglar resistance", value: "up to RC4" },
-          { label: "fire", value: "EI30 option" },
-        ],
-      },
-      {
-        title: "dimensions",
-        rows: [
-          { label: "vertical sightline", value: "38 mm" },
-          { label: "max panel", value: "10 m²" },
-          { label: "glass thickness", value: "up to 52 mm" },
-          { label: "panel weight", value: "up to 600 kg" },
-        ],
-      },
-    ],
-    species: baseSpecies,
-    imageA: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1505692794403-34cb1ed8f7bf?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    slug: "encore-60",
-    code: "60",
-    name: "encore 60",
-    family: "timber-window",
-    tagline: "thermal-class for cold climates",
-    excerpt:
-      "a high-performance exterior timber system reaching passivhaus and minergie-p, with intrusion resistance up to RC4.",
-    description:
-      "encore 60 is our cold-climate flagship. triple-glazed up to 56 mm with a thermally-broken aluminium spine clad in solid timber, it reaches passivhaus and minergie-p. burglar-resistance up to RC4 is available without compromising sightlines.",
-    hero: heroImages.s60,
-    detailHero: detailHeros.s60,
-    sightline: "60 mm",
-    maxPanel: "9 m²",
-    highlights: [
-      "passivhaus & minergie-p certified",
-      "RC4 / WK4 burglar resistance",
-      "ideal for nordic + alpine climates",
-    ],
-    features: [
-      {
-        title: "triple-glazed core",
-        body: "up to 56 mm sealed unit with warm-edge spacers and argon/krypton fill.",
-      },
-      {
-        title: "passivhaus certified",
-        body: "u-value down to 0.68 W/m²K with 0.6 ach airtightness.",
-      },
-      {
-        title: "RC4 security",
-        body: "concealed reinforcement, multipoint hooks, laminated security glazing.",
-      },
-    ],
-    specs: [
-      {
-        title: "performance",
-        rows: [
-          { label: "u-value (whole)", value: "0.68 W/m²K" },
-          { label: "air-tightness", value: "class 4 / 0.6 ach" },
-          { label: "burglar resistance", value: "RC4 / WK4" },
-          { label: "acoustic", value: "Rw 47 dB" },
-        ],
-      },
-      {
-        title: "dimensions",
-        rows: [
-          { label: "vertical sightline", value: "60 mm" },
-          { label: "max panel", value: "9 m²" },
-          { label: "glass thickness", value: "44–56 mm triple" },
-          { label: "panel weight", value: "up to 800 kg" },
-        ],
-      },
-    ],
-    species: baseSpecies,
-    imageA: "https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    slug: "encore-38",
-    code: "38",
-    name: "encore 38",
-    family: "timber-window",
-    tagline: "slim sliding, max glass",
-    excerpt:
-      "exploits the structural properties of glass with vertical timber profiles reduced to 38 mm — vast openings without visual compromise.",
-    description:
-      "encore 38 is a structural-glass sliding casement that uses laminated glass as a load-bearing element, reducing vertical timber sightlines to a slender 38 mm. it produces uninterrupted views with panels up to 18 m² and is the lightest in the family.",
-    hero: heroImages.s38,
-    detailHero: detailHeros.s38,
-    sightline: "38 mm",
-    maxPanel: "18 m²",
-    highlights: [
-      "structural-glass system",
-      "vertical sightline 38 mm",
-      "panels up to 18 m²",
-    ],
-    features: [
-      {
-        title: "structural laminated glass",
-        body: "ionoplast-laminated panes act as a beam, eliminating mid-rail mullions.",
-      },
-      {
-        title: "slim 38 mm profile",
-        body: "vertical timber reduced to 38 mm without sacrificing thermal performance.",
-      },
-      {
-        title: "ultra-light operation",
-        body: "panels up to 700 kg slide on the encore UL bearing system.",
-      },
-    ],
-    specs: [
-      {
-        title: "performance",
-        rows: [
-          { label: "u-value (whole)", value: "1.10 W/m²K" },
-          { label: "acoustic", value: "Rw 40 dB" },
-          { label: "wind resistance", value: "class C4" },
-        ],
-      },
-      {
-        title: "dimensions",
-        rows: [
-          { label: "vertical sightline", value: "38 mm" },
-          { label: "max panel", value: "18 m² · 6 m height" },
-          { label: "glass thickness", value: "up to 44 mm" },
-          { label: "panel weight", value: "up to 700 kg" },
-        ],
-      },
-    ],
-    species: baseSpecies,
-    imageA: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    slug: "encore-um",
-    code: "UM",
-    name: "encore UM",
-    family: "timber-window",
-    tagline: "ultra-minimal · vacuum-glazed",
-    excerpt:
-      "vacuum insulating glass at 12 mm total thickness allows triple-glazed performance with vertical sightlines reduced to 15 mm.",
-    description:
-      "encore UM (ultra-minimal) deploys vacuum insulating glass — a sealed evacuated cavity between two panes — to achieve triple-glazed thermal performance at 12 mm total glass thickness. vertical timber sightlines collapse to 15 mm.",
-    hero: heroImages.um,
-    detailHero: detailHeros.um,
-    sightline: "15 mm",
-    maxPanel: "8 m²",
-    highlights: [
-      "vacuum insulating glass",
-      "vertical sightline 15 mm",
-      "12 mm total glass thickness",
-    ],
-    features: [
-      {
-        title: "vacuum insulating glass",
-        body: "0.3 mm evacuated cavity yields u_g = 0.4 W/m²K at 12 mm total glass.",
-      },
-      {
-        title: "ultra-minimal sightline",
-        body: "vertical timber reduced to 15 mm — the slimmest in the encore family.",
-      },
-      {
-        title: "heritage retrofit",
-        body: "thin-glass solution for listed buildings without altering reveals.",
-      },
-    ],
-    specs: [
-      {
-        title: "performance",
-        rows: [
-          { label: "u-value (whole)", value: "0.78 W/m²K" },
-          { label: "u-value (glass)", value: "0.40 W/m²K" },
-          { label: "acoustic", value: "Rw 38 dB" },
-        ],
-      },
-      {
-        title: "dimensions",
-        rows: [
-          { label: "vertical sightline", value: "15 mm" },
-          { label: "max panel", value: "8 m²" },
-          { label: "glass thickness", value: "12 mm vacuum" },
-          { label: "panel weight", value: "up to 350 kg" },
-        ],
-      },
-    ],
-    species: baseSpecies,
-    imageA: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    slug: "encore-pd",
-    code: "PD",
-    name: "encore PD",
-    family: "wood-door",
-    tagline: "solid wood entrance · pivot & hinged doors",
-    excerpt:
-      "monolithic solid-timber entrance doors — oversized pivots, concealed-hinge swing doors and double-leaf entries, hand-built in the atelier as front, side and internal openings.",
-    description:
-      "encore PD (pivot doors) is our solid-wood entrance programme. each leaf is a multi-ply mortised core wrapped in book-matched solid timber, balanced on a precision floor pivot or concealed european hinges. it accepts the same locking, biometric and motorisation systems as our window family, and ships pre-finished and pre-hung as a single architectural element.",
-    hero: "https://images.unsplash.com/photo-1746172851688-7d3948f7febb?auto=format&fit=crop&w=2400&q=80",
-    detailHero: "https://images.unsplash.com/photo-1768666821325-dc4c35fb1629?auto=format&fit=crop&w=2400&q=80",
-    sightline: "70 mm",
-    maxPanel: "1.6 × 3.6 m pivot",
-    highlights: [
-      "oversized pivot up to 1.6 × 3.6 m",
-      "concealed european hinges + multipoint lock",
-      "biometric + smart-lock options",
+      "veneer · laminated · solid panel · skin · paint",
+      "teak, sal, honne, oak & walnut",
+      "concealed hinges + multipoint lock standard",
     ],
     features: [
       {
         title: "monolithic timber leaf",
-        body: "70 mm mortised core, 12 mm book-matched solid wood face — never veneer, never hollow.",
+        body: "70 mm mortised core wrapped in book-matched solid wood or premium veneer — never hollow.",
       },
       {
-        title: "precision floor pivot",
-        body: "italian-engineered hydraulic pivot rated for 350 kg leaves with adjustable hold-open.",
+        title: "five finish families",
+        body: "veneer, laminated, solid panel, skin and paint — each available in any of our hardwoods.",
       },
       {
-        title: "smart access ready",
-        body: "optional fingerprint, rfid and ble-key access integrated flush with the leaf face.",
+        title: "custom in every dimension",
+        body: "any size, any colour, any of 22 reference designs — quoted from your drawings within five working days.",
       },
     ],
     specs: [
       {
-        title: "performance",
+        title: "construction",
         rows: [
-          { label: "u-value (whole)", value: "1.10 W/m²K" },
-          { label: "acoustic", value: "Rw 41 dB" },
-          { label: "burglar resistance", value: "RC3 standard · RC4 option" },
-          { label: "fire", value: "EI30 / EI60 option" },
+          { label: "core", value: "multi-ply mortised, 70 mm" },
+          { label: "face", value: "12 mm solid wood / premium veneer" },
+          { label: "edge banding", value: "matched solid wood lipping" },
+          { label: "factory finish", value: "uv-cured polyurethane or natural oil" },
         ],
       },
       {
-        title: "dimensions",
+        title: "hardware",
         rows: [
-          { label: "leaf thickness", value: "70 mm" },
-          { label: "max pivot leaf", value: "1.6 × 3.6 m" },
-          { label: "max hinged leaf", value: "1.2 × 2.8 m" },
-          { label: "leaf weight", value: "up to 350 kg" },
+          { label: "pivot leaf", value: "italian hydraulic floor pivot, 350 kg" },
+          { label: "hinged leaf", value: "concealed european 3D hinge, 200 kg" },
+          { label: "locking", value: "multipoint deadbolt + smart-lock option" },
+          { label: "max leaf", value: "1.6 × 3.6 m pivot · 1.2 × 2.8 m hinged" },
         ],
       },
     ],
-    species: baseSpecies,
-    imageA: "https://images.unsplash.com/photo-1776632001065-ad9efe3ee60e?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1755488657807-098fc8643230?auto=format&fit=crop&w=1800&q=80",
+    species: indianWoodSpecies,
+    imageA: `${SHOPIFY}/files/create_veener_door_202603181113.jpg`,
+    imageB: `${SHOPIFY}/files/Generate_skin_style_202603181106.jpg`,
+    subTypes: [
+      {
+        slug: "veneer-doors",
+        name: "veneer doors",
+        description:
+          "premium real-wood veneer over a stable engineered core — book-matched grain at architect-friendly cost.",
+        image: `${SHOPIFY}/files/create_veener_door_202603181113.jpg`,
+      },
+      {
+        slug: "laminated-doors",
+        name: "laminated doors",
+        description:
+          "high-pressure laminate over an engineered core — colour-fast, scratch-resistant and ideal for high-traffic openings.",
+        image: `${SHOPIFY}/files/CONVERT_TO_9_16_202603181109.jpg`,
+      },
+      {
+        slug: "solid-panel-doors",
+        name: "solid panel doors",
+        description:
+          "traditional rail-and-stile timber construction in teak, sal or honne — the heritage indian door, refined for modern joinery.",
+        image: `${SHOPIFY}/files/generate_solid_wooden_202603181109.jpg`,
+      },
+      {
+        slug: "skin-doors",
+        name: "skin doors",
+        description:
+          "moulded skin over a hollow or filled core — light-weight, cost-effective, available in dozens of pressed patterns.",
+        image: `${SHOPIFY}/files/Generate_skin_style_202603181106.jpg`,
+      },
+      {
+        slug: "paint-doors",
+        name: "paint doors",
+        description:
+          "primed and finished in any ral or asian-paints colour — the cleanest face for white-on-white or accent palettes.",
+        image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.46PM_2.jpg`,
+      },
+    ],
   },
   {
-    slug: "encore-aw",
-    code: "AW",
-    name: "encore AW",
-    family: "aluminium",
-    tagline: "aluminium · slim-profile windows",
+    slug: "glass-doors",
+    code: "GD",
+    name: "glass doors",
+    family: "glass-doors",
+    tagline: "five sliding systems · aluminium-framed",
     excerpt:
-      "thermally-broken aluminium windows in the slimmest profiles we make — fixed, casement, and tilt-and-turn — for projects that prefer a crisp metallic line over a timber face.",
+      "aluminium-framed sliding glass door systems — centre-opening, lift-and-slide, multi-track, corner and bifold — for openings that need to disappear.",
     description:
-      "encore AW (aluminium windows) is our metal counterpart to the encore timber family. extruded aluminium with a polyamide thermal break, factory-finished in any ral or anodised tone, glazed with the same warm-edge double or triple units we use across the atelier. configurations include fixed, top-hung, side-hung casement, tilt-and-turn and corner-less mitred junctions.",
-    hero: "https://images.unsplash.com/photo-1768674254513-635be3276d6f?auto=format&fit=crop&w=2400&q=80",
-    detailHero: "https://images.unsplash.com/photo-1744063905635-a45c7c15c35d?auto=format&fit=crop&w=2400&q=80",
-    sightline: "21 mm",
-    maxPanel: "3.5 m² fixed",
+      "our glass door programme is a complete suite of aluminium-framed sliding systems. centre-opening sliders for everyday balconies, lift-and-slide hardware for panels up to 4 metres wide, multi-track stacking for full-wall openings, structural corner mitres that erase the column, and bifolds that fold flat into a single jamb. all five share the same thermally-broken extrusion, finishes and hardware family — so your specification reads as one suite.",
+    hero: glassHero,
+    detailHero: glassHero,
+    sightline: "5 systems",
+    maxPanel: "4 m × 3.2 m panel",
     highlights: [
-      "21 mm vertical sightline",
-      "fixed · casement · tilt-and-turn",
-      "any ral · anodised · bronze finish",
-    ],
-    features: [
-      {
-        title: "thermally-broken extrusion",
-        body: "polyamide thermal break with foam-filled chambers — uw down to 1.0 W/m²K.",
-      },
-      {
-        title: "any ral or anodised",
-        body: "polyester powder-coat in any ral, plus mill, champagne, bronze and black anodised options.",
-      },
-      {
-        title: "corner-less mitre",
-        body: "structural mitred glass-to-glass corners with no vertical mullion — picture-frame views.",
-      },
-    ],
-    specs: [
-      {
-        title: "performance",
-        rows: [
-          { label: "u-value (whole)", value: "1.0 W/m²K" },
-          { label: "air-tightness", value: "class 4" },
-          { label: "watertight", value: "class E1050" },
-          { label: "wind resistance", value: "class C5" },
-          { label: "acoustic", value: "Rw 42 dB" },
-        ],
-      },
-      {
-        title: "dimensions",
-        rows: [
-          { label: "vertical sightline", value: "21 mm" },
-          { label: "max fixed pane", value: "3.5 m²" },
-          { label: "max casement", value: "1.4 × 2.4 m" },
-          { label: "glass thickness", value: "up to 52 mm triple" },
-        ],
-      },
-    ],
-    imageA: "https://images.unsplash.com/photo-1764080400291-94c14583fdea?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1601736600187-310bc28b5fda?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    slug: "encore-ad",
-    code: "AD",
-    name: "encore AD",
-    family: "aluminium",
-    tagline: "aluminium · sliding & bifolding doors",
-    excerpt:
-      "lift-and-slide and bifold aluminium doors with thermal-break technology — single panels up to 4 m wide, optional motorisation, ready for the largest indoor-outdoor thresholds.",
-    description:
-      "encore AD (aluminium doors) is our metal-framed sliding and bifolding programme. lift-and-slide hardware carries panels up to 4 m wide on a flush threshold, while the bifold variant stacks up to seven leaves into a single jamb. both share the encore AW thermal-break extrusion, finishes and hardware family, so aluminium windows and doors specify as one suite.",
-    hero: "https://images.unsplash.com/photo-1652400095202-4569b8489d00?auto=format&fit=crop&w=2400&q=80",
-    detailHero: "https://images.unsplash.com/photo-1700308232171-aa0d87ee1a88?auto=format&fit=crop&w=2400&q=80",
-    sightline: "27 mm",
-    maxPanel: "4.0 × 3.2 m",
-    highlights: [
-      "lift-and-slide · bifold variants",
-      "single panel up to 4 m wide",
-      "flush threshold · motorisation ready",
+      "centre · lift · multi-track · corner · bifold",
+      "thermally-broken aluminium extrusion",
+      "single panels up to 4 m wide",
     ],
     features: [
       {
@@ -527,33 +248,333 @@ export const products: Product[] = [
         body: "level interior-to-exterior threshold with concealed drainage — wheelchair compliant.",
       },
       {
-        title: "shared aluminium suite",
-        body: "matches encore AW windows in profile, finish and hardware for a single visual language.",
+        title: "any ral or anodised",
+        body: "polyester powder-coat in any ral, plus mill, champagne, bronze and black anodised options.",
       },
     ],
     specs: [
       {
-        title: "performance",
+        title: "construction",
         rows: [
-          { label: "u-value (whole)", value: "1.2 W/m²K" },
-          { label: "air-tightness", value: "class 4" },
-          { label: "watertight", value: "class E900" },
-          { label: "acoustic", value: "Rw 40 dB" },
-          { label: "burglar resistance", value: "RC2 standard · RC3 option" },
+          { label: "frame", value: "thermally-broken aluminium extrusion" },
+          { label: "thermal break", value: "polyamide, foam-filled chambers" },
+          { label: "glass", value: "double or triple insulated, up to 52 mm" },
+          { label: "finish", value: "any ral powder-coat or anodised" },
         ],
       },
       {
-        title: "dimensions",
+        title: "performance",
         rows: [
-          { label: "vertical sightline", value: "27 mm" },
+          { label: "u-value (whole)", value: "1.2 W/m²K" },
+          { label: "watertight", value: "class E900" },
+          { label: "wind resistance", value: "class C5" },
+          { label: "acoustic", value: "Rw 40 dB" },
           { label: "max panel (slide)", value: "4.0 × 3.2 m" },
-          { label: "max bifold leaves", value: "7 per jamb" },
-          { label: "panel weight", value: "up to 400 kg" },
         ],
       },
     ],
-    imageA: "https://images.unsplash.com/photo-1623601717592-8772e90968a4?auto=format&fit=crop&w=1800&q=80",
-    imageB: "https://images.unsplash.com/photo-1742731842297-6b7586f0c736?auto=format&fit=crop&w=1800&q=80",
+    imageA: `${SHOPIFY}/files/the_wheels_sliding_202603190052.jpg`,
+    imageB: `${SHOPIFY}/files/horizontal_sliding_doors_202603190126.jpg`,
+    subTypes: [
+      {
+        slug: "centre-opening-slide",
+        name: "centre opening slide",
+        description:
+          "two panels meeting in the middle, sliding into pockets either side — the classic balcony opening.",
+        image: `${SHOPIFY}/files/horizontal_sliding_doors_202603190126.jpg`,
+      },
+      {
+        slug: "lift-slide",
+        name: "lift & slide",
+        description:
+          "german-engineered hardware lifts the panel before it slides — single panels up to 4 m wide, single-handed.",
+        image: `${SHOPIFY}/files/the_wheels_sliding_202603190052.jpg`,
+      },
+      {
+        slug: "multi-track-slide",
+        name: "multi track slide",
+        description:
+          "three- and four-track stacking systems for full-wall openings that pocket completely into the jamb.",
+        image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.48PM_2.jpg`,
+      },
+      {
+        slug: "corner-slide",
+        name: "corner slide",
+        description:
+          "structural mitred glass-to-glass corners with no vertical mullion — picture-frame views around the corner.",
+        image: `${SHOPIFY}/files/corner_sliding_door_202603190055.jpg`,
+      },
+      {
+        slug: "slide-fold",
+        name: "slide & fold",
+        description:
+          "bifold leaves stack flat into a single jamb — up to seven panels for the largest indoor-outdoor thresholds.",
+        image: `${SHOPIFY}/files/Slide_n_fold.jpg`,
+      },
+    ],
+  },
+  {
+    slug: "railings",
+    code: "RL",
+    name: "railings",
+    family: "railings",
+    tagline: "wood, glass & metal · staircases & balconies",
+    excerpt:
+      "balcony, staircase and terrace railings in solid wood, frameless glass and patina-bronze — engineered to indian building code, customised to your drawing.",
+    description:
+      "we build the same atelier-grade railings you would expect from a window manufacturer: solid-wood handrails over stainless or blackened-steel balusters, frameless glass with concealed channel fixings, and patina-bronze for heritage projects. every railing is engineered to the indian standard for residential and commercial balustrades and customised to your stair pitch, balcony length and finish palette.",
+    hero: railingsHero,
+    detailHero: railingsHero,
+    sightline: "3 systems",
+    maxPanel: "site-bespoke",
+    highlights: [
+      "wood, frameless glass & metal options",
+      "engineered to indian residential code",
+      "concealed channel + base-plate fixings",
+    ],
+    features: [
+      {
+        title: "engineered to code",
+        body: "rated for residential, commercial and assembly loads per indian standard 3194 and is 14897.",
+      },
+      {
+        title: "concealed fixings",
+        body: "stainless u-channel for frameless glass; counter-bored stainless studs for wood and metal balusters.",
+      },
+      {
+        title: "atelier-finished",
+        body: "wood handrails are sanded, oiled and polished in-house; metal posts are powder-coated or hand-patinated.",
+      },
+    ],
+    specs: [
+      {
+        title: "construction",
+        rows: [
+          { label: "handrail", value: "solid teak / stainless / brass / bronze" },
+          { label: "balusters", value: "stainless 316 / blackened steel / glass" },
+          { label: "glass", value: "12 mm laminated heat-soaked, frameless" },
+          { label: "fixing", value: "concealed u-channel or base-plate" },
+        ],
+      },
+      {
+        title: "performance",
+        rows: [
+          { label: "rail height", value: "900–1100 mm to indian code" },
+          { label: "load rating", value: "0.74 kN/m residential · 1.5 kN/m commercial" },
+          { label: "panel infill", value: "≤ 100 mm sphere clearance" },
+          { label: "finish", value: "oil · powder-coat · hand patina" },
+        ],
+      },
+    ],
+    imageA: railingsHero,
+    imageB: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM_2.jpg`,
+    subTypes: [
+      {
+        slug: "wood-railings",
+        name: "wood railings",
+        description:
+          "solid teak or sal handrails over a stainless or blackened-steel sub-frame — warm, lasting, repairable.",
+        image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.51PM_1.jpg`,
+      },
+      {
+        slug: "glass-railings",
+        name: "glass railings",
+        description:
+          "frameless laminated glass set into a concealed u-channel — clear sight-lines, full code compliance.",
+        image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM_3.jpg`,
+      },
+      {
+        slug: "metal-railings",
+        name: "metal railings",
+        description:
+          "stainless, blackened steel or patina-bronze balusters with custom infill patterns — staircases and balconies.",
+        image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM.jpg`,
+      },
+    ],
+  },
+];
+
+// 22 customised reference designs from the Shopify "Customized Collection" —
+// these are not separate SKUs but design exemplars the atelier can build in
+// any of the three families. The `family` tag is a hint used to filter the
+// gallery on a category page; clients can still request any design in any
+// family.
+export const customDesigns: CustomDesign[] = [
+  {
+    code: "ENCORE-D01",
+    slug: "encore-d01",
+    name: "ENCORE-D01",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.45PM.jpg`,
+    caption: "solid-panel teak entrance door",
+  },
+  {
+    code: "ENCORE-D02",
+    slug: "encore-d02",
+    name: "ENCORE-D02",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.46PM_1.jpg`,
+    caption: "veneer entrance with brushed-metal inlay",
+  },
+  {
+    code: "ENCORE-D03",
+    slug: "encore-d03",
+    name: "ENCORE-D03",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.46PM_2.jpg`,
+    caption: "horizontal-grooved veneer panel",
+  },
+  {
+    code: "ENCORE-D04",
+    slug: "encore-d04",
+    name: "ENCORE-D04",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsApp_Image_2026-03-18_at_3.43.46_PM.jpg`,
+    caption: "laminated white-oak panel",
+  },
+  {
+    code: "ENCORE-D05",
+    slug: "encore-d05",
+    name: "ENCORE-D05",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.47PM_1_db161bff-2860-4830-9e44-c6af4791eccf.jpg`,
+    caption: "skin-pressed paneled door",
+  },
+  {
+    code: "ENCORE-D06",
+    slug: "encore-d06",
+    name: "ENCORE-D06",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsApp_Image_2026-03-18_at_3.43.47_PM_2_20f2b054-8f4c-408b-a8b3-969eeb7f4c07.jpg`,
+    caption: "modern 3-panel skin door",
+  },
+  {
+    code: "ENCORE-D07",
+    slug: "encore-d07",
+    name: "ENCORE-D07",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.47PM_3.jpg`,
+    caption: "vertical-grooved entry leaf",
+  },
+  {
+    code: "ENCORE-D08",
+    slug: "encore-d08",
+    name: "ENCORE-D08",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.47PM.jpg`,
+    caption: "mixed-finish double leaf",
+  },
+  {
+    code: "ENCORE-D09",
+    slug: "encore-d09",
+    name: "ENCORE-D09",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.48PM_1_0ce3f4fb-38fa-4ead-9fc9-c3189849a584.jpg`,
+    caption: "honne single-leaf entrance",
+  },
+  {
+    code: "ENCORE-D10",
+    slug: "encore-d10",
+    name: "ENCORE-D10",
+    family: "wooden-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.48PM.jpg`,
+    caption: "painted modern panel door",
+  },
+  {
+    code: "ENCORE-D11",
+    slug: "encore-d11",
+    name: "ENCORE-D11",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.48PM_2.jpg`,
+    caption: "multi-track sliding glass facade",
+  },
+  {
+    code: "ENCORE-D12",
+    slug: "encore-d12",
+    name: "ENCORE-D12",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.48PM_3.jpg`,
+    caption: "aluminium-framed centre slider",
+  },
+  {
+    code: "ENCORE-D13",
+    slug: "encore-d13",
+    name: "ENCORE-D13",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsApp_Image_2026-03-18_at_3.43.49_PM_1.jpg`,
+    caption: "lift-and-slide single panel",
+  },
+  {
+    code: "ENCORE-D14",
+    slug: "encore-d14",
+    name: "ENCORE-D14",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.49PM_2.jpg`,
+    caption: "corner mitred glass slider",
+  },
+  {
+    code: "ENCORE-D15",
+    slug: "encore-d15",
+    name: "ENCORE-D15",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.49PM_3.jpg`,
+    caption: "bifold five-leaf system",
+  },
+  {
+    code: "ENCORE-D16",
+    slug: "encore-d16",
+    name: "ENCORE-D16",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.49PM_4.jpg`,
+    caption: "black-anodised slim sightline slider",
+  },
+  {
+    code: "ENCORE-D17",
+    slug: "encore-d17",
+    name: "ENCORE-D17",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.49PM.jpg`,
+    caption: "champagne anodised pocket slider",
+  },
+  {
+    code: "ENCORE-D18",
+    slug: "encore-d18",
+    name: "ENCORE-D18",
+    family: "glass-doors",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM_1.jpg`,
+    caption: "frameless terrace slider",
+  },
+  {
+    code: "ENCORE-D19",
+    slug: "encore-d19",
+    name: "ENCORE-D19",
+    family: "railings",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM_2.jpg`,
+    caption: "frameless glass balcony rail",
+  },
+  {
+    code: "ENCORE-D20",
+    slug: "encore-d20",
+    name: "ENCORE-D20",
+    family: "railings",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM_3.jpg`,
+    caption: "stainless + glass staircase rail",
+  },
+  {
+    code: "ENCORE-D21",
+    slug: "encore-d21",
+    name: "ENCORE-D21",
+    family: "railings",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.50PM.jpg`,
+    caption: "blackened-steel balcony rail",
+  },
+  {
+    code: "ENCORE-D22",
+    slug: "encore-d22",
+    name: "ENCORE-D22",
+    family: "railings",
+    image: `${SHOPIFY}/files/WhatsAppImage2026-03-18at3.43.51PM_1.jpg`,
+    caption: "solid teak handrail with bronze posts",
   },
 ];
 
@@ -562,3 +583,11 @@ export const productBySlug = (slug: string): Product | undefined =>
 
 export const productsByFamily = (family: ProductFamily): Product[] =>
   products.filter((p) => p.family === family);
+
+export const customDesignsByFamily = (
+  family: ProductFamily,
+): CustomDesign[] => customDesigns.filter((d) => d.family === family);
+
+export const customDesignBySlug = (
+  slug: string,
+): CustomDesign | undefined => customDesigns.find((d) => d.slug === slug);

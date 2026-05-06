@@ -36,14 +36,15 @@ export function AboutTeaser() {
               <Reveal>
                 <div>
                   <h3 className="display text-2xl text-ink leading-snug">
-                    the importance of timber in minimalist windows
+                    the importance of one atelier
                   </h3>
                   <p className="mt-4 text-ink-2 leading-[1.75] text-base">
-                    when you commit a façade to glass, the frame becomes the
-                    architecture. encore frames are timber: a living material
-                    that records its origin in every grain, its drying in every
-                    silvering, its century in every patina. minimalism in our
-                    hands is not the absence of material — it is its discipline.
+                    when a residence specifies wooden doors, glass sliders and
+                    railings from three different vendors, the joinery, finish
+                    and hardware never quite agree. encore brings all three
+                    families under one roof — one finish palette, one hardware
+                    family, one accountable team — so the building reads as
+                    one design language.
                   </p>
                 </div>
               </Reveal>
@@ -56,11 +57,12 @@ export function AboutTeaser() {
                   <p className="mt-4 text-ink-2 leading-[1.75] text-base">
                     to keep up with new challenges, encore verticalised its
                     industrial activity in 2014. by continuously investing in
-                    cnc joinery, glass lamination and metal finishing in our
-                    hyderabad atelier, we became one of india&rsquo;s most
-                    integrated bespoke timber-window manufacturers — capable
-                    of double and triple glazed units up to 29 m² in a single
-                    panel.
+                    cnc joinery, aluminium extrusion finishing, glass
+                    lamination and metal finishing in our hyderabad atelier,
+                    we became one of india&rsquo;s most integrated bespoke
+                    door, slider and railing manufacturers — capable of
+                    single-leaf pivots up to 1.6 × 3.6 m and sliding panels
+                    up to 4 m wide.
                   </p>
                 </div>
               </Reveal>
@@ -71,11 +73,11 @@ export function AboutTeaser() {
                     control over the manufacturing process
                   </h3>
                   <p className="mt-4 text-ink-2 leading-[1.75] text-base">
-                    encore is the only manufacturer of minimalist timber windows
-                    that processes and manufactures the main components of its
-                    systems — wood, aluminium spine, glass, hardware. having
-                    full accountability over the entire process turns a
-                    once-risky, complex craft into a routine task.
+                    encore processes and manufactures the main components of
+                    every product family it sells — wood, aluminium, glass and
+                    hardware. having full accountability over the entire
+                    process turns a once-risky, complex craft into a routine
+                    task.
                   </p>
                 </div>
               </Reveal>
