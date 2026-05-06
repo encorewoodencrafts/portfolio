@@ -24,7 +24,7 @@ export function Testimonials() {
 
   return (
     <section
-      className="border-t border-line py-20 md:py-28 bg-paper-2/40"
+      className="border-t border-line py-12 sm:py-16 md:py-24 bg-paper-2/40"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -33,7 +33,7 @@ export function Testimonials() {
           <div className="col-span-12 md:col-span-4">
             <Reveal>
               <p className="eyebrow">said about encore</p>
-              <h2 className="mt-3 display text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[0.95]">
+              <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1]">
                 in the words of
                 <br />
                 <span className="italic">our architects.</span>

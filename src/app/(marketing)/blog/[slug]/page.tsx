@@ -68,7 +68,7 @@ export default async function BlogPostPage({
           </Reveal>
         </div>
 
-        <ClipReveal className="mt-12 mb-12">
+        <ClipReveal className="mt-8 mb-8 md:mt-12 md:mb-12">
           <div className="relative aspect-[16/9] w-full bg-stone">
             <Image
               src={post.image}
@@ -114,7 +114,7 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-16 md:py-20">
+      <section className="border-t border-line py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <p className="eyebrow">further reading</p>
           <h2 className="mt-3 display text-3xl md:text-4xl font-light tracking-tight">

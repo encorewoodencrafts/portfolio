@@ -8,20 +8,20 @@ import { Reveal } from "@/components/site/reveal";
 
 export function BlogTeaser() {
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-        <div className="mb-12 flex items-end justify-between gap-6">
+        <div className="mb-8 md:mb-12 flex items-end justify-between gap-4">
           <div>
             <p className="eyebrow">the latest from our atelier blog</p>
-            <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight leading-[1]">
               atelier views
             </h2>
           </div>
           <Link
             href="/blog"
-            className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-walnut transition-colors"
+            className="font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-walnut transition-colors flex-none"
           >
-            view more posts →
+            view more →
           </Link>
         </div>
 

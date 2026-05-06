@@ -28,7 +28,7 @@ export default function BlogPage() {
         description="long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider and railing. one new entry each month."
       />
 
-      <section className="py-12 md:py-20">
+      <section className="py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 space-y-16 md:space-y-24">
           {blogPosts.map((post, i) => (
             <article

@@ -34,7 +34,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative pt-32 md:pt-40 pb-16 md:pb-24 border-b border-line overflow-hidden",
+        "relative pt-28 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-24 border-b border-line overflow-hidden",
         className
       )}
     >
@@ -54,7 +54,7 @@ export function PageHero({
           initial={prefersReduced ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: easeOut }}
-          className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-10 md:mb-14"
+          className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-6 sm:mb-10 md:mb-14"
         >
           {kicker && (
             <span className="font-mono text-[0.6rem] uppercase tracking-[0.28em] text-walnut">
@@ -97,12 +97,12 @@ export function PageHero({
               initial={prefersReduced ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, delay: 0.15, ease: easeOut }}
-              className="display-tight text-[clamp(2.4rem,7vw,7.4rem)] font-light text-ink leading-[0.95]"
+              className="display-tight text-[clamp(2rem,8vw,7.4rem)] font-light text-ink leading-[1]"
             >
               {title}
             </motion.h1>
 
-            <div className="mt-10 grid grid-cols-12 gap-6 lg:gap-12">
+            <div className="mt-6 sm:mt-8 md:mt-10 grid grid-cols-12 gap-6 lg:gap-12">
               <div className="col-span-12 md:col-span-7">
                 {description && (
                   <motion.p
@@ -115,7 +115,7 @@ export function PageHero({
                       delay: 0.32,
                       ease: easeOut,
                     }}
-                    className="max-w-2xl text-ink-2 text-base md:text-lg leading-relaxed"
+                    className="max-w-2xl text-ink-2 text-sm md:text-lg leading-relaxed"
                   >
                     {description}
                   </motion.p>
@@ -129,7 +129,7 @@ export function PageHero({
                     ease: easeOut,
                   }}
                   href="#main"
-                  className="mt-10 group inline-flex items-center gap-3 text-ink-2 hover:text-ink transition-colors"
+                  className="mt-6 sm:mt-8 md:mt-10 group inline-flex items-center gap-3 text-ink-2 hover:text-ink transition-colors"
                   aria-label="scroll to next section"
                 >
                   <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line group-hover:border-ink/40 transition-colors">

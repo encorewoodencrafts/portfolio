@@ -46,7 +46,7 @@ export default function PartnersPage() {
         }
       />
 
-      <section className="py-12 md:py-20 border-b border-line">
+      <section className="py-10 sm:py-14 md:py-20 border-b border-line">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <Reveal>
             <PartnerMap />
@@ -54,7 +54,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 space-y-20">
           {continents.map((c) => (
             <div key={c.name}>
@@ -115,7 +115,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-24 bg-charcoal text-cream">
+      <section className="border-t border-line py-12 sm:py-16 md:py-20 bg-charcoal text-cream">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">

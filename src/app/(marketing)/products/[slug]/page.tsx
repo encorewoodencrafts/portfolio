@@ -86,7 +86,7 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-4">
             <p className="eyebrow">overview</p>
@@ -118,7 +118,7 @@ export default async function ProductDetailPage({
 
       <section
         id="sub-types"
-        className="border-t border-line bg-paper-2/40 py-20 md:py-28 scroll-mt-24"
+        className="border-t border-line bg-paper-2/40 py-12 sm:py-16 md:py-24 scroll-mt-24"
       >
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6 items-end">
@@ -171,7 +171,7 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-5">
             <p className="eyebrow">key facts</p>
@@ -240,7 +240,7 @@ export default async function ProductDetailPage({
       </section>
 
       {product.species && product.species.length > 0 ? (
-        <section className="border-t border-line py-20 md:py-28">
+        <section className="border-t border-line py-12 sm:py-16 md:py-24">
           <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
             <WoodSpeciesSelector species={product.species} />
           </div>
@@ -248,7 +248,7 @@ export default async function ProductDetailPage({
       ) : null}
 
       {designs.length > 0 ? (
-        <section className="border-t border-line bg-paper-2/40 py-20 md:py-28">
+        <section className="border-t border-line bg-paper-2/40 py-12 sm:py-16 md:py-24">
           <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
             <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6 items-end">
               <div className="col-span-12 md:col-span-7">
@@ -299,7 +299,7 @@ export default async function ProductDetailPage({
         </section>
       ) : null}
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <p className="eyebrow">gallery</p>
           <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight max-w-3xl">
@@ -332,13 +332,13 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line bg-charcoal text-cream py-20 md:py-28">
+      <section className="border-t border-line bg-charcoal text-cream py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-7">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
               specify {product.name}
             </p>
-            <h2 className="mt-4 display text-4xl md:text-6xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight leading-[1]">
               ready to design
               <br />
               <span className="italic">your opening?</span>
@@ -369,9 +369,9 @@ export default async function ProductDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <div className="flex items-end justify-between gap-6 mb-12">
+          <div className="flex items-end justify-between gap-4 mb-8 md:mb-12">
             <div>
               <p className="eyebrow">explore the encore family</p>
               <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight">

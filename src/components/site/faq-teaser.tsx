@@ -7,12 +7,12 @@ import { Reveal } from "@/components/site/reveal";
 export function FaqTeaser() {
   const featured = faqItems.slice(0, 5);
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 mb-10">
           <div className="col-span-12 md:col-span-5">
             <p className="eyebrow">questions, answered</p>
-            <h2 className="mt-3 display text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1]">
               before you
               <br />
               <span className="italic">specify encore.</span>

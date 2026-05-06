@@ -107,7 +107,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-24">
+      <section className="border-t border-line py-12 sm:py-16 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
             <Reveal>

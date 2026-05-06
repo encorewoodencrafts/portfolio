@@ -9,14 +9,14 @@ export function AddOnsGrid({ heading = true }: { heading?: boolean }) {
   return (
     <section
       id="add-ons"
-      className="border-t border-line bg-paper py-20 md:py-28"
+      className="border-t border-line bg-paper py-12 sm:py-16 md:py-24"
     >
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
         {heading && (
-          <div className="mb-14 flex items-end justify-between gap-6">
+          <div className="mb-10 md:mb-14 flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">expanding the system</p>
-              <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight text-ink leading-[0.95]">
+              <h2 className="mt-2 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight text-ink leading-[1]">
                 add-ons
               </h2>
             </div>

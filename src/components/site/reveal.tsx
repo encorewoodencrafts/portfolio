@@ -38,6 +38,18 @@ export function Reveal({
   );
 }
 
+// ClipReveal is the dramatic "wipe from the top" reveal we use for
+// hero-style imagery. The previous implementation used
+// `clipPath: inset(0 0 100% 0)` as its initial state, which fully hid
+// the wrapper. On mobile that broke next/image's IntersectionObserver:
+// the lazy image inside thought it was off-screen, never started
+// loading, and the figure stayed empty (visible bg-stone placeholder).
+//
+// The current implementation preserves the visual effect — a soft
+// vertical wipe — but always keeps the content technically visible to
+// the layout engine: the initial clip is `inset(0 0 60% 0)` (40 %
+// visible) plus opacity 0, so the bounding box and the lazy-loaded
+// image inside both stay alive even before the reveal triggers.
 export function ClipReveal({
   children,
   delay = 0,
@@ -51,11 +63,11 @@ export function ClipReveal({
   return (
     <motion.div
       initial={
-        prefersReduced ? false : { clipPath: "inset(0 0 100% 0)", opacity: 0.4 }
+        prefersReduced ? false : { clipPath: "inset(0 0 60% 0)", opacity: 0 }
       }
       whileInView={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 1.4, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
       className={cn(className)}
     >
       {children}

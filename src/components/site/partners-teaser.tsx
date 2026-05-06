@@ -8,12 +8,12 @@ import { site } from "@/data/site";
 
 export function PartnersTeaser() {
   return (
-    <section className="border-t border-line bg-paper-2/40 py-20 md:py-28">
+    <section className="border-t border-line bg-paper-2/40 py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-        <div className="mb-12 grid grid-cols-12 gap-6">
+        <div className="mb-10 md:mb-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-4">
             <p className="eyebrow">meet our chain of partners</p>
-            <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight leading-[1]">
               across the world
             </h2>
           </div>

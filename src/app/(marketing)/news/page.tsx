@@ -28,7 +28,7 @@ export default function NewsPage() {
         description="dispatches from the atelier — new products, completed projects, events and announcements."
       />
 
-      <section className="py-12 md:py-20">
+      <section className="py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <Link href={`/news/${featured.slug}`} className="group block">
             <ClipReveal>
@@ -69,7 +69,7 @@ export default function NewsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-16 md:py-20">
+      <section className="border-t border-line py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {rest.map((n, i) => (

@@ -99,7 +99,7 @@ export default function AboutPage() {
         }
       />
 
-      <section className="border-t border-line py-20 md:py-28 bg-paper-2/40">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24 bg-paper-2/40">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
             {site.stats.map((s) => (
@@ -118,11 +118,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-4">
             <p className="eyebrow">the atelier</p>
-            <h2 className="mt-3 display text-4xl md:text-5xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-3 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
               all that<br />
               <span className="italic">wood.</span>
             </h2>
@@ -159,12 +159,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <div className="mb-12 grid grid-cols-12 gap-6">
+          <div className="mb-8 md:mb-12 grid grid-cols-12 gap-6">
             <div className="col-span-12 lg:col-span-4">
               <p className="eyebrow">sustainability</p>
-              <h2 className="mt-3 display text-4xl md:text-5xl font-light tracking-tight leading-[0.95]">
+              <h2 className="mt-3 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
                 from forest
                 <br />
                 <span className="italic">to facade.</span>
@@ -226,12 +226,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28 bg-paper-2/40">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24 bg-paper-2/40">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <div className="mb-14 grid grid-cols-12 gap-6">
+          <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6">
             <div className="col-span-12 lg:col-span-6">
               <p className="eyebrow">the people</p>
-              <h2 className="mt-3 display text-4xl md:text-5xl font-light tracking-tight leading-[0.95]">
+              <h2 className="mt-3 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
                 master carpenters
                 <br />
                 <span className="italic">& glaziers.</span>
@@ -273,12 +273,12 @@ export default function AboutPage() {
 
       <section
         id="careers"
-        className="border-t border-line py-20 md:py-28"
+        className="border-t border-line py-12 sm:py-16 md:py-24"
       >
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
             <p className="eyebrow">careers</p>
-            <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-3 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight leading-[1]">
               join the atelier.
             </h2>
             <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">

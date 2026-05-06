@@ -71,7 +71,7 @@ export default function ContactPage() {
         }
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-4">
             <p className="eyebrow">direct contact</p>
@@ -129,7 +129,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-16 md:py-20">
+      <section className="border-t border-line py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <div className="grid grid-cols-12 gap-8 lg:gap-12 mb-10">
             <div className="col-span-12 md:col-span-4">
@@ -162,9 +162,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-16 md:py-20 bg-paper-2/40">
+      <section className="border-t border-line py-10 sm:py-14 md:py-20 bg-paper-2/40">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <div className="mb-12">
+          <div className="mb-8 md:mb-12">
             <p className="eyebrow">offices</p>
             <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight">
               find us

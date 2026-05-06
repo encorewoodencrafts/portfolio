@@ -7,20 +7,20 @@ import { Reveal } from "@/components/site/reveal";
 
 export function NewsRail() {
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-        <div className="flex items-end justify-between gap-6 mb-12">
+        <div className="flex items-end justify-between gap-4 mb-8 md:mb-12">
           <div>
             <p className="eyebrow">what&rsquo;s new at encore</p>
-            <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
               news
             </h2>
           </div>
           <Link
             href="/news"
-            className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-walnut transition-colors"
+            className="font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-walnut transition-colors flex-none"
           >
-            see more news →
+            see more →
           </Link>
         </div>
 

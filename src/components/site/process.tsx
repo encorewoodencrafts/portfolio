@@ -43,12 +43,12 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-        <div className="mb-14 grid grid-cols-12 gap-6">
+        <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-4">
             <p className="eyebrow">how we work</p>
-            <h2 className="mt-3 display text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1]">
               site to
               <br />
               <span className="italic">façade.</span>

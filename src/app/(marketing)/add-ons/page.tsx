@@ -89,7 +89,7 @@ export default function AddOnsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-charcoal text-cream py-20 md:py-24 mt-12">
+      <section className="border-t border-line bg-charcoal text-cream py-12 sm:py-16 md:py-20 mt-12">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">

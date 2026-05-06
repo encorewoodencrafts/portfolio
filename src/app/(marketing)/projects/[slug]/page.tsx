@@ -73,7 +73,7 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-4">
             <dl className="space-y-6 text-sm">
@@ -139,7 +139,7 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <div className="mb-10">
             <p className="eyebrow">explore further</p>

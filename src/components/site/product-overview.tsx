@@ -1,58 +1,47 @@
 "use client";
 
-import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { products } from "@/data/products";
-import { ClipReveal, Reveal } from "@/components/site/reveal";
-import { cn } from "@/lib/cn";
+import { Reveal } from "@/components/site/reveal";
 
-// The home-page catalogue overview. Renders one editorial row per family
-// (wooden / glass / railings), with the sub-types listed alongside the
-// hero image as a tabular sub-menu. The order follows the Shopify nav.
+// Mirrors panoramah's "products" section: an eyebrow + big serif heading at
+// the top, then one stacked block per family — image, code, name, short
+// paragraph, and a single "See …" link. No sub-type tables, no decorative
+// cards. On mobile every block becomes a single column and reads
+// top-to-bottom; on desktop the rows alternate image-left / image-right.
+//
+// We deliberately do NOT wrap the image in a clip-reveal: clipPath on the
+// parent prevented the lazy-loaded next/image from triggering its
+// IntersectionObserver on some mobile browsers (the wrapper measured as
+// 0-height while clipped), so the figure stayed empty. A plain Reveal +
+// stable aspect box keeps the image rendered immediately.
 const FAMILY_ORDER = ["wooden-doors", "glass-doors", "railings"] as const;
 
 export function ProductOverview() {
   return (
     <section
       id="products"
-      className="border-t border-line bg-paper-2/40"
+      className="border-t border-line bg-paper"
     >
-      <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 py-20 md:py-28">
-        <div className="grid grid-cols-12 gap-6 mb-16">
-          <div className="col-span-12 md:col-span-4">
-            <p className="eyebrow">the encore catalogue</p>
-          </div>
-          <div className="col-span-12 md:col-span-8">
-            <Reveal>
-              <h2 className="display text-4xl md:text-6xl font-light tracking-tight text-ink leading-tight">
-                three families,
-                <br />
-                <span className="italic">one atelier.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">
-                wooden doors in five finish families, aluminium-framed glass
-                sliders in five hardware variants, and architectural railings
-                in wood, glass and metal — every product made-to-measure in
-                our hyderabad workshop.
-              </p>
-            </Reveal>
-          </div>
-        </div>
+      <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 py-12 sm:py-16 md:py-24">
+        <header className="mb-8 md:mb-16">
+          <p className="eyebrow">encore products</p>
+          <h2 className="mt-2 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight text-ink leading-[1]">
+            products
+          </h2>
+        </header>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-10 sm:space-y-14 md:space-y-24">
           {FAMILY_ORDER.map((slug, i) => {
             const product = products.find((p) => p.slug === slug);
             if (!product) return null;
             return (
-              <FamilyRow
+              <FamilyBlock
                 key={slug}
                 product={product}
-                flipped={i % 2 === 1}
                 index={i}
+                flipped={i % 2 === 1}
               />
             );
           })}
@@ -62,79 +51,68 @@ export function ProductOverview() {
   );
 }
 
-function FamilyRow({
+function FamilyBlock({
   product,
-  flipped,
   index,
+  flipped,
 }: {
   product: (typeof products)[number];
-  flipped: boolean;
   index: number;
+  flipped: boolean;
 }) {
   return (
-    <div
-      className={cn(
-        "grid grid-cols-12 gap-6 lg:gap-12 items-center",
-        flipped && "lg:[&>*:first-child]:order-2",
-      )}
+    <article
+      className={`grid grid-cols-12 gap-5 md:gap-10 lg:gap-14 items-center ${
+        flipped ? "lg:[&>*:first-child]:order-2" : ""
+      }`}
     >
       <div className="col-span-12 lg:col-span-7">
-        <ClipReveal>
-          <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden bg-stone">
-            <Image
-              src={product.hero}
-              alt={product.name}
-              fill
-              sizes="(min-width:1024px) 60vw, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </ClipReveal>
+        <Link
+          href={`/products/${product.slug}`}
+          // 3:2 on phones (≈ 260px tall on a 390-wide viewport — short
+          // enough that the title and copy stay above the next fold).
+          className="group block relative aspect-[3/2] md:aspect-[16/10] overflow-hidden bg-stone"
+        >
+          <Image
+            src={product.hero}
+            alt={product.name}
+            fill
+            // First family is the closest-to-fold image; load it eagerly so
+            // mobile users never see the bg-stone placeholder. The other
+            // two stay lazy.
+            loading={index === 0 ? "eager" : "lazy"}
+            priority={index === 0}
+            sizes="(min-width:1024px) 60vw, 100vw"
+            quality={75}
+            className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]"
+          />
+        </Link>
       </div>
       <div className="col-span-12 lg:col-span-5">
         <Reveal>
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-walnut">
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-walnut">
             {String(index + 1).padStart(2, "0")} · {product.code}
           </p>
         </Reveal>
         <Reveal delay={0.05}>
-          <h3 className="mt-4 display text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-ink leading-[0.95]">
+          <h3 className="mt-2 display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-ink leading-[1.05]">
             {product.name}
           </h3>
         </Reveal>
-        <Reveal delay={0.08}>
-          <p className="mt-3 italic text-ink-2 text-lg">{product.tagline}</p>
-        </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 text-ink-2 leading-relaxed max-w-md">
+          <p className="mt-3 sm:mt-4 text-ink-2 leading-relaxed text-sm sm:text-base max-w-md">
             {product.excerpt}
           </p>
         </Reveal>
-        <Reveal delay={0.14}>
-          <ul className="mt-8 divide-y divide-line border-t border-b border-line max-w-md">
-            {product.subTypes.map((s) => (
-              <li
-                key={s.slug}
-                className="flex items-baseline justify-between gap-4 py-3"
-              >
-                <span className="display text-base text-ink">{s.name}</span>
-                <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-ink-2">
-                  custom-made
-                </span>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-        <Reveal delay={0.18}>
+        <Reveal delay={0.16}>
           <Link
             href={`/products/${product.slug}`}
-            className="mt-10 inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink border-b border-ink pb-1 hover:text-walnut hover:border-walnut transition-colors"
+            className="mt-5 sm:mt-6 inline-flex items-center font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink border-b border-ink pb-1 hover:text-walnut hover:border-walnut transition-colors"
           >
             see {product.name}
-            <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} />
           </Link>
         </Reveal>
       </div>
-    </div>
+    </article>
   );
 }

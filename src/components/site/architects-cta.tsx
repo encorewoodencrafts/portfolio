@@ -6,11 +6,11 @@ import { Reveal } from "@/components/site/reveal";
 
 export function ArchitectsCTA() {
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-        <div className="mb-14">
+        <div className="mb-10 md:mb-14">
           <p className="eyebrow">all the encore goodies</p>
-          <h2 className="mt-3 display text-4xl md:text-6xl font-light tracking-tight">
+          <h2 className="mt-2 display text-3xl sm:text-4xl md:text-6xl font-light tracking-tight leading-[1]">
             architects info
           </h2>
         </div>

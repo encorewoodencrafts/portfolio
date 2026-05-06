@@ -39,7 +39,7 @@ export function FeaturedSpotlights() {
         02
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 py-12 sm:py-16 md:py-24">
         <div className="grid grid-cols-12 gap-6 mb-10 md:mb-14">
           <div className="col-span-12 md:col-span-4">
             <p className="font-mono text-[0.65rem] uppercase tracking-[0.32em] text-cream/65">

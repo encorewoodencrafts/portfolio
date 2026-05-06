@@ -37,8 +37,10 @@ export function Hero() {
       ref={ref}
       aria-label="encore woodcrafts hero"
       // bg-charcoal + text-cream are FIXED colours that never theme-shift —
-      // the hero is always a dark image with cream text on top.
-      className="relative h-[100svh] w-full overflow-hidden bg-charcoal text-cream"
+      // the hero is always a dark image with cream text on top. Kept at
+      // 88svh on phones (rather than 100svh) so the panoramah-style
+      // "what's new" block below crests above the fold and signals scroll.
+      className="relative h-[88svh] md:h-[100svh] w-full overflow-hidden bg-charcoal text-cream"
     >
       <motion.div
         style={prefersReduced ? undefined : { y, scale }}
@@ -80,17 +82,22 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: easeOut }}
-          className="flex items-center gap-3 font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.32em] text-cream/85"
+          className="flex items-center gap-3 font-mono text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.28em] sm:tracking-[0.32em] text-cream/85"
         >
-          <span className="inline-block h-px w-8 sm:w-12 bg-cream/60" />
-          est. 2014 · hyderabad · wooden doors · glass doors · railings
+          <span className="inline-block h-px w-6 sm:w-12 bg-cream/60" />
+          <span className="truncate">
+            <span className="hidden sm:inline">
+              est. 2014 · hyderabad · wooden doors · glass doors · railings
+            </span>
+            <span className="sm:hidden">est. 2014 · hyderabad</span>
+          </span>
         </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.32, ease: easeOut }}
-          className="mt-5 display-tight text-[clamp(2.4rem,7.6vw,8rem)] font-light text-cream"
+          className="mt-4 sm:mt-5 display-tight text-[clamp(2rem,9vw,8rem)] leading-[0.98] font-light text-cream"
         >
           wooden doors,
           <br />
@@ -103,19 +110,18 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.55, ease: easeOut }}
-          className="mt-7 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-cream/90"
+          className="mt-5 sm:mt-7 max-w-md sm:max-w-2xl text-sm md:text-lg leading-relaxed text-cream/90"
         >
-          encore is an indian atelier crafting bespoke wooden doors,
-          aluminium-framed glass sliding doors and architectural railings.
-          three product families, one in-house team — engineered, finished
-          and installed by the people who designed them.
+          an indian atelier crafting bespoke wooden doors, aluminium-framed
+          glass sliding doors and architectural railings — engineered,
+          finished and installed by one in-house team in hyderabad.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.85, ease: easeOut }}
-          className="mt-12 md:mt-16 flex items-end justify-between gap-6"
+          className="mt-8 md:mt-16 flex items-end justify-between gap-6"
         >
           <a
             href="#news"
@@ -129,7 +135,7 @@ export function Hero() {
               />
             </span>
             <span className="font-mono text-[0.65rem] uppercase tracking-[0.22em]">
-              scroll to enter
+              scroll
             </span>
           </a>
           <div className="hidden md:flex items-center gap-10 lg:gap-14">

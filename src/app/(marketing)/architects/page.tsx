@@ -94,10 +94,10 @@ export default function ArchitectsPage() {
 
       <section
         id="catalogues"
-        className="py-16 md:py-20 scroll-mt-24"
+        className="py-10 sm:py-14 md:py-20 scroll-mt-24"
       >
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <div className="mb-12">
+          <div className="mb-8 md:mb-12">
             <p className="eyebrow">catalogues & spec sheets</p>
             <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight">
               view documents
@@ -144,12 +144,12 @@ export default function ArchitectsPage() {
 
       <section
         id="cad-library"
-        className="border-t border-line py-16 md:py-24 bg-paper-2/40 scroll-mt-24"
+        className="border-t border-line py-10 sm:py-14 md:py-20 bg-paper-2/40 scroll-mt-24"
       >
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-5">
             <p className="eyebrow">encore CAD library</p>
-            <h2 className="mt-3 display text-4xl md:text-5xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
               register to
               <br />
               <span className="italic">access details.</span>
@@ -180,7 +180,7 @@ export default function ArchitectsPage() {
 
       <section
         id="press"
-        className="border-t border-line py-16 md:py-20 scroll-mt-24"
+        className="border-t border-line py-10 sm:py-14 md:py-20 scroll-mt-24"
       >
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">

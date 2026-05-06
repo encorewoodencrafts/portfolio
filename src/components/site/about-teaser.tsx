@@ -9,12 +9,12 @@ import { site } from "@/data/site";
 
 export function AboutTeaser() {
   return (
-    <section className="border-t border-line py-20 md:py-32">
+    <section className="border-t border-line py-12 sm:py-16 md:py-24 lg:py-32">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-6 lg:gap-12">
           <div className="col-span-12 lg:col-span-4">
             <p className="eyebrow">why we build encore</p>
-            <h2 className="mt-3 display text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[0.95]">
+            <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1]">
               all that<br />
               <span className="italic">wood.</span>
             </h2>

@@ -53,7 +53,7 @@ export function Footer() {
   return (
     <footer className="relative mt-24 border-t border-line bg-paper-2 text-ink">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 gap-14 py-20 lg:grid-cols-12 lg:gap-12">
+        <div className="grid grid-cols-1 gap-10 py-14 md:gap-14 md:py-20 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <p className="eyebrow">newsletter</p>
             <h3 className="mt-4 display text-3xl md:text-5xl tracking-tight max-w-md">
