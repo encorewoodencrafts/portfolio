@@ -8,8 +8,8 @@ import { ClipReveal, Reveal } from "@/components/site/reveal";
 
 // The 22 reference designs in the "customised collection" are pitched here
 // as the atelier's most distinctive selling point: any design, any size,
-// in any of the three families. We surface six representative pieces
-// across the three families.
+// in any of the four families. We surface six representative pieces
+// across the four families.
 const FEATURE_SLUGS = [
   "encore-d01", // wooden — solid teak
   "encore-d04", // wooden — laminated white-oak

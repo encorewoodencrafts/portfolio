@@ -1,8 +1,8 @@
 # encore wood crafts
 
-editorial-grade marketing site for **encore wood crafts** — a bespoke indian atelier crafting wooden doors, aluminium-framed glass sliding doors and architectural railings. the site mirrors the catalogue at [steel-doors-2.myshopify.com](https://steel-doors-2.myshopify.com) but pairs the existing Shopify storefront with a magazine-grade marketing layer.
+editorial-grade marketing site for **encore wood crafts** — a bespoke indian atelier crafting wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings. the site mirrors the catalogue at [steel-doors-2.myshopify.com](https://steel-doors-2.myshopify.com) but pairs the existing Shopify storefront with a magazine-grade marketing layer.
 
-> wooden doors, glass doors & railings — beautifully made.
+> wooden, glass, aluminium doors & railings — beautifully made.
 
 ## stack
 
@@ -33,9 +33,9 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 | path | description |
 | --- | --- |
 | `/` | hero + 11 home sections (news rail, families spotlight, product overview, customised collection feature, options grid, projects rail, architects CTA, partners map, blog teaser) |
-| `/products` | three-family overview + 22-design customised collection gallery |
-| `/products/[slug]` | family detail page (overview, sub-types, specifications, customised designs, gallery) — `slug` ∈ `wooden-doors` / `glass-doors` / `railings` |
-| `/add-ons` | 9 customisation options that apply across all three families |
+| `/products` | four-family overview + 22-design customised collection gallery |
+| `/products/[slug]` | family detail page (overview, sub-types, specifications, customised designs, gallery) — `slug` ∈ `wooden-doors` / `glass-doors` / `aluminium-doors` / `railings` |
+| `/add-ons` | 9 customisation options that apply across all four families |
 | `/projects` | masonry gallery of reference works |
 | `/projects/[slug]` | full case study |
 | `/architects` | spec sheets + gated CAD library form |
@@ -51,7 +51,7 @@ motion principles: slow (>500 ms), eased on `cubic-bezier(0.22, 1, 0.36, 1)`, re
 
 ## product lineup
 
-three families, one atelier — every product is made-to-measure in our hyderabad workshop.
+four families, one atelier — every product is made-to-measure in our hyderabad workshop.
 
 ### wooden doors
 
@@ -72,6 +72,15 @@ three families, one atelier — every product is made-to-measure in our hyderaba
 | multi track slide | three- and four-track stacking systems for full-wall openings |
 | corner slide | structural mitred glass-to-glass corners with no vertical mullion |
 | slide & fold | bifold leaves stack flat into a single jamb |
+
+### aluminium doors
+
+| sub-type | description |
+| --- | --- |
+| aluminium entrance | single-leaf hinged entrance in a thermally-broken aluminium frame |
+| aluminium casement | side-hung casement doors for terraces and balconies |
+| aluminium pivot | large-format pivot doors with hydraulic italian hardware |
+| aluminium french | double-leaf french door pairs with multipoint lock and astragal |
 
 ### railings
 

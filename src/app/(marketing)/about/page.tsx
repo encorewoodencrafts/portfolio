@@ -11,7 +11,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "about us",
   description:
-    "encore is a bespoke indian atelier founded in 2014, crafting wooden doors, aluminium-framed glass sliding doors and architectural railings — engineered, finished and installed by one in-house team.",
+    "encore is a bespoke indian atelier founded in 2014, crafting wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings — engineered, finished and installed by one in-house team.",
 };
 
 const carpenters = [
@@ -76,7 +76,7 @@ export default function AboutPage() {
             <span className="italic">verticalised since 2014.</span>
           </>
         }
-        description="encore wood crafts llp is an indian atelier that processes and manufactures wooden doors, aluminium-framed glass sliding doors and architectural railings under one roof. wood, aluminium, glass and hardware are all sourced, machined and finished in-house — having full accountability turns a once-risky craft into a routine task."
+        description="encore wood crafts llp is an indian atelier that processes and manufactures wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings under one roof. wood, aluminium, glass and hardware are all sourced, machined and finished in-house — having full accountability turns a once-risky craft into a routine task."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">

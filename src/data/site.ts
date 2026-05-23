@@ -2,15 +2,15 @@ export const site = {
   name: "encore",
   fullName: "encore wood crafts llp",
   legalName: "ENCORE WOOD CRAFTS LLP",
-  tagline: "wooden doors · glass doors · railings",
+  tagline: "wooden doors · glass doors · aluminium doors · railings",
   description:
-    "encore is an indian atelier crafting bespoke wooden doors, aluminium-framed glass sliding doors and architectural railings — engineered, finished and installed by a single in-house team.",
+    "encore is an indian atelier crafting bespoke wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings — engineered, finished and installed by a single in-house team.",
   url: "https://encorewoodcrafts.in",
   email: "studio@encorewoodcrafts.in",
   phone: "+91 91234 56780",
   whatsapp: "+919123456780",
   whatsappMessage:
-    "hello encore — i'd like to discuss a door, glass slider or railing project. could the atelier reach out?",
+    "hello encore — i'd like to discuss a wooden door, glass slider, aluminium door or railing project. could the atelier reach out?",
   address: {
     line1: "atelier encore woodcrafts",
     line2: "no. 9, timberyard lane, jubilee hills",

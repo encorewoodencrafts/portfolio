@@ -39,7 +39,7 @@ export interface ProductSubType {
 
 // One of the 22 customised design variants in the Shopify "Customized
 // Collection". These are not separate SKUs — they are reference designs the
-// atelier can build in any of the three families. We tag each one with the
+// atelier can build in any of the four families. We tag each one with the
 // family it most often belongs to (wood, glass or railing) so the category
 // pages can each show a relevant subset.
 export interface CustomDesign {
@@ -498,7 +498,7 @@ export const products: Product[] = [
 
 // 22 customised reference designs from the Shopify "Customized Collection" —
 // these are not separate SKUs but design exemplars the atelier can build in
-// any of the three families. The `family` tag is a hint used to filter the
+// any of the four families. The `family` tag is a hint used to filter the
 // gallery on a category page; clients can still request any design in any
 // family.
 export const customDesigns: CustomDesign[] = [

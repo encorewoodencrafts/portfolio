@@ -86,8 +86,11 @@ export function Hero() {
         >
           <span className="inline-block h-px w-6 sm:w-12 bg-cream/60" />
           <span className="truncate">
-            <span className="hidden sm:inline">
-              est. 2014 · hyderabad · wooden doors · glass doors · railings
+            <span className="hidden md:inline">
+              est. 2014 · hyderabad · wooden doors · glass doors · aluminium doors · railings
+            </span>
+            <span className="hidden sm:inline md:hidden">
+              est. 2014 · wooden · glass · aluminium · railings
             </span>
             <span className="sm:hidden">est. 2014 · hyderabad</span>
           </span>

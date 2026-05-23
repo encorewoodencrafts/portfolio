@@ -66,7 +66,7 @@ export default function TermsPage() {
         <p>
           all content on the site — text, photography, drawings, cad
           libraries, system diagrams, the encore name, logo and product
-          family names (wooden doors, glass doors, railings and the
+          family names (wooden doors, glass doors, aluminium doors, railings and the
           customised collection codes ENCORE-D01 through ENCORE-D23) — is
           the property of encore wood crafts llp or its licensors and is
           protected by copyright, trade-mark and design right. you may view

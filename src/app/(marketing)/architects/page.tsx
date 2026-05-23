@@ -9,7 +9,7 @@ import { CadRegisterForm } from "@/components/site/cad-register-form";
 export const metadata: Metadata = {
   title: "architects info",
   description:
-    "specification sheets, monograph and a fully indexed CAD library for encore wooden doors, glass doors and railings. for architects, specifiers and consultants.",
+    "specification sheets, monograph and a fully indexed CAD library for encore wooden doors, glass doors, aluminium doors and railings. for architects, specifiers and consultants.",
 };
 
 const catalogues = [
@@ -36,6 +36,12 @@ const catalogues = [
     subtitle: "centre · lift-slide · multi-track · corner · bifold",
     file: "encore-glass-doors.pdf",
     size: "9 mb",
+  },
+  {
+    title: "aluminium doors · spec sheet",
+    subtitle: "entrance · casement · pivot · french",
+    file: "encore-aluminium-doors.pdf",
+    size: "8 mb",
   },
   {
     title: "railings · spec sheet",
@@ -71,7 +77,7 @@ export default function ArchitectsPage() {
             <span className="italic">info.</span>
           </>
         }
-        description="specification sheets, the encore monograph, and a fully indexed CAD library — sections, plans and isometric assemblies for every wooden door, glass slider hardware variant and railing system in our catalogue. registration is required to access the CAD library."
+        description="specification sheets, the encore monograph, and a fully indexed CAD library — sections, plans and isometric assemblies for every wooden door, glass slider, aluminium door variant and railing system in our catalogue. registration is required to access the CAD library."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">

@@ -35,16 +35,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default:
-      "encore wood crafts — wooden doors, glass doors & railings · india",
+      "encore wood crafts — wooden, glass, aluminium doors & railings · india",
     template: "%s · encore woodcrafts",
   },
   description:
-    "encore is an indian atelier crafting bespoke wooden doors, aluminium-framed glass sliding doors and architectural railings — engineered, finished and installed in hyderabad.",
+    "encore is an indian atelier crafting bespoke wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings — engineered, finished and installed in hyderabad.",
   keywords: [
     "encore woodcrafts",
     "wooden doors india",
     "veneer doors hyderabad",
+    "aluminium doors india",
     "aluminium glass sliding doors",
+    "aluminium pivot doors india",
     "lift and slide doors india",
     "frameless glass railings",
     "balcony railings india",
@@ -52,9 +54,10 @@ export const metadata: Metadata = {
     "architectural carpentry",
   ],
   openGraph: {
-    title: "encore woodcrafts — wooden doors, glass doors & railings",
+    title:
+      "encore woodcrafts — wooden, glass, aluminium doors & railings",
     description:
-      "wooden doors, aluminium-framed glass sliding doors and architectural railings — made-to-measure in hyderabad, india.",
+      "wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings — made-to-measure in hyderabad, india.",
     siteName: "encore woodcrafts",
     type: "website",
     locale: "en_IN",

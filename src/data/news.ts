@@ -14,7 +14,7 @@ const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
 export const news: NewsItem[] = [
   {
     slug: "three-families-launch",
-    title: "wooden doors, glass doors & railings — now in series",
+    title: "wooden, glass, aluminium doors & railings — now in series",
     kicker: "atelier · four product families",
     date: "2026-05-02",
     excerpt:

@@ -8,7 +8,7 @@ import { ClipReveal, Reveal } from "@/components/site/reveal";
 export const metadata: Metadata = {
   title: "blog · atelier views",
   description:
-    "atelier views — long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider and railing.",
+    "atelier views — long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider, aluminium door and railing.",
 };
 
 export default function BlogPage() {
@@ -25,7 +25,7 @@ export default function BlogPage() {
             <span className="italic">views.</span>
           </>
         }
-        description="long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider and railing. one new entry each month."
+        description="long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider, aluminium door and railing. one new entry each month."
       />
 
       <section className="py-10 sm:py-14 md:py-20">

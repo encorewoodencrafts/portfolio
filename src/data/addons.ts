@@ -6,8 +6,8 @@ export interface AddOn {
   icon: "screen" | "motor" | "lock" | "softclose" | "pivot" | "drain" | "silence" | "hurricane" | "feather";
 }
 
-// Customisation options that apply across all three product families
-// (wooden doors, glass doors, railings). Specified à la carte alongside
+// Customisation options that apply across all four product families
+// (wooden doors, glass doors, aluminium doors, railings). Specified à la carte alongside
 // any product line at quotation stage.
 export const addOns: AddOn[] = [
   {
