@@ -15,12 +15,12 @@ export const news: NewsItem[] = [
   {
     slug: "three-families-launch",
     title: "wooden doors, glass doors & railings — now in series",
-    kicker: "atelier · three product families",
+    kicker: "atelier · four product families",
     date: "2026-05-02",
     excerpt:
-      "the encore catalogue is now organised around three product families: wooden doors in five finishes, aluminium-framed glass sliding doors in five hardware variants, and architectural railings in wood, glass and metal.",
+      "the encore catalogue is now organised around four product families: wooden doors in five finishes, aluminium-framed glass sliding doors in five hardware variants, hinged aluminium doors in four configurations, and architectural railings in wood, glass and metal.",
     body: [
-      "today the atelier opens series production around three families. wooden doors covers veneer, laminated, solid panel, skin and paint finishes — each in burmese teak, indian sal, honne, european oak or american walnut. glass doors covers centre-opening, lift-and-slide, multi-track, corner and bifold sliders. railings covers wood, frameless glass and metal balustrades for staircases and balconies.",
+      "today the atelier opens series production around four families. wooden doors covers veneer, laminated, solid panel, skin and paint finishes — each in burmese teak, indian sal, honne, european oak or american walnut. glass doors covers centre-opening, lift-and-slide, multi-track, corner and bifold sliders. aluminium doors covers hinged entrance, casement, pivot and french configurations in any RAL. railings covers wood, frameless glass and metal balustrades for staircases and balconies.",
       "every product is made-to-measure and ships with a ten-year warranty. clients can specify a single visual language across doors, sliders and railings — engineered, finished and installed by one in-house team.",
     ],
     image: `${SHOPIFY}/files/Fill_the_white_space_on_side_with_out_disturbing_t_delpmaspu.jpg`,
@@ -32,7 +32,7 @@ export const news: NewsItem[] = [
     kicker: "atelier · 22 reference designs",
     date: "2026-04-18",
     excerpt:
-      "our customised collection now contains twenty-two reference designs across all three families — every piece a starting point for a one-of-one commission.",
+      "our customised collection now contains twenty-two reference designs across all four families — every piece a starting point for a one-of-one commission.",
     body: [
       "after eighteen months of cataloguing past commissions, the atelier has codified twenty-two reference designs into a single browsable customised collection. each design is presented as a starting point — clients pick a piece, then specify size, finish, hardware and material to produce a one-of-one quote within five working days.",
       "the collection is browsable inside each family page, with filters by sub-type and material. ten of the references sit inside wooden doors, eight inside glass doors and four inside railings.",

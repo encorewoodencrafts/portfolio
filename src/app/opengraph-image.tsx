@@ -92,7 +92,7 @@ export default async function OpenGraphImage() {
         >
           <span>encorewoodcrafts.in</span>
           <span style={{ letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            3 families · 22 reference designs
+            4 families · 22 reference designs
           </span>
         </div>
       </div>

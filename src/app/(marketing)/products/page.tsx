@@ -13,7 +13,7 @@ import { Marquee } from "@/components/site/marquee";
 export const metadata: Metadata = {
   title: "products",
   description:
-    "wooden doors, aluminium-framed glass sliding doors and architectural railings — three product families and twenty-two customised reference designs from the encore atelier in hyderabad.",
+    "wooden doors, aluminium-framed glass sliders, hinged aluminium doors and architectural railings — four product families and twenty-two customised reference designs from the encore atelier in hyderabad.",
 };
 
 export default function ProductsPage() {
@@ -30,7 +30,7 @@ export default function ProductsPage() {
             <span className="italic">&amp; railings.</span>
           </>
         }
-        description="three product families, one in-house atelier. wooden doors in five finish families, aluminium-framed sliding glass doors in five hardware variants, and architectural railings in wood, glass and metal — every product made-to-measure in our hyderabad workshop, with twenty-two customised reference designs to start from."
+        description="four product families, one in-house atelier. wooden doors in five finish families, aluminium-framed sliding glass doors in five hardware variants, hinged aluminium doors in four configurations and architectural railings in wood, glass and metal — every product made-to-measure in our hyderabad workshop, with twenty-two customised reference designs to start from."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -211,6 +211,8 @@ function familyLabel(family: (typeof customDesigns)[number]["family"]): string {
       return "wooden door";
     case "glass-doors":
       return "glass slider";
+    case "aluminium-doors":
+      return "aluminium door";
     case "railings":
       return "railing";
   }

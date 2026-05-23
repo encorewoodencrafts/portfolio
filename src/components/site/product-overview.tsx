@@ -16,7 +16,12 @@ import { Reveal } from "@/components/site/reveal";
 // IntersectionObserver on some mobile browsers (the wrapper measured as
 // 0-height while clipped), so the figure stayed empty. A plain Reveal +
 // stable aspect box keeps the image rendered immediately.
-const FAMILY_ORDER = ["wooden-doors", "glass-doors", "railings"] as const;
+const FAMILY_ORDER = [
+  "wooden-doors",
+  "glass-doors",
+  "aluminium-doors",
+  "railings",
+] as const;
 
 export function ProductOverview() {
   return (

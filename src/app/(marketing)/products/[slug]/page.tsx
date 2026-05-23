@@ -51,7 +51,9 @@ export default async function ProductDetailPage({
       ? "encore wooden door programme"
       : product.family === "glass-doors"
         ? "encore glass door programme"
-        : "encore railings programme";
+        : product.family === "aluminium-doors"
+          ? "encore aluminium door programme"
+          : "encore railings programme";
 
   return (
     <>

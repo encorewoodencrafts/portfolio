@@ -16,10 +16,16 @@ export interface ProductWoodSpecies {
   description: string;
 }
 
-// The three real product families ENCORE manufactures and ships from its
-// Hyderabad atelier. Maps 1:1 to the top-level Shopify navigation
-// (Wooden Doors / Glass Doors / Railings).
-export type ProductFamily = "wooden-doors" | "glass-doors" | "railings";
+// The four real product families ENCORE manufactures and ships from its
+// Hyderabad atelier. The first three map 1:1 to the top-level Shopify
+// navigation (Wooden Doors / Glass Doors / Railings); Aluminium Doors is
+// the newest line — aluminium-framed entrance, casement and pivot doors
+// engineered in the same atelier.
+export type ProductFamily =
+  | "wooden-doors"
+  | "glass-doors"
+  | "aluminium-doors"
+  | "railings";
 
 // Each family is broken into a small number of sub-types — the same
 // breakdown the Shopify nav exposes (Veneer / Laminated / etc. for wooden
@@ -80,6 +86,15 @@ const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
 const woodHero = `${SHOPIFY}/files/Fill_the_white_space_on_side_with_out_disturbing_t_delpmaspu.jpg`;
 const glassHero = `${SHOPIFY}/files/Fill_the_white_space_in_the_image_with_out_stretch_delpmaspu.jpg`;
 const railingsHero = `${SHOPIFY}/collections/Screenshot2026-03-12170628.png`;
+// Aluminium doors imagery sourced from the same Shopify storefront — the
+// "image-to-tell-..." asset is the atelier's positioning shot for the
+// aluminium / aluminium-glass programme; the Screenshot_2026-03-17 series
+// are individual aluminium-door product photos.
+const aluminiumHero = `${SHOPIFY}/files/image-to-tell-that-we-are-experts-in-customizing-wooden-doors-and-aluminum-glass-doors-as-per-your-needs.png`;
+const aluminiumA = `${SHOPIFY}/files/Screenshot_2026-03-17_013539.png`;
+const aluminiumB = `${SHOPIFY}/files/Screenshot_2026-03-17_013934.png`;
+const aluminiumC = `${SHOPIFY}/files/Screenshot_2026-03-17_014041.png`;
+const aluminiumD = `${SHOPIFY}/files/Screenshot_2026-03-17_050855.png`;
 
 const indianWoodSpecies: ProductWoodSpecies[] = [
   {
@@ -310,6 +325,93 @@ export const products: Product[] = [
         description:
           "bifold leaves stack flat into a single jamb — up to seven panels for the largest indoor-outdoor thresholds.",
         image: `${SHOPIFY}/files/Slide_n_fold.jpg`,
+      },
+    ],
+  },
+  {
+    slug: "aluminium-doors",
+    code: "AL",
+    name: "aluminium doors",
+    family: "aluminium-doors",
+    tagline: "four systems · framed in aluminium",
+    excerpt:
+      "aluminium-framed entrance, casement, pivot and french doors — thermally-broken extrusions in any RAL or anodised finish, paired with glass, solid panels or composite infills.",
+    description:
+      "our aluminium door programme covers everything our glass-slider suite doesn't: hinged entrance leaves, side-hung casement doors, large-format pivots and french door pairs — all built around the same thermally-broken extrusion family as our glass sliders, so finishes, hardware and sightlines read as one suite across the project. choose any RAL powder-coat, anodised mill, champagne, bronze or black; pair with a panel infill in solid wood, opaque composite or insulated glass.",
+    hero: aluminiumHero,
+    detailHero: aluminiumA,
+    sightline: "4 systems",
+    maxPanel: "1.4 × 3.0 m leaf",
+    highlights: [
+      "casement · pivot · french · entrance",
+      "thermally-broken aluminium extrusion",
+      "any RAL or anodised finish",
+    ],
+    features: [
+      {
+        title: "thermally-broken frame",
+        body: "polyamide thermal break with foam-filled chambers — the same extrusion as our glass-slider suite.",
+      },
+      {
+        title: "any panel infill",
+        body: "insulated glass, solid wood, opaque composite or laminated metal — mixed and matched per opening.",
+      },
+      {
+        title: "matched hardware",
+        body: "concealed european 3D hinges or hydraulic floor pivots; multipoint locks; smart-lock ready.",
+      },
+    ],
+    specs: [
+      {
+        title: "construction",
+        rows: [
+          { label: "frame", value: "thermally-broken aluminium extrusion" },
+          { label: "thermal break", value: "polyamide, foam-filled chambers" },
+          { label: "infill", value: "insulated glass / solid wood / composite" },
+          { label: "finish", value: "any RAL powder-coat or anodised" },
+        ],
+      },
+      {
+        title: "performance",
+        rows: [
+          { label: "u-value (whole)", value: "1.3 W/m²K" },
+          { label: "watertight", value: "class E900" },
+          { label: "wind resistance", value: "class C4" },
+          { label: "acoustic", value: "Rw 38 dB" },
+          { label: "max leaf", value: "1.4 × 3.0 m casement · 1.6 × 3.6 m pivot" },
+        ],
+      },
+    ],
+    imageA: aluminiumA,
+    imageB: aluminiumB,
+    subTypes: [
+      {
+        slug: "aluminium-entrance",
+        name: "aluminium entrance",
+        description:
+          "single-leaf hinged entrance doors in a thermally-broken aluminium frame — solid panel, glass insert or composite infill.",
+        image: aluminiumA,
+      },
+      {
+        slug: "aluminium-casement",
+        name: "aluminium casement",
+        description:
+          "side-hung casement doors for terraces and balconies — same extrusion as our sliders, with insulated glass or composite panels.",
+        image: aluminiumB,
+      },
+      {
+        slug: "aluminium-pivot",
+        name: "aluminium pivot",
+        description:
+          "large-format pivot doors with hydraulic italian hardware — leaves up to 1.6 m wide × 3.6 m tall, aluminium-framed in any RAL.",
+        image: aluminiumC,
+      },
+      {
+        slug: "aluminium-french",
+        name: "aluminium french",
+        description:
+          "double-leaf french door pairs with multipoint lock and astragal — slim aluminium sightlines, full-height glazing optional.",
+        image: aluminiumD,
       },
     ],
   },

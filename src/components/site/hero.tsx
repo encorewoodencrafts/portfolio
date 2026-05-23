@@ -124,9 +124,9 @@ export function Hero() {
           className="mt-8 md:mt-16 flex items-end justify-between gap-6"
         >
           <a
-            href="#news"
+            href="#products"
             className="group flex items-center gap-3 text-cream/85 hover:text-cream transition-colors"
-            aria-label="scroll to news"
+            aria-label="scroll to products"
           >
             <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cream/30 group-hover:border-cream/70 transition-colors">
               <ArrowDown
@@ -139,7 +139,7 @@ export function Hero() {
             </span>
           </a>
           <div className="hidden md:flex items-center gap-10 lg:gap-14">
-            <Stat value="3" label="product families" />
+            <Stat value="4" label="product families" />
             <Stat value="22" label="reference designs" />
             <Stat value="2014" label="atelier est." />
           </div>

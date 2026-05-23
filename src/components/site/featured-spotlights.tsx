@@ -127,6 +127,8 @@ function familyLabel(family: (typeof customDesigns)[number]["family"]): string {
       return "wooden door";
     case "glass-doors":
       return "glass slider";
+    case "aluminium-doors":
+      return "aluminium door";
     case "railings":
       return "railing";
   }

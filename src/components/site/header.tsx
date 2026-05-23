@@ -3,13 +3,13 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/site/logo";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 import { ThemePicker } from "@/components/site/theme-picker";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { SearchTrigger } from "@/components/site/search";
-import { navigation } from "@/data/site";
+import { navigation, type NavItem } from "@/data/site";
 import { cn } from "@/lib/cn";
 
 export function Header() {
@@ -66,6 +66,17 @@ export function Header() {
           >
             {navigation.map((item) => {
               const active = pathname.startsWith(item.href);
+              if (item.children && item.children.length > 0) {
+                return (
+                  <DesktopDropdown
+                    key={item.href}
+                    item={item}
+                    active={active}
+                    transparent={transparent}
+                    currentPath={pathname}
+                  />
+                );
+              }
               return (
                 <Link
                   key={item.href}
@@ -153,15 +164,12 @@ export function Header() {
             className="flex flex-col gap-1 px-5 md:px-8 py-8"
           >
             {navigation.map((item, i) => (
-              <Link
+              <MobileNavItem
                 key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                style={{ animationDelay: `${i * 40}ms` }}
-                className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink hairline"
-              >
-                {item.label}
-              </Link>
+                item={item}
+                index={i}
+                onNavigate={closeMenu}
+              />
             ))}
             <Link
               href="/login"
@@ -192,5 +200,169 @@ export function Header() {
         </div>
       )}
     </>
+  );
+}
+
+// Desktop dropdown panel — opens on hover or keyboard focus. The wrapping
+// container intentionally uses `group` so both the trigger and the panel
+// share a single hover surface (preventing the panel from snapping shut
+// when the pointer crosses the gap between them).
+function DesktopDropdown({
+  item,
+  active,
+  transparent,
+  currentPath,
+}: {
+  item: NavItem;
+  active: boolean;
+  transparent: boolean;
+  currentPath: string;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const closeTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openNow = React.useCallback(() => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  }, []);
+  const closeSoon = React.useCallback(() => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  }, []);
+
+  React.useEffect(
+    () => () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    },
+    [],
+  );
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={openNow}
+      onMouseLeave={closeSoon}
+      onFocus={openNow}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) closeSoon();
+      }}
+    >
+      <Link
+        href={item.href}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className={cn(
+          "inline-flex items-center gap-1 font-sans text-[0.78rem] tracking-tight transition-colors",
+          transparent
+            ? active
+              ? "text-cream"
+              : "text-cream/75 hover:text-cream"
+            : active
+              ? "text-ink"
+              : "text-ink-2 hover:text-ink",
+        )}
+      >
+        {item.label}
+        <ChevronDown
+          className={cn(
+            "h-3 w-3 transition-transform duration-200",
+            open ? "rotate-180" : "rotate-0",
+          )}
+          strokeWidth={1.6}
+          aria-hidden
+        />
+      </Link>
+
+      {open && (
+        <div
+          role="menu"
+          // pt-2 so the panel doesn't visually butt against the nav text;
+          // the wrapping element keeps hover events contiguous.
+          className="absolute left-0 top-full pt-3 z-50"
+        >
+          <ul
+            className={cn(
+              "min-w-[14rem] border bg-paper py-2 shadow-[0_18px_48px_-24px_rgba(0,0,0,0.25)]",
+              "border-line",
+            )}
+          >
+            {item.children?.map((child) => {
+              const isActive = currentPath === child.href;
+              return (
+                <li key={child.href} role="none">
+                  <Link
+                    href={child.href}
+                    role="menuitem"
+                    onClick={closeSoon}
+                    className={cn(
+                      "block px-4 py-2.5 text-[0.78rem] tracking-tight transition-colors",
+                      isActive
+                        ? "text-ink bg-paper-2"
+                        : "text-ink-2 hover:text-ink hover:bg-paper-2",
+                    )}
+                  >
+                    {child.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Mobile drawer nav item — for entries with children, renders the parent
+// as a label and its children as an indented sub-list, all expanded by
+// default. Mobile users rarely benefit from an accordion here (one extra
+// tap before they can pick a product), so we keep everything visible.
+function MobileNavItem({
+  item,
+  index,
+  onNavigate,
+}: {
+  item: NavItem;
+  index: number;
+  onNavigate: () => void;
+}) {
+  const baseDelay = index * 40;
+  if (!item.children || item.children.length === 0) {
+    return (
+      <Link
+        href={item.href}
+        onClick={onNavigate}
+        style={{ animationDelay: `${baseDelay}ms` }}
+        className="anim-fade-up py-3 display text-2xl sm:text-3xl text-ink hairline"
+      >
+        {item.label}
+      </Link>
+    );
+  }
+  return (
+    <div className="hairline">
+      <Link
+        href={item.href}
+        onClick={onNavigate}
+        style={{ animationDelay: `${baseDelay}ms` }}
+        className="anim-fade-up block py-3 display text-2xl sm:text-3xl text-ink"
+      >
+        {item.label}
+      </Link>
+      <ul className="pb-3 pl-4 space-y-1">
+        {item.children.map((child, ci) => (
+          <li key={child.href}>
+            <Link
+              href={child.href}
+              onClick={onNavigate}
+              style={{ animationDelay: `${baseDelay + (ci + 1) * 30}ms` }}
+              className="anim-fade-up block py-1.5 text-base text-ink-2 hover:text-ink transition-colors"
+            >
+              · {child.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

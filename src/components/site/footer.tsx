@@ -12,6 +12,7 @@ const footerLinks = [
     items: [
       { label: "wooden doors", href: "/products/wooden-doors" },
       { label: "glass doors", href: "/products/glass-doors" },
+      { label: "aluminium doors", href: "/products/aluminium-doors" },
       { label: "railings", href: "/products/railings" },
       { label: "customisation options", href: "/add-ons" },
       { label: "reference works", href: "/projects" },

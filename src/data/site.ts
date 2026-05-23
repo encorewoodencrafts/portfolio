@@ -35,18 +35,32 @@ export const site = {
     { code: "ta", label: "TA" },
   ],
   stats: [
-    { value: "3", label: "product families" },
+    { value: "4", label: "product families" },
     { value: "22", label: "reference designs" },
     { value: "12+", label: "indian cities served" },
     { value: "2014", label: "atelier founded" },
   ],
 } as const;
 
-// Primary nav for the desktop header + mobile drawer. Kept slim — the three
-// product families are reached from `/products`, and secondary destinations
-// (architects, news, faq, partners) live in the footer.
-export const navigation = [
-  { href: "/products", label: "products" },
+// Primary nav for the desktop header + mobile drawer. `children` turns an
+// item into a dropdown on desktop and an expanded sub-list on mobile.
+export type NavItem = {
+  href: string;
+  label: string;
+  children?: ReadonlyArray<{ href: string; label: string }>;
+};
+
+export const navigation: ReadonlyArray<NavItem> = [
+  {
+    href: "/products",
+    label: "products",
+    children: [
+      { href: "/products/wooden-doors", label: "wooden doors" },
+      { href: "/products/glass-doors", label: "glass doors" },
+      { href: "/products/aluminium-doors", label: "aluminium doors" },
+      { href: "/products/railings", label: "railings" },
+    ],
+  },
   { href: "/projects", label: "reference works" },
   { href: "/architects", label: "architects info" },
   { href: "/about", label: "about us" },
