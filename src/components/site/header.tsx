@@ -55,21 +55,23 @@ export function Header() {
             : "border-b border-line bg-paper/85 backdrop-blur-xl text-ink"
         )}
       >
-        <div className="relative mx-auto flex h-16 max-w-[1640px] items-center justify-between px-5 md:px-8 lg:px-12">
+        <div className="relative mx-auto flex h-16 max-w-[1640px] items-center justify-between gap-2 sm:gap-3 px-5 md:px-8 lg:px-12">
           <Logo
             tone={transparent ? "light" : "dark"}
-            className="transition-colors"
+            className="shrink-0 transition-colors"
           />
 
           {/* The brand range switcher replaces the old link bar — it is the
-              primary control on the simplified home experience. Centered
-              absolutely so it sits between the logo and the controls. */}
+              primary control on the simplified home experience. On large
+              screens it is absolutely centred between the logo and controls;
+              on smaller screens it sits in normal flow so it never overlaps
+              the wordmark. */}
           <BrandToggle
             tone={transparent ? "light" : "dark"}
-            className="absolute left-1/2 -translate-x-1/2"
+            className="lg:absolute lg:left-1/2 lg:-translate-x-1/2"
           />
 
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex shrink-0 items-center gap-2 md:gap-3">
             <button
               type="button"
               onClick={() => setOpen(true)}

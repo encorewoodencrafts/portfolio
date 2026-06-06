@@ -146,10 +146,13 @@ export function Hero() {
           className="absolute inset-0 opacity-20 transition-opacity duration-700"
           style={{ background: "var(--brand-hero)" }}
         />
-        {/* Focal scrim: instead of dimming the whole frame, we anchor a soft
-            shadow to the bottom-left corner only — exactly where the copy
-            sits. The rest of the video stays bright and fully visible. */}
-        <div className="absolute inset-0 bg-[radial-gradient(125%_115%_at_12%_100%,rgba(10,8,6,0.85)_0%,rgba(10,8,6,0.45)_32%,rgba(10,8,6,0)_60%)]" />
+        {/* Copy scrim: an even, full-width wash anchored to the bottom — where
+            all the copy sits — so the headline keeps strong contrast over
+            bright footage (e.g. the light aluminium clip) from the very first
+            paint, not only after scrolling. The upper ~40% of the frame stays
+            clear so the video reads. A soft bottom-left radial adds depth. */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,7,5,0.82)_0%,rgba(8,7,5,0.46)_26%,rgba(8,7,5,0)_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(110%_100%_at_10%_100%,rgba(8,7,5,0.5)_0%,rgba(8,7,5,0)_55%)]" />
       </motion.div>
 
       {/* cursor light-rake — sits above the media, below the copy. Mounted on
@@ -197,7 +200,7 @@ export function Hero() {
         <h1
           key={`${brand}-headline`}
           className="mt-4 sm:mt-5 display-tight text-[clamp(2rem,9vw,8rem)] leading-[0.98] font-light text-cream"
-          style={{ textShadow: "0 2px 40px rgba(0,0,0,0.55)" }}
+          style={{ textShadow: "0 2px 28px rgba(0,0,0,0.72)" }}
         >
           <MaskLine
             text={b.line1}
@@ -218,7 +221,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.55, ease: easeOut }}
           className="mt-5 sm:mt-7 max-w-md sm:max-w-2xl text-sm md:text-lg leading-relaxed text-cream/90"
-          style={{ textShadow: "0 1px 20px rgba(0,0,0,0.6)" }}
+          style={{ textShadow: "0 1px 18px rgba(0,0,0,0.72)" }}
         >
           {b.intro}
         </motion.p>

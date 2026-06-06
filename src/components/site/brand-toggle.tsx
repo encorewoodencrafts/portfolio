@@ -25,7 +25,7 @@ export function BrandToggle({
       role="group"
       aria-label="choose product range"
       className={cn(
-        "inline-flex items-center border",
+        "inline-flex shrink-0 items-center border",
         tone === "light" ? "border-cream/30" : "border-line",
         className,
       )}
@@ -38,7 +38,7 @@ export function BrandToggle({
             type="button"
             onClick={() => setBrand(opt.id)}
             aria-pressed={active}
-            className="px-4 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] transition-colors"
+            className="px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.16em] transition-colors sm:px-4 sm:text-[0.62rem] sm:tracking-[0.22em]"
             style={
               active
                 ? { backgroundColor: opt.color, color: "#faf7f2" }

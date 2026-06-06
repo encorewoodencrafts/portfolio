@@ -261,6 +261,33 @@ html[data-brand="aluminium"] [data-brand-tag="wood"] {
   display: none !important;
 }
 
+/* Helper classes that consume every brand token in CSS. Without these, the
+   build pipeline (lightningcss) prunes the --brand-* custom properties as
+   "unused" because they are otherwise only referenced from JSX inline
+   styles, which it cannot see — which in turn drops the whole [data-brand]
+   blocks. Components use these classes instead of inline style={{}}. */
+.brand-hero-bg {
+  background: var(--brand-hero);
+}
+.brand-cta-bg {
+  background: var(--brand-cta);
+}
+.brand-deep-bg {
+  background: var(--brand-deep);
+}
+.brand-surface-bg {
+  background: var(--brand-surface);
+}
+.brand-glow {
+  background: var(--brand-glow);
+}
+.brand-accent-fg {
+  color: var(--brand-accent);
+}
+.brand-accent-light-fg {
+  color: var(--brand-accent-light);
+}
+
 * {
   border-color: var(--line);
 }
