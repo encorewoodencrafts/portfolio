@@ -9,7 +9,7 @@ import { Reveal } from "@/components/site/reveal";
 export const metadata: Metadata = {
   title: "customisation options",
   description:
-    "nine customisation options engineered to integrate invisibly with our wooden doors, glass sliders and railings — smart locks, italian floor pivots, soft close, motorisation, insect screens, acoustic kit, drainage, monsoon rating and ultra-light bearings.",
+    "Nine options that fit invisibly into our doors, sliders and railings — added at spec time.",
 };
 
 export default function AddOnsPage() {
@@ -26,7 +26,7 @@ export default function AddOnsPage() {
             <span className="italic">never afterthoughts.</span>
           </>
         }
-        description="nine customisation options engineered to integrate invisibly with our wooden doors, glass sliders and railings. add at specification time — smart locks, italian floor pivots, motorisation, soft close, screens, acoustic kits, threshold drainage, monsoon class C5 rating and ultra-light sliding bearings."
+        description="Nine options that fit invisibly into our doors, sliders and railings — added at spec time. Smart locks, floor pivots, motorisation, soft close, screens, acoustics, drainage and more."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -89,8 +89,19 @@ export default function AddOnsPage() {
         </div>
       </section>
 
-      <section className="border-t border-line bg-charcoal text-cream py-12 sm:py-16 md:py-20 mt-12">
-        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
+      <section
+        className="relative overflow-hidden border-t border-line text-cream py-12 sm:py-16 md:py-20 mt-12 transition-[background] duration-700"
+        style={{ background: "var(--brand-cta)" }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-1/3 left-0 h-[120%] w-[55%]"
+          style={{
+            background:
+              "radial-gradient(60% 60% at 20% 80%, var(--brand-glow), transparent 70%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-8">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
               specify your options

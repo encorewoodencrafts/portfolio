@@ -2,6 +2,7 @@ import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { FloatingCTA } from "@/components/site/floating-cta";
 import { ScrollProgress } from "@/components/site/scroll-progress";
+import { BrandRouteGuard } from "@/components/site/brand-route-guard";
 
 export default function MarketingLayout({
   children,
@@ -10,6 +11,7 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="min-h-screen flex flex-col">
+      <BrandRouteGuard />
       <ScrollProgress />
       <Header />
       <main className="flex-1">{children}</main>

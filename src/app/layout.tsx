@@ -4,6 +4,10 @@ import {
   ThemeProvider,
   themeInitScript,
 } from "@/components/site/theme-provider";
+import {
+  BrandProvider,
+  brandInitScript,
+} from "@/components/site/brand-provider";
 import { OrganizationJsonLd } from "@/components/site/json-ld";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -90,13 +94,19 @@ export default function RootLayout({
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
         />
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: brandInitScript }}
+        />
       </head>
       <body
         suppressHydrationWarning
         className="min-h-full bg-paper text-ink selection:bg-walnut selection:text-paper"
       >
         <OrganizationJsonLd />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <BrandProvider>{children}</BrandProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

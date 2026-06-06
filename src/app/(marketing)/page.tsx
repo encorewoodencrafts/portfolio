@@ -1,34 +1,26 @@
 import { Hero } from "@/components/site/hero";
 import { NewsRail } from "@/components/site/news-rail";
 import { ProductOverview } from "@/components/site/product-overview";
-import { AddOnsGrid } from "@/components/site/addons-grid";
-import { ProjectsRail } from "@/components/site/projects-rail";
-import { ArchitectsCTA } from "@/components/site/architects-cta";
-import { PartnersTeaser } from "@/components/site/partners-teaser";
-import { AboutTeaser } from "@/components/site/about-teaser";
-import { BlogTeaser } from "@/components/site/blog-teaser";
+import { MaterialsStrip } from "@/components/site/materials-strip";
+import { BrandBand } from "@/components/site/brand-band";
 
-// Home page editorial flow: products lead (the headline business), then
-// news, then everything else. We keep the panoramah-style minimal section
-// pattern but put the products section above the fold-spillover so mobile
-// users land on what we sell first, news second.
-//   hero → products → news → add-ons → reference works → architects info
-//   → across the world → about → blog.
-// Decorative sections (testimonials, process, marquees, dark spotlights,
-// faq teaser) live on their own pages to keep the mobile scroll calm.
+// The home page is intentionally simple: a brand-aware hero, the products
+// for the selected range, the material/finish palette for that range, a
+// colour band in the range's signature tone, and the news for that range.
+// Everything else (reference works, architects info, partners, about, blog,
+// add-ons) lives on its own page and is reached from the hamburger menu.
+// Whatever range the visitor picks in the header toggle, every section here
+// stays on that range.
+//   hero → products → materials → brand band → news
 export default function HomePage() {
   return (
     <>
       <Hero />
       <ProductOverview />
+      <MaterialsStrip />
+      <BrandBand />
       <div id="news" className="scroll-mt-24" />
       <NewsRail />
-      <AddOnsGrid />
-      <ProjectsRail />
-      <ArchitectsCTA />
-      <PartnersTeaser />
-      <AboutTeaser />
-      <BlogTeaser />
     </>
   );
 }

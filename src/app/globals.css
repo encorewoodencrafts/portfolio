@@ -122,6 +122,66 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* BRAND · wood vs aluminium                                          */
+/* A second, independent dimension from the theme picker. Brand owns   */
+/* the signature accent + the warm/cool gradients used on the hero and */
+/* dark CTA/contact surfaces; the theme picker keeps owning paper/ink  */
+/* and light/dark. These tokens are dedicated names so they never      */
+/* collide with the per-theme variable blocks above.                   */
+/* ------------------------------------------------------------------ */
+/* Use :root[data-brand] (specificity 0,2,0) so these always win over the   */
+/* plain :root brand fallback (0,1,0) below, regardless of source order.    */
+:root[data-brand="wood"] {
+  --brand-accent: #9c845a;
+  --brand-accent-light: #e8ddd0;
+  /* signature warm gradient — used full-strength on the home hero/band */
+  --brand-hero: linear-gradient(
+    135deg,
+    #2c1810 0%,
+    #4a3520 35%,
+    #6b5040 60%,
+    #8b7355 100%
+  );
+  /* deepest warm — used on CTAs + footer (more contrast for text) */
+  --brand-cta: linear-gradient(160deg, #140b07 0%, #2c1810 55%, #4a3520 100%);
+  /* vertical deep variant for full-bleed dark sections */
+  --brand-deep: linear-gradient(180deg, #1a0f0a 0%, #3a2917 100%);
+  /* soft warm wash for "light" section backgrounds */
+  --brand-surface: #f1e9dc;
+  /* radial accent glow for creative overlays */
+  --brand-glow: rgba(156, 132, 90, 0.22);
+}
+
+:root[data-brand="aluminium"] {
+  --brand-accent: #8b9ea8;
+  --brand-accent-light: #d6e0e5;
+  /* signature cool gradient — used full-strength on the home hero/band */
+  --brand-hero: linear-gradient(
+    135deg,
+    #0f1923 0%,
+    #1a2b38 35%,
+    #253545 60%,
+    #344858 100%
+  );
+  /* deepest cool — used on CTAs + footer */
+  --brand-cta: linear-gradient(160deg, #080e15 0%, #152030 55%, #253545 100%);
+  /* vertical deep variant for full-bleed dark sections */
+  --brand-deep: linear-gradient(180deg, #0c1520 0%, #2a3a4a 100%);
+  /* soft cool wash for "light" section backgrounds */
+  --brand-surface: #eaeff2;
+  /* radial accent glow for creative overlays */
+  --brand-glow: rgba(139, 158, 168, 0.26);
+}
+
+/* dark-mode: lift the soft surface wash so it reads as a tint, not white */
+[data-mode="dark"]:root[data-brand="wood"] {
+  --brand-surface: #1d140d;
+}
+[data-mode="dark"]:root[data-brand="aluminium"] {
+  --brand-surface: #0f1620;
+}
+
+/* ------------------------------------------------------------------ */
 /* GLOBAL                                                              */
 /* ------------------------------------------------------------------ */
 :root {
@@ -138,6 +198,22 @@
   --cream-2: #f4efe6;
   --charcoal: #0c0a08;
   --charcoal-2: #1a1612;
+
+  /* brand defaults (wood) — overridden by the :root[data-brand] blocks once
+     the no-flash script sets data-brand on <html>. */
+  --brand-accent: #9c845a;
+  --brand-accent-light: #e8ddd0;
+  --brand-hero: linear-gradient(
+    135deg,
+    #2c1810 0%,
+    #4a3520 35%,
+    #6b5040 60%,
+    #8b7355 100%
+  );
+  --brand-cta: linear-gradient(160deg, #140b07 0%, #2c1810 55%, #4a3520 100%);
+  --brand-deep: linear-gradient(180deg, #1a0f0a 0%, #3a2917 100%);
+  --brand-surface: #f1e9dc;
+  --brand-glow: rgba(156, 132, 90, 0.22);
 }
 
 @theme inline {
@@ -155,6 +231,9 @@
   --color-cream-2: var(--cream-2);
   --color-charcoal: var(--charcoal);
   --color-charcoal-2: var(--charcoal-2);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-light: var(--brand-accent-light);
+  --color-brand-surface: var(--brand-surface);
   --color-background: var(--paper);
   --color-foreground: var(--ink);
   --color-muted: var(--ink-2);
@@ -168,6 +247,18 @@
 
   --ease-encore: cubic-bezier(0.22, 1, 0.36, 1);
   --container-prose: 68ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* BRAND CONTENT SCOPING                                              */
+/* Any element tagged with the opposite range is hidden, so server-   */
+/* rendered lists (products, projects, news, blog, nav, footer) only  */
+/* show items for the selected toggle. Items tagged "both" carry no    */
+/* matching rule and always show.                                     */
+/* ------------------------------------------------------------------ */
+html[data-brand="wood"] [data-brand-tag="aluminium"],
+html[data-brand="aluminium"] [data-brand-tag="wood"] {
+  display: none !important;
 }
 
 * {
@@ -293,23 +384,10 @@ body {
   }
 }
 
-@keyframes encoreMarquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .anim-fade-up {
   animation: encoreFadeUp 900ms var(--ease-encore) both;
 }
 
 .anim-reveal {
   animation: encoreReveal 1200ms var(--ease-encore) both;
-}
-
-.anim-marquee {
-  animation: encoreMarquee 40s linear infinite;
 }

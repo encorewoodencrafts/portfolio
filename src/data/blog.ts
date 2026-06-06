@@ -1,5 +1,8 @@
 export interface BlogPost {
   slug: string;
+  // Which product range this essay relates to. "both" shows under either
+  // toggle.
+  brand: "wood" | "aluminium" | "both";
   title: string;
   series: string;
   index: string;
@@ -15,6 +18,7 @@ const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
 export const blogPosts: BlogPost[] = [
   {
     slug: "the-grain-of-time",
+    brand: "wood",
     title: "the grain of time",
     series: "atelier views",
     index: "01",
@@ -31,6 +35,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "five-finishes-five-doors",
+    brand: "wood",
     title: "five finishes, five different doors",
     series: "atelier views",
     index: "02",
@@ -46,6 +51,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "anatomy-of-a-glass-slider",
+    brand: "aluminium",
     title: "anatomy of a glass slider",
     series: "atelier views",
     index: "03",
@@ -61,6 +67,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "frameless-glass-railings",
+    brand: "both",
     title: "frameless, but never weightless",
     series: "atelier views",
     index: "04",

@@ -3,12 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { projects } from "@/data/projects";
 import { PageHero } from "@/components/site/page-hero";
-import { ClipReveal, Reveal } from "@/components/site/reveal";
+import { ClipReveal } from "@/components/site/reveal";
 
 export const metadata: Metadata = {
   title: "reference works",
   description:
-    "selected projects featuring encore wooden doors, glass sliding-door systems and architectural railings — bespoke residential and commercial work, photographed by leading architectural photographers.",
+    "Selected projects featuring our wooden doors, glass doors, aluminium doors and railings.",
 };
 
 const layouts = [
@@ -34,7 +34,7 @@ export default function ProjectsPage() {
             <span className="italic">works.</span>
           </>
         }
-        description="six selected projects from the encore archive, photographed by the architects' chosen partners. each spans a single brief: where can timber take you?"
+        description="Selected projects featuring our doors, sliders and railings."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -59,6 +59,7 @@ export default function ProjectsPage() {
             {projects.map((p, i) => (
               <li
                 key={p.slug}
+                data-brand-tag={p.brand}
                 className={`${layouts[i % layouts.length]} relative`}
               >
                 <ClipReveal className="h-full">
@@ -104,34 +105,6 @@ export default function ProjectsPage() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="border-t border-line py-12 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6 items-end">
-          <div className="col-span-12 lg:col-span-8">
-            <Reveal>
-              <h2 className="display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
-                press &amp; architecture
-                <br />
-                <span className="italic">platforms.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">
-                press kits, hi-resolution photography and project credit
-                listings are available to journalists and editors on request.
-              </p>
-            </Reveal>
-          </div>
-          <div className="col-span-12 lg:col-span-4 lg:text-right">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink border-b border-ink pb-1 hover:text-walnut hover:border-walnut transition-colors"
-            >
-              press contact →
-            </Link>
-          </div>
         </div>
       </section>
     </>

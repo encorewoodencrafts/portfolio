@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Download, FileText } from "lucide-react";
 import { products } from "@/data/products";
+import { familyBrandTag, type BrandTag } from "@/data/brand";
 import { PageHero } from "@/components/site/page-hero";
 import { Reveal } from "@/components/site/reveal";
 import { CadRegisterForm } from "@/components/site/cad-register-form";
@@ -12,54 +13,68 @@ export const metadata: Metadata = {
     "specification sheets, monograph and a fully indexed CAD library for encore wooden doors, glass doors, aluminium doors and railings. for architects, specifiers and consultants.",
 };
 
-const catalogues = [
+const catalogues: {
+  title: string;
+  subtitle: string;
+  file: string;
+  size: string;
+  brand: BrandTag;
+}[] = [
   {
     title: "encore monograph",
     subtitle: "256 pages · 240 mm × 320 mm · oak / walnut binding",
     file: "encore-monograph-2026.pdf",
     size: "84 mb",
+    brand: "both",
   },
   {
     title: "product overview",
     subtitle: "every family · technical summary",
     file: "encore-overview.pdf",
     size: "12 mb",
+    brand: "both",
   },
   {
     title: "wooden doors · spec sheet",
     subtitle: "veneer · laminated · solid panel · skin · paint",
     file: "encore-wooden-doors.pdf",
     size: "9 mb",
+    brand: "wood",
   },
   {
     title: "glass doors · spec sheet",
     subtitle: "centre · lift-slide · multi-track · corner · bifold",
     file: "encore-glass-doors.pdf",
     size: "9 mb",
+    brand: "aluminium",
   },
   {
     title: "aluminium doors · spec sheet",
     subtitle: "entrance · casement · pivot · french",
     file: "encore-aluminium-doors.pdf",
     size: "8 mb",
+    brand: "aluminium",
   },
   {
     title: "railings · spec sheet",
     subtitle: "wood · frameless glass · metal balustrades",
     file: "encore-railings.pdf",
     size: "7 mb",
+    brand: "both",
   },
   {
     title: "customised collection",
     subtitle: "22 reference designs · large-format catalogue",
     file: "encore-customised-collection.pdf",
     size: "14 mb",
+    brand: "both",
   },
   {
     title: "sustainability report",
     subtitle: "forest-to-facade pledge · 2026",
     file: "encore-sustainability-2026.pdf",
     size: "6 mb",
+    brand: "both",
   },
 ];
 
@@ -77,7 +92,7 @@ export default function ArchitectsPage() {
             <span className="italic">info.</span>
           </>
         }
-        description="specification sheets, the encore monograph, and a fully indexed CAD library — sections, plans and isometric assemblies for every wooden door, glass slider, aluminium door variant and railing system in our catalogue. registration is required to access the CAD library."
+        description="Spec sheets, the monograph and a full CAD library for every range. Register to access the CAD library."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -111,7 +126,7 @@ export default function ArchitectsPage() {
           </div>
           <ul className="divide-y divide-line border-t border-b border-line">
             {catalogues.map((c, i) => (
-              <li key={c.file}>
+              <li key={c.file} data-brand-tag={c.brand}>
                 <Reveal delay={(i % 4) * 0.04}>
                   <a
                     href="#"
@@ -161,13 +176,16 @@ export default function ArchitectsPage() {
               <span className="italic">access details.</span>
             </h2>
             <p className="mt-6 max-w-md text-ink-2 leading-relaxed">
-              our CAD library contains horizontal and vertical sections, plan
-              details, isometric assemblies and threshold drawings for every
-              encore family — in dwg, rvt and ifc.
+              Sections, plans, isometric assemblies and threshold drawings for
+              every range — in DWG, RVT and IFC.
             </p>
             <ul className="mt-8 space-y-2 text-sm text-ink-2">
               {products.map((p) => (
-                <li key={p.slug} className="flex items-center gap-3">
+                <li
+                  key={p.slug}
+                  data-brand-tag={familyBrandTag(p.slug)}
+                  className="flex items-center gap-3"
+                >
                   <span className="inline-block h-px w-4 bg-walnut" />
                   <span>{p.name} — sections, plans, ifc</span>
                 </li>
@@ -197,8 +215,8 @@ export default function ArchitectsPage() {
               <span className="italic">writers, curators.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">
-              press kits, hi-resolution photography, and project credit listings
-              are available on request to journalists and editors.
+              Press kits, photography and project credits are available on
+              request.
             </p>
           </div>
           <div className="col-span-12 lg:col-span-4 lg:text-right">

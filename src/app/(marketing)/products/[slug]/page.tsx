@@ -3,11 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
-import {
-  products,
-  productBySlug,
-  customDesignsByFamily,
-} from "@/data/products";
+import { products, productBySlug } from "@/data/products";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 import { WoodSpeciesSelector } from "@/components/site/wood-species-selector";
 
@@ -44,7 +40,6 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const otherFamilies = products.filter((p) => p.slug !== slug);
-  const designs = customDesignsByFamily(product.family);
 
   const familyEyebrow =
     product.family === "wooden-doors"
@@ -98,16 +93,21 @@ export default async function ProductDetailPage({
           </div>
           <div className="col-span-12 lg:col-span-8 lg:pl-12">
             <Reveal>
-              <p className="text-ink text-lg md:text-xl leading-[1.7] max-w-3xl">
+              <p className="text-ink-2 text-base md:text-lg leading-relaxed max-w-2xl">
                 {product.description}
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <ul className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-line border border-line">
-                {product.features.map((f) => (
-                  <li key={f.title} className="bg-paper p-6 md:p-8">
-                    <h3 className="display text-xl text-ink">{f.title}</h3>
-                    <p className="mt-3 text-sm text-ink-2 leading-relaxed">
+              <ul className="mt-10 md:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-8">
+                {product.features.map((f, i) => (
+                  <li key={f.title} className="border-t border-line pt-5">
+                    <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-brand-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-3 display text-lg font-light tracking-tight text-ink">
+                      {f.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-2 leading-relaxed">
                       {f.body}
                     </p>
                   </li>
@@ -133,8 +133,7 @@ export default async function ProductDetailPage({
             </div>
             <div className="col-span-12 md:col-span-5">
               <p className="text-ink-2 leading-relaxed max-w-md md:ml-auto md:text-right">
-                each variation is a starting point — combine sub-types,
-                hardware and finishes into a single bespoke piece.
+                Mix sub-types, hardware and finishes into one bespoke piece.
               </p>
             </div>
           </div>
@@ -181,10 +180,8 @@ export default async function ProductDetailPage({
               built for <span className="italic">indian living</span>
             </h2>
             <p className="mt-4 max-w-md text-ink-2 leading-relaxed text-sm">
-              the {product.name} programme is engineered for indian
-              residential and commercial code — monsoon-class gaskets,
-              high-rise wind ratings and the same finish palette across
-              wood, glass and railings.
+              Engineered for Indian homes and weather, with one finish palette
+              across every range.
             </p>
 
             <dl className="mt-10 grid grid-cols-2 gap-4 max-w-md">
@@ -249,93 +246,19 @@ export default async function ProductDetailPage({
         </section>
       ) : null}
 
-      {designs.length > 0 ? (
-        <section className="border-t border-line bg-paper-2/40 py-12 sm:py-16 md:py-24">
-          <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-            <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6 items-end">
-              <div className="col-span-12 md:col-span-7">
-                <p className="eyebrow">customised collection</p>
-                <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight leading-[0.95]">
-                  reference designs in{" "}
-                  <span className="italic">{product.name}.</span>
-                </h2>
-                <p className="mt-4 max-w-md text-ink-2 leading-relaxed">
-                  {designs.length} of our 22 reference designs sit inside this
-                  family. each is a starting point — bring us your size,
-                  finish and hardware and we will build a one-of-one piece.
-                </p>
-              </div>
-            </div>
-            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
-              {designs.map((d, i) => (
-                <li
-                  key={d.slug}
-                  id={`design-${d.slug}`}
-                  className="scroll-mt-32"
-                >
-                  <ClipReveal delay={(i % 8) * 0.04}>
-                    <article className="group">
-                      <div className="relative aspect-[3/4] overflow-hidden bg-stone">
-                        <Image
-                          src={d.image}
-                          alt={`${d.code} — ${d.caption}`}
-                          fill
-                          sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
-                          className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]"
-                        />
-                      </div>
-                      <div className="mt-3 flex items-baseline justify-between gap-3">
-                        <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-walnut">
-                          {d.code}
-                        </p>
-                      </div>
-                      <p className="mt-1 text-sm text-ink leading-snug">
-                        {d.caption}
-                      </p>
-                    </article>
-                  </ClipReveal>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="border-t border-line py-12 sm:py-16 md:py-24">
-        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <p className="eyebrow">gallery</p>
-          <h2 className="mt-3 display text-3xl md:text-5xl font-light tracking-tight max-w-3xl">
-            {product.name} <span className="italic">in situ.</span>
-          </h2>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <ClipReveal>
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone">
-                <Image
-                  src={product.imageA}
-                  alt={`${product.name} interior`}
-                  fill
-                  sizes="(min-width:768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </ClipReveal>
-            <ClipReveal delay={0.08}>
-              <div className="relative aspect-[4/5] overflow-hidden bg-stone md:mt-24">
-                <Image
-                  src={product.imageB}
-                  alt={`${product.name} exterior`}
-                  fill
-                  sizes="(min-width:768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </ClipReveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-line bg-charcoal text-cream py-12 sm:py-16 md:py-24">
-        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6">
+      <section
+        className="relative overflow-hidden border-t border-line text-cream py-12 sm:py-16 md:py-24 transition-[background] duration-700"
+        style={{ background: "var(--brand-cta)" }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-1/3 right-0 h-[120%] w-[60%]"
+          style={{
+            background:
+              "radial-gradient(60% 60% at 80% 20%, var(--brand-glow), transparent 70%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-7">
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-cream/70">
               specify {product.name}
@@ -348,8 +271,8 @@ export default async function ProductDetailPage({
           </div>
           <div className="col-span-12 lg:col-span-5 flex items-end">
             <p className="text-cream/80 leading-relaxed max-w-md">
-              our atelier produces a tailored quote within five working days,
-              based on your drawings, finishes and hardware preferences.
+              We&rsquo;ll send a tailored quote based on your drawings and
+              finishes.
             </p>
           </div>
           <div className="col-span-12 mt-10 flex flex-wrap gap-6">

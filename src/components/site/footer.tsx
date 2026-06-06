@@ -3,8 +3,16 @@
 import * as React from "react";
 import Link from "next/link";
 import { site } from "@/data/site";
+import { familyBrandTag } from "@/data/brand";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { SocialIcon } from "@/components/site/social-icon";
+
+// Tag product links so the global brand-scoping CSS hides the ones that
+// don't belong to the selected range.
+function brandTagFor(href: string): string | undefined {
+  if (!href.startsWith("/products/")) return undefined;
+  return familyBrandTag(href.split("/").pop() ?? "");
+}
 
 const footerLinks = [
   {
@@ -52,21 +60,32 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative mt-24 border-t border-line bg-paper-2 text-ink">
+    // Background paints the brand's deep gradient and follows the toggle
+    // automatically: var(--brand-cta) is re-bound whenever data-brand changes
+    // on <html>, so no extra React wiring is needed here.
+    <footer
+      className="relative mt-24 border-t border-cream/10 text-cream transition-[background] duration-700"
+      style={{ background: "var(--brand-cta)" }}
+    >
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 gap-10 py-14 md:gap-14 md:py-20 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">newsletter</p>
+            <p
+              className="eyebrow"
+              style={{ color: "var(--brand-accent-light)" }}
+            >
+              newsletter
+            </p>
             <h3 className="mt-4 display text-3xl md:text-5xl tracking-tight max-w-md">
               the latest from the atelier
             </h3>
-            <p className="mt-4 max-w-md text-ink-2 leading-relaxed">
+            <p className="mt-4 max-w-md text-cream/70 leading-relaxed">
               quarterly dispatches on new projects, materials and craft.
               no marketing.
             </p>
             <form
               onSubmit={onSubmit}
-              className="mt-6 flex max-w-md items-end gap-3 border-b border-line pb-2"
+              className="mt-6 flex max-w-md items-end gap-3 border-b border-cream/25 pb-2"
             >
               <input
                 type="email"
@@ -74,11 +93,11 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your email"
-                className="flex-1 bg-transparent py-2 text-ink placeholder:text-ink-2/60 focus:outline-none"
+                className="flex-1 bg-transparent py-2 text-cream placeholder:text-cream/40 focus:outline-none"
               />
               <button
                 type="submit"
-                className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-walnut transition-colors"
+                className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-cream hover:text-brand-accent-light transition-colors"
               >
                 {submitted ? "thank you ·" : "subscribe →"}
               </button>
@@ -89,7 +108,7 @@ export function Footer() {
                 aria-label="instagram"
                 target="_blank"
                 rel="noreferrer"
-                className="text-ink-2 hover:text-ink transition-colors"
+                className="text-cream/70 hover:text-cream transition-colors"
               >
                 <SocialIcon name="instagram" className="h-4 w-4" />
               </a>
@@ -98,7 +117,7 @@ export function Footer() {
                 aria-label="linkedin"
                 target="_blank"
                 rel="noreferrer"
-                className="text-ink-2 hover:text-ink transition-colors"
+                className="text-cream/70 hover:text-cream transition-colors"
               >
                 <SocialIcon name="linkedin" className="h-4 w-4" />
               </a>
@@ -107,7 +126,7 @@ export function Footer() {
                 aria-label="youtube"
                 target="_blank"
                 rel="noreferrer"
-                className="text-ink-2 hover:text-ink transition-colors"
+                className="text-cream/70 hover:text-cream transition-colors"
               >
                 <SocialIcon name="youtube" className="h-4 w-4" />
               </a>
@@ -116,7 +135,7 @@ export function Footer() {
                 aria-label="pinterest"
                 target="_blank"
                 rel="noreferrer"
-                className="text-ink-2 hover:text-ink transition-colors"
+                className="text-cream/70 hover:text-cream transition-colors"
               >
                 <SocialIcon name="pinterest" className="h-4 w-4" />
               </a>
@@ -125,7 +144,7 @@ export function Footer() {
                 aria-label="vimeo"
                 target="_blank"
                 rel="noreferrer"
-                className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-2 hover:text-ink"
+                className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-cream/70 hover:text-cream"
               >
                 vimeo
               </a>
@@ -135,13 +154,18 @@ export function Footer() {
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-10">
             {footerLinks.map((col) => (
               <div key={col.title}>
-                <p className="eyebrow">{col.title}</p>
+                <p
+                  className="eyebrow"
+                  style={{ color: "var(--brand-accent-light)" }}
+                >
+                  {col.title}
+                </p>
                 <ul className="mt-5 space-y-2.5">
                   {col.items.map((item) => (
-                    <li key={item.href}>
+                    <li key={item.href} data-brand-tag={brandTagFor(item.href)}>
                       <Link
                         href={item.href}
-                        className="text-ink-2 hover:text-ink text-sm transition-colors"
+                        className="text-cream/70 hover:text-cream text-sm transition-colors"
                       >
                         {item.label}
                       </Link>
@@ -153,7 +177,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-line py-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-ink-2">
+        <div className="border-t border-cream/15 py-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-cream/60">
           <div className="space-y-1">
             <p className="font-mono uppercase tracking-[0.18em]">
               encore atelier
@@ -169,12 +193,12 @@ export function Footer() {
             </p>
             <p className="mt-1">
               {site.address.country.toUpperCase()} ·{" "}
-              <span className="text-ink">{site.phone}</span>
+              <span className="text-cream">{site.phone}</span>
             </p>
           </div>
           <div className="md:text-right">
             <div className="flex md:justify-end items-center gap-4">
-              <LanguageSwitcher />
+              <LanguageSwitcher tone="light" />
               <span>© {new Date().getFullYear()} encore wood crafts llp.</span>
             </div>
           </div>

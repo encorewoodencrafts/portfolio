@@ -147,9 +147,9 @@ export const products: Product[] = [
     family: "wooden-doors",
     tagline: "five finishes · solid wood entrances",
     excerpt:
-      "solid-wood and engineered-core entrance, internal and pivot doors — built in five finish families and any indian or imported hardwood, hand-finished in the atelier.",
+      "Solid and engineered wooden doors in five finishes and any wood you like — hand-finished and hung in our workshop, ready to fit.",
     description:
-      "our wooden door programme spans five finish families — veneer, laminated, solid panel, skin and paint — built around a multi-ply mortised core in burmese teak, indian sal, mahogany or honne. each leaf is balanced for a precision floor pivot or concealed european hinges, and ships pre-finished and pre-hung as a single architectural element. customisation is the rule, not the exception: any size, any joinery, any of the 22 reference designs in our customised collection.",
+      "Solid and engineered wooden doors in five finishes — veneer, laminated, solid panel, skin and paint — in the wood of your choice. Every door is pre-finished, pre-hung and made to your size.",
     hero: woodHero,
     detailHero: woodHero,
     sightline: "5 finishes",
@@ -162,15 +162,15 @@ export const products: Product[] = [
     features: [
       {
         title: "monolithic timber leaf",
-        body: "70 mm mortised core wrapped in book-matched solid wood or premium veneer — never hollow.",
+        body: "Solid 70 mm core — never hollow.",
       },
       {
         title: "five finish families",
-        body: "veneer, laminated, solid panel, skin and paint — each available in any of our hardwoods.",
+        body: "Veneer, laminated, panel, skin or paint.",
       },
       {
         title: "custom in every dimension",
-        body: "any size, any colour, any of 22 reference designs — quoted from your drawings within five working days.",
+        body: "Any size, colour or design.",
       },
     ],
     specs: [
@@ -241,9 +241,9 @@ export const products: Product[] = [
     family: "glass-doors",
     tagline: "five sliding systems · aluminium-framed",
     excerpt:
-      "aluminium-framed sliding glass door systems — centre-opening, lift-and-slide, multi-track, corner and bifold — for openings that need to disappear.",
+      "Aluminium-framed sliding glass doors — centre-opening, lift-and-slide, multi-track, corner and bifold — for openings that open right up.",
     description:
-      "our glass door programme is a complete suite of aluminium-framed sliding systems. centre-opening sliders for everyday balconies, lift-and-slide hardware for panels up to 4 metres wide, multi-track stacking for full-wall openings, structural corner mitres that erase the column, and bifolds that fold flat into a single jamb. all five share the same thermally-broken extrusion, finishes and hardware family — so your specification reads as one suite.",
+      "Aluminium-framed sliding glass doors in five systems — centre-opening, lift-and-slide, multi-track, corner and bifold — for openings that open right up. One frame, finish and hardware family across all five.",
     hero: glassHero,
     detailHero: glassHero,
     sightline: "5 systems",
@@ -256,15 +256,15 @@ export const products: Product[] = [
     features: [
       {
         title: "lift-and-slide hardware",
-        body: "german-engineered carriages rated to 400 kg per panel with single-handed operation.",
+        body: "Smooth 400 kg carriages, one-handed.",
       },
       {
         title: "flush threshold",
-        body: "level interior-to-exterior threshold with concealed drainage — wheelchair compliant.",
+        body: "Flush, step-free threshold.",
       },
       {
         title: "any ral or anodised",
-        body: "polyester powder-coat in any ral, plus mill, champagne, bronze and black anodised options.",
+        body: "Any RAL or anodised finish.",
       },
     ],
     specs: [
@@ -335,9 +335,9 @@ export const products: Product[] = [
     family: "aluminium-doors",
     tagline: "four systems · framed in aluminium",
     excerpt:
-      "aluminium-framed entrance, casement, pivot and french doors — thermally-broken extrusions in any RAL or anodised finish, paired with glass, solid panels or composite infills.",
+      "Aluminium-framed entrance, casement, pivot and french doors in any colour or finish, paired with glass, wood or solid panels.",
     description:
-      "our aluminium door programme covers everything our glass-slider suite doesn't: hinged entrance leaves, side-hung casement doors, large-format pivots and french door pairs — all built around the same thermally-broken extrusion family as our glass sliders, so finishes, hardware and sightlines read as one suite across the project. choose any RAL powder-coat, anodised mill, champagne, bronze or black; pair with a panel infill in solid wood, opaque composite or insulated glass.",
+      "Aluminium-framed entrance, casement, pivot and french doors in any colour or finish. Pair them with glass, wood or solid panels — the same frame family as our glass sliders.",
     hero: aluminiumHero,
     detailHero: aluminiumA,
     sightline: "4 systems",
@@ -350,15 +350,15 @@ export const products: Product[] = [
     features: [
       {
         title: "thermally-broken frame",
-        body: "polyamide thermal break with foam-filled chambers — the same extrusion as our glass-slider suite.",
+        body: "Thermally broken, warm in winter.",
       },
       {
         title: "any panel infill",
-        body: "insulated glass, solid wood, opaque composite or laminated metal — mixed and matched per opening.",
+        body: "Glass, wood or metal infills.",
       },
       {
         title: "matched hardware",
-        body: "concealed european 3D hinges or hydraulic floor pivots; multipoint locks; smart-lock ready.",
+        body: "Hidden hinges, smart-lock ready.",
       },
     ],
     specs: [
@@ -422,9 +422,9 @@ export const products: Product[] = [
     family: "railings",
     tagline: "wood, glass & metal · staircases & balconies",
     excerpt:
-      "balcony, staircase and terrace railings in solid wood, frameless glass and patina-bronze — engineered to indian building code, customised to your drawing.",
+      "Balcony, staircase and terrace railings in wood, frameless glass or metal — built to code and made to your design.",
     description:
-      "we build the same atelier-grade railings you would expect from a window manufacturer: solid-wood handrails over stainless or blackened-steel balusters, frameless glass with concealed channel fixings, and patina-bronze for heritage projects. every railing is engineered to the indian standard for residential and commercial balustrades and customised to your stair pitch, balcony length and finish palette.",
+      "Balcony, staircase and terrace railings in wood, frameless glass or metal. Built to Indian code and made to your stair, balcony and finish.",
     hero: railingsHero,
     detailHero: railingsHero,
     sightline: "3 systems",
@@ -437,15 +437,15 @@ export const products: Product[] = [
     features: [
       {
         title: "engineered to code",
-        body: "rated for residential, commercial and assembly loads per indian standard 3194 and is 14897.",
+        body: "Built to Indian load code.",
       },
       {
         title: "concealed fixings",
-        body: "stainless u-channel for frameless glass; counter-bored stainless studs for wood and metal balusters.",
+        body: "Concealed stainless fixings.",
       },
       {
         title: "atelier-finished",
-        body: "wood handrails are sanded, oiled and polished in-house; metal posts are powder-coated or hand-patinated.",
+        body: "Finished by hand in-house.",
       },
     ],
     specs: [
@@ -682,14 +682,3 @@ export const customDesigns: CustomDesign[] = [
 
 export const productBySlug = (slug: string): Product | undefined =>
   products.find((p) => p.slug === slug);
-
-export const productsByFamily = (family: ProductFamily): Product[] =>
-  products.filter((p) => p.family === family);
-
-export const customDesignsByFamily = (
-  family: ProductFamily,
-): CustomDesign[] => customDesigns.filter((d) => d.family === family);
-
-export const customDesignBySlug = (
-  slug: string,
-): CustomDesign | undefined => customDesigns.find((d) => d.slug === slug);

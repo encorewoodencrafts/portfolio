@@ -4,28 +4,35 @@ import Link from "next/link";
 import Image from "next/image";
 import { news } from "@/data/news";
 import { Reveal } from "@/components/site/reveal";
+import { useBrand } from "@/components/site/brand-provider";
 
 export function NewsRail() {
+  const { brand } = useBrand();
+  // Only show news for the selected range; "both" items always appear.
+  const items = news
+    .filter((n) => n.brand === brand || n.brand === "both")
+    .slice(0, 4);
+
   return (
     <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
         <div className="flex items-end justify-between gap-4 mb-8 md:mb-12">
           <div>
-            <p className="eyebrow">what&rsquo;s new at encore</p>
+            <p className="eyebrow">What&rsquo;s new at encore</p>
             <h2 className="mt-2 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
-              news
+              News
             </h2>
           </div>
           <Link
             href="/news"
-            className="font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-walnut transition-colors flex-none"
+            className="font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-ink hover:text-brand-accent transition-colors flex-none"
           >
-            see more →
+            See more →
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {news.slice(0, 4).map((n, i) => (
+          {items.map((n, i) => (
             <Reveal key={n.slug} delay={i * 0.06}>
               <Link href={`/news/${n.slug}`} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden bg-stone">

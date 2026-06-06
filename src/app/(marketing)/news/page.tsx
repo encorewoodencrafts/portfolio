@@ -30,7 +30,11 @@ export default function NewsPage() {
 
       <section className="py-10 sm:py-14 md:py-20">
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <Link href={`/news/${featured.slug}`} className="group block">
+          <Link
+            href={`/news/${featured.slug}`}
+            data-brand-tag={featured.brand}
+            className="group block"
+          >
             <ClipReveal>
               <div className="relative aspect-[16/9] overflow-hidden bg-stone">
                 <Image
@@ -73,7 +77,7 @@ export default function NewsPage() {
         <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {rest.map((n, i) => (
-              <li key={n.slug}>
+              <li key={n.slug} data-brand-tag={n.brand}>
                 <Reveal delay={(i % 3) * 0.05}>
                   <Link href={`/news/${n.slug}`} className="group block">
                     <div className="relative aspect-[4/5] overflow-hidden bg-stone">

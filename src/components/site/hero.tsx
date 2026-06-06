@@ -7,21 +7,67 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  useMotionValue,
+  useMotionTemplate,
+  useSpring,
 } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { useBrand, type BrandName } from "@/components/site/brand-provider";
+import { cn } from "@/lib/cn";
 
-// The atelier's primary marketing banner from the Shopify storefront —
-// the hero pairs warm wood tones with deep shadow so the headline + nav
-// always read on first paint. Served from the steel-doors-2.myshopify.com
-// CDN, whitelisted in next.config.ts.
-const HERO_IMAGE =
-  "https://steel-doors-2.myshopify.com/cdn/shop/files/Fill_the_white_space_on_side_with_out_disturbing_t_delpmaspu.jpg";
+// Imagery is served from the atelier's Shopify CDN (whitelisted in
+// next.config.ts). The fallback image doubles as the <video> poster, so a
+// slow / failed / reduced-motion load always shows the right brand visual.
+const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
+
+// Brand hero clips live in /public/video (door footage under the Mixkit
+// free licence). Swap the files in place to change the videos — keep the
+// same paths.
+const BRAND_HERO: Record<
+  BrandName,
+  {
+    image: string;
+    video: string;
+    eyebrowLong: string;
+    eyebrowShort: string;
+    line1: string;
+    line2: string;
+    intro: string;
+    alt: string;
+  }
+> = {
+  wood: {
+    image: `${SHOPIFY}/files/Fill_the_white_space_on_side_with_out_disturbing_t_delpmaspu.jpg`,
+    video: "/video/wood-doors.mp4",
+    eyebrowLong: "Est. 2014 · Hyderabad · Wooden doors & railings",
+    eyebrowShort: "Est. 2014 · Hyderabad",
+    line1: "Wooden doors,",
+    line2: "beautifully made.",
+    intro:
+      "Custom wooden doors and railings, made and fitted by our own team in Hyderabad.",
+    alt: "Encore custom wooden door with warm grain and deep shadow",
+  },
+  aluminium: {
+    image: `${SHOPIFY}/files/Fill_the_white_space_in_the_image_with_out_stretch_delpmaspu.jpg`,
+    video: "/video/aluminium-doors.mp4",
+    eyebrowLong: "Est. 2014 · Hyderabad · Aluminium & glass doors",
+    eyebrowShort: "Est. 2014 · Hyderabad",
+    line1: "Aluminium & glass,",
+    line2: "precisely framed.",
+    intro:
+      "Aluminium and glass doors, engineered and installed by our own team in Hyderabad.",
+    alt: "Encore aluminium-framed glass sliding door in a modern interior",
+  },
+};
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   const ref = React.useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
+  const { brand } = useBrand();
+  const b = BRAND_HERO[brand];
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -32,36 +78,89 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
 
+  // Cursor "light rake": a soft specular highlight that follows the pointer
+  // across the footage — light grazing real grain / brushed metal. Spring-
+  // smoothed so it trails the cursor with a touch of weight. Desktop +
+  // motion-allowed only; the gradient is built reactively with a template.
+  const rawX = useMotionValue(50);
+  const rawY = useMotionValue(35);
+  const rakeX = useSpring(rawX, { stiffness: 120, damping: 24, mass: 0.6 });
+  const rakeY = useSpring(rawY, { stiffness: 120, damping: 24, mass: 0.6 });
+  const rake = useMotionTemplate`radial-gradient(34rem 34rem at ${rakeX}% ${rakeY}%, rgba(255,255,255,0.22), rgba(255,255,255,0.05) 28%, transparent 60%)`;
+
+  function handlePointerMove(e: React.PointerEvent<HTMLElement>) {
+    if (prefersReduced || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    rawX.set(((e.clientX - rect.left) / rect.width) * 100);
+    rawY.set(((e.clientY - rect.top) / rect.height) * 100);
+  }
+
   return (
     <section
       ref={ref}
-      aria-label="encore woodcrafts hero"
+      onPointerMove={handlePointerMove}
+      aria-label="encore hero"
       // bg-charcoal + text-cream are FIXED colours that never theme-shift —
-      // the hero is always a dark image with cream text on top. Kept at
-      // 88svh on phones (rather than 100svh) so the panoramah-style
-      // "what's new" block below crests above the fold and signals scroll.
+      // the hero is always a dark surface with cream text on top. Kept at
+      // 88svh on phones (rather than 100svh) so the "what's new" block below
+      // crests above the fold and signals scroll.
       className="relative h-[88svh] md:h-[100svh] w-full overflow-hidden bg-charcoal text-cream"
     >
       <motion.div
         style={prefersReduced ? undefined : { y, scale }}
         className="absolute inset-0"
       >
+        {/* Fallback image — stays mounted under the video so a slow / failed
+            / reduced-motion load always shows the right brand visual. */}
         <Image
-          src={HERO_IMAGE}
-          alt="encore atelier wooden craft door with warm grain and deep shadow"
+          key={b.image}
+          src={b.image}
+          alt={b.alt}
           fill
           priority
           quality={92}
           sizes="100vw"
           className="object-cover"
         />
-        {/* base wash so even the brightest hero photo lands legible */}
-        <div className="absolute inset-0 bg-charcoal/55" />
-        {/* soft directional gradient — top + bottom both heavier */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/30 to-charcoal/85" />
-        {/* warm side glow for atmosphere */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_left,rgba(176,141,87,0.18),transparent_55%)]" />
+        {/* Brand background video — keyed on brand so switching the toggle
+            loads the correct clip. Hidden when the visitor prefers reduced
+            motion (the image fallback shows instead). */}
+        {!prefersReduced && (
+          <video
+            key={b.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={b.image}
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={b.video} type="video/mp4" />
+          </video>
+        )}
+
+        {/* warm/cool brand tint — very light, just enough to colour-match
+            the brand without dimming the footage. */}
+        <div
+          className="absolute inset-0 opacity-20 transition-opacity duration-700"
+          style={{ background: "var(--brand-hero)" }}
+        />
+        {/* Focal scrim: instead of dimming the whole frame, we anchor a soft
+            shadow to the bottom-left corner only — exactly where the copy
+            sits. The rest of the video stays bright and fully visible. */}
+        <div className="absolute inset-0 bg-[radial-gradient(125%_115%_at_12%_100%,rgba(10,8,6,0.85)_0%,rgba(10,8,6,0.45)_32%,rgba(10,8,6,0)_60%)]" />
       </motion.div>
+
+      {/* cursor light-rake — sits above the media, below the copy. Mounted on
+          desktop only; on touch / reduced-motion it simply never updates. */}
+      {!prefersReduced && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[2] hidden mix-blend-soft-light md:block"
+          style={{ background: rake }}
+        />
+      )}
 
       <Bracket
         className="absolute top-20 left-5 md:top-24 md:left-8 lg:left-12 h-8 md:h-10 w-8 md:w-10 text-cream/35"
@@ -79,45 +178,49 @@ export function Hero() {
         className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24"
       >
         <motion.p
+          key={`${brand}-eyebrow`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: easeOut }}
           className="flex items-center gap-3 font-mono text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.28em] sm:tracking-[0.32em] text-cream/85"
         >
-          <span className="inline-block h-px w-6 sm:w-12 bg-cream/60" />
+          <span
+            className="inline-block h-px w-6 sm:w-12"
+            style={{ background: "var(--brand-accent-light)" }}
+          />
           <span className="truncate">
-            <span className="hidden md:inline">
-              est. 2014 · hyderabad · wooden doors · glass doors · aluminium doors · railings
-            </span>
-            <span className="hidden sm:inline md:hidden">
-              est. 2014 · wooden · glass · aluminium · railings
-            </span>
-            <span className="sm:hidden">est. 2014 · hyderabad</span>
+            <span className="hidden sm:inline">{b.eyebrowLong}</span>
+            <span className="sm:hidden">{b.eyebrowShort}</span>
           </span>
         </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.32, ease: easeOut }}
+        <h1
+          key={`${brand}-headline`}
           className="mt-4 sm:mt-5 display-tight text-[clamp(2rem,9vw,8rem)] leading-[0.98] font-light text-cream"
+          style={{ textShadow: "0 2px 40px rgba(0,0,0,0.55)" }}
         >
-          wooden doors,
-          <br />
-          <span className="italic font-light text-cream">
-            beautifully made.
-          </span>
-        </motion.h1>
+          <MaskLine
+            text={b.line1}
+            baseDelay={0.3}
+            reduced={!!prefersReduced}
+          />
+          <MaskLine
+            text={b.line2}
+            italic
+            baseDelay={0.45}
+            reduced={!!prefersReduced}
+          />
+        </h1>
 
         <motion.p
+          key={`${brand}-intro`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.55, ease: easeOut }}
           className="mt-5 sm:mt-7 max-w-md sm:max-w-2xl text-sm md:text-lg leading-relaxed text-cream/90"
+          style={{ textShadow: "0 1px 20px rgba(0,0,0,0.6)" }}
         >
-          an indian atelier crafting bespoke wooden doors, aluminium-framed
-          glass sliding doors and architectural railings — engineered,
-          finished and installed by one in-house team in hyderabad.
+          {b.intro}
         </motion.p>
 
         <motion.div
@@ -149,9 +252,51 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* extra-strong top scrim ensures the nav bar reads well immediately */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-charcoal/85 via-charcoal/40 to-transparent pointer-events-none" />
+      {/* slim top scrim — only enough to keep the nav bar legible, so the
+          upper half of the video stays clear. */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-charcoal/70 to-transparent pointer-events-none" />
     </section>
+  );
+}
+
+// One headline line, revealed word-by-word: each word rides up from behind
+// a clipped mask so the line "rises into place" like set type. Under
+// reduced-motion the words render plainly with no transform.
+function MaskLine({
+  text,
+  italic,
+  baseDelay,
+  reduced,
+}: {
+  text: string;
+  italic?: boolean;
+  baseDelay: number;
+  reduced: boolean;
+}) {
+  const words = text.split(" ");
+  return (
+    <span className="block">
+      {words.map((word, i) => (
+        <span
+          key={`${word}-${i}`}
+          className="inline-flex overflow-hidden align-bottom"
+        >
+          <motion.span
+            className={cn("inline-block", italic && "italic")}
+            initial={reduced ? false : { y: "115%" }}
+            animate={{ y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: baseDelay + i * 0.09,
+              ease: easeOut,
+            }}
+          >
+            {word}
+          </motion.span>
+          {i < words.length - 1 && <span>&nbsp;</span>}
+        </span>
+      ))}
+    </span>
   );
 }
 

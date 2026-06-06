@@ -8,7 +8,7 @@ import { ClipReveal, Reveal } from "@/components/site/reveal";
 export const metadata: Metadata = {
   title: "blog · atelier views",
   description:
-    "atelier views — long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider, aluminium door and railing.",
+    "Atelier views — essays on craft, materials and hardware from the encore atelier.",
 };
 
 export default function BlogPage() {
@@ -25,7 +25,7 @@ export default function BlogPage() {
             <span className="italic">views.</span>
           </>
         }
-        description="long-form essays from the encore atelier on craft, materials, hardware and the philosophy of the wooden door, glass slider, aluminium door and railing. one new entry each month."
+        description="Essays from the atelier on craft, materials and hardware. One new entry each month."
       />
 
       <section className="py-10 sm:py-14 md:py-20">
@@ -33,6 +33,7 @@ export default function BlogPage() {
           {blogPosts.map((post, i) => (
             <article
               key={post.slug}
+              data-brand-tag={post.brand}
               className={`grid grid-cols-12 gap-6 lg:gap-12 items-center ${
                 i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}

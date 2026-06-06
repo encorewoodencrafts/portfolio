@@ -33,7 +33,7 @@ export default function FaqPage() {
             <span className="italic">ask the atelier.</span>
           </>
         }
-        description="lead times, materials, warranty, pricing, install and aftercare. if you don't see your question, write to studio@encorewoodcrafts.in or message us on whatsapp."
+        description="Lead times, materials, warranty, pricing, install and aftercare. Don't see your question? Write to studio@encorewoodcrafts.in."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">

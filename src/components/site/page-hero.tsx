@@ -38,6 +38,16 @@ export function PageHero({
         className
       )}
     >
+      {/* brand-tinted atmospheric glow — warm for wood, cool for aluminium */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 right-0 h-[420px] w-[55%] transition-[background] duration-700"
+        style={{
+          background:
+            "radial-gradient(50% 60% at 80% 0%, var(--brand-glow), transparent 70%)",
+        }}
+      />
+
       {/* atmospheric edge ornaments */}
       <Bracket
         className="absolute top-24 right-5 md:right-8 lg:right-12 h-10 w-10 text-line"

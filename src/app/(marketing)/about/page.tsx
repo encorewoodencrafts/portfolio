@@ -5,59 +5,37 @@ import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
 import { StatCounter } from "@/components/site/marquee-stat";
-import { Testimonials } from "@/components/site/testimonials";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "about us",
   description:
-    "encore is a bespoke indian atelier founded in 2014, crafting wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings — engineered, finished and installed by one in-house team.",
+    "Encore is an Indian atelier founded in 2014, making wooden doors, glass doors, aluminium doors and railings under one roof.",
 };
-
-const carpenters = [
-  {
-    name: "ananya iyer",
-    role: "managing partner",
-    bio: "third-generation cabinet-maker. trained at the rhode island school of design before returning to lead encore woodcrafts from hyderabad in 2014.",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "vikram reddy",
-    role: "head of joinery",
-    bio: "twenty years at the indian plywood industries research institute. specialist in tropical-climate timber lamination and dimensional stability.",
-    image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "fatima sheikh",
-    role: "glass & glazing programme",
-    bio: "led structural glazing at saint-gobain india for over a decade. now leads our glass-door programme and frameless railings at the atelier.",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
-  },
-];
 
 const stages = [
   {
     n: "01",
     title: "the forest",
-    body: "every plank we receive can be traced to a single forest. we partner with fsc-certified mills across the western ghats, north-eastern india, and accoya from new zealand. all teak is plantation-grown.",
+    body: "Every plank is traceable to a single forest, from FSC-certified mills. All teak is plantation-grown.",
     image: "https://images.unsplash.com/photo-1500964757637-c85e8a162699?auto=format&fit=crop&w=1800&q=80",
   },
   {
     n: "02",
     title: "the kiln",
-    body: "boards are kiln-dried in three controlled stages over twelve weeks. moisture content is monitored to ±0.5% and recorded in our atelier log alongside the species' provenance — critical for india's monsoon-to-summer humidity swings.",
+    body: "Boards are kiln-dried over twelve weeks and moisture-checked — vital for India's humidity swings.",
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80",
   },
   {
     n: "03",
     title: "the bench",
-    body: "machined timber leaves are joined and finished, and aluminium frames are extruded, mitred and glazed on adjacent benches. each glue line is x-rayed and each weld is dye-checked before it leaves the hall.",
+    body: "Timber leaves and aluminium frames are joined, finished and checked on adjacent benches before they ship.",
     image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=1800&q=80",
   },
   {
     n: "04",
     title: "the install",
-    body: "finished doors, sliders and railings are delivered across india by our travelling install crew and overseen by a certified site lead. we follow up at six months, two years and ten years to inspect, re-oil and re-tune.",
+    body: "Our crew installs across India and follows up at six months, two years and ten years.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80",
   },
 ];
@@ -76,7 +54,7 @@ export default function AboutPage() {
             <span className="italic">verticalised since 2014.</span>
           </>
         }
-        description="encore wood crafts llp is an indian atelier that processes and manufactures wooden doors, aluminium-framed glass sliding doors, hinged aluminium doors and architectural railings under one roof. wood, aluminium, glass and hardware are all sourced, machined and finished in-house — having full accountability turns a once-risky craft into a routine task."
+        description="An Indian atelier since 2014. We make wooden doors, glass doors, aluminium doors and railings under one roof — sourced, machined and finished in-house."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -127,32 +105,13 @@ export default function AboutPage() {
               <span className="italic">wood.</span>
             </h2>
           </div>
-          <div className="col-span-12 lg:col-span-8 lg:pl-12 space-y-8 max-w-3xl">
+          <div className="col-span-12 lg:col-span-8 lg:pl-12 max-w-3xl">
             <Reveal>
               <p className="text-ink text-base md:text-lg leading-[1.8]">
-                when we founded encore in 2014, the components of a custom
-                wooden door, an aluminium-framed glass slider and a frameless
-                railing came from three different suppliers in three different
-                cities. we spent the first three years bringing every step of
-                that supply chain into a single hyderabad workshop.
-              </p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <p className="text-ink-2 text-base md:text-lg leading-[1.8]">
-                today our 9,400 m² atelier on the outskirts of hyderabad houses
-                an in-line cnc joinery hall, a glass lamination line, a metal
-                finishing studio, and a hardware shop — supported by a
-                materials laboratory and a moisture-controlled drying yard.
-                everything we ship has been touched by our team.
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="text-ink-2 text-base md:text-lg leading-[1.8]">
-                this matters because doors and railings live for half a century
-                or more. the certainty that the timber, glue, gasket and lock
-                all came from the same hand — and will be supported by the same
-                hand for fifty years — is what allows our clients to commit a
-                house to one atelier.
+                When we started in 2014, a door, a glass slider and a railing
+                came from three different suppliers. We brought every step into
+                one Hyderabad workshop — so the same team makes, finishes and
+                supports everything we ship.
               </p>
             </Reveal>
           </div>
@@ -173,10 +132,8 @@ export default function AboutPage() {
             <div className="col-span-12 lg:col-span-7 lg:col-start-6">
               <Reveal>
                 <p className="text-ink-2 text-base md:text-lg leading-relaxed">
-                  every plank that enters our atelier is traceable to a single
-                  hillside, certified by FSC, PEFC or equivalent. we plant one
-                  tree for every door we manufacture, in partnership with the
-                  indian reforestation initiative.
+                  Every plank is traceable and FSC/PEFC certified, and we plant
+                  a tree for every door we make.
                 </p>
               </Reveal>
             </div>
@@ -226,51 +183,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line py-12 sm:py-16 md:py-24 bg-paper-2/40">
-        <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
-          <div className="mb-10 md:mb-14 grid grid-cols-12 gap-6">
-            <div className="col-span-12 lg:col-span-6">
-              <p className="eyebrow">the people</p>
-              <h2 className="mt-3 display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1]">
-                master carpenters
-                <br />
-                <span className="italic">& glaziers.</span>
-              </h2>
-            </div>
-          </div>
-          <ul className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {carpenters.map((c, i) => (
-              <li key={c.name}>
-                <Reveal delay={i * 0.05}>
-                  <div className="relative aspect-[3/4] overflow-hidden bg-stone grayscale">
-                    <Image
-                      src={c.image}
-                      alt={c.name}
-                      fill
-                      sizes="(min-width:768px) 33vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-walnut">
-                      {c.role}
-                    </p>
-                    <h3 className="mt-2 display text-2xl font-light tracking-tight">
-                      {c.name}
-                    </h3>
-                    <p className="mt-3 text-sm text-ink-2 leading-relaxed">
-                      {c.bio}
-                    </p>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <Testimonials />
-
       <section
         id="careers"
         className="border-t border-line py-12 sm:py-16 md:py-24"
@@ -282,9 +194,8 @@ export default function AboutPage() {
               join the atelier.
             </h2>
             <p className="mt-6 max-w-2xl text-ink-2 leading-relaxed">
-              we hire cabinet-makers, glaziers, metalworkers, engineers,
-              architects and operations leaders. we do not hire by cv alone —
-              every position begins with three days at the bench.
+              We hire makers, glaziers, engineers and operations leaders. Every
+              role starts with three days at the bench.
             </p>
           </div>
           <div className="col-span-12 lg:col-span-4 lg:text-right">

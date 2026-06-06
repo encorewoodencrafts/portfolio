@@ -6,14 +6,14 @@ import {
   products,
   customDesigns,
 } from "@/data/products";
+import { familyBrandTag } from "@/data/brand";
 import { PageHero } from "@/components/site/page-hero";
 import { ClipReveal, Reveal } from "@/components/site/reveal";
-import { Marquee } from "@/components/site/marquee";
 
 export const metadata: Metadata = {
   title: "products",
   description:
-    "wooden doors, aluminium-framed glass sliders, hinged aluminium doors and architectural railings — four product families and twenty-two customised reference designs from the encore atelier in hyderabad.",
+    "Wooden doors, glass doors, aluminium doors and railings — four ranges, made to measure in Hyderabad.",
 };
 
 export default function ProductsPage() {
@@ -30,7 +30,7 @@ export default function ProductsPage() {
             <span className="italic">&amp; railings.</span>
           </>
         }
-        description="four product families, one in-house atelier. wooden doors in five finish families, aluminium-framed sliding glass doors in five hardware variants, hinged aluminium doors in four configurations and architectural railings in wood, glass and metal — every product made-to-measure in our hyderabad workshop, with twenty-two customised reference designs to start from."
+        description="Four ranges, made to measure in our Hyderabad workshop: wooden doors, glass doors, aluminium doors and railings — with 22 reference designs to start from."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">
@@ -59,19 +59,6 @@ export default function ProductsPage() {
         }
       />
 
-      <Marquee
-        phrases={[
-          "wooden doors — five finishes",
-          "glass doors — five sliding systems",
-          "railings — wood, glass & metal",
-          "22 customised reference designs",
-          "made-to-measure",
-          "installed across india",
-        ]}
-        size="md"
-        tone="walnut"
-      />
-
       <section
         id="families"
         className="py-12 md:py-16 border-t border-line scroll-mt-24"
@@ -80,6 +67,7 @@ export default function ProductsPage() {
           {products.map((p, i) => (
             <article
               key={p.slug}
+              data-brand-tag={familyBrandTag(p.slug)}
               className="grid grid-cols-12 gap-6 lg:gap-12 items-start"
             >
               <div className="col-span-12 lg:col-span-7">
@@ -159,16 +147,20 @@ export default function ProductsPage() {
                 <span className="italic">designs.</span>
               </h2>
               <p className="mt-5 max-w-xl text-ink-2 leading-relaxed">
-                browse the customised collection — every design in this gallery
-                is a starting point. bring us your size, finish, hardware and
-                project context, and we will quote a one-of-one piece.
+                Each design is a starting point. Tell us your size, finish and
+                hardware, and we&rsquo;ll quote a one-of-one piece.
               </p>
             </div>
           </div>
 
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
             {customDesigns.map((d, i) => (
-              <li key={d.slug} id={`design-${d.slug}`} className="scroll-mt-32">
+              <li
+                key={d.slug}
+                id={`design-${d.slug}`}
+                data-brand-tag={familyBrandTag(d.family)}
+                className="scroll-mt-32"
+              >
                 <ClipReveal delay={(i % 8) * 0.04}>
                   <Link
                     href={`/products/${d.family}#design-${d.slug}`}

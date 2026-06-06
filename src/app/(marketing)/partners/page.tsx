@@ -27,7 +27,7 @@ export default function PartnersPage() {
             <span className="italic">world.</span>
           </>
         }
-        description="a certified network of cabinet-makers, glaziers and fenestration specialists who have been inducted into the encore atelier programme — bringing the same standard wherever you build."
+        description="Certified cabinet-makers, glaziers and fenestration specialists, trained to the encore standard wherever you build."
         meta={
           <ul className="space-y-3 text-sm text-ink-2">
             <li className="flex justify-between gap-4">

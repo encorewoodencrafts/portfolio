@@ -1,5 +1,8 @@
 export interface Project {
   slug: string;
+  // Which product range this project belongs to. "both" (railings work)
+  // shows under either toggle.
+  brand: "wood" | "aluminium" | "both";
   title: string;
   architect: string;
   location: string;
@@ -17,6 +20,7 @@ const SHOPIFY = "https://steel-doors-2.myshopify.com/cdn/shop";
 export const projects: Project[] = [
   {
     slug: "courtyard-pivot-residence",
+    brand: "wood",
     title: "courtyard pivot residence",
     architect: "studio mira",
     location: "bengaluru, india",
@@ -38,6 +42,7 @@ export const projects: Project[] = [
   },
   {
     slug: "skyline-glass-loft",
+    brand: "aluminium",
     title: "skyline glass loft",
     architect: "atelier verde",
     location: "mumbai, india",
@@ -59,6 +64,7 @@ export const projects: Project[] = [
   },
   {
     slug: "balcony-belvedere",
+    brand: "both",
     title: "balcony belvedere",
     architect: "burnier + kämpf",
     location: "panchgani, india",
@@ -80,6 +86,7 @@ export const projects: Project[] = [
   },
   {
     slug: "veneer-residence",
+    brand: "wood",
     title: "veneer residence",
     architect: "fieldhouse studio",
     location: "hyderabad, india",
@@ -101,6 +108,7 @@ export const projects: Project[] = [
   },
   {
     slug: "courtyard-bifold",
+    brand: "aluminium",
     title: "courtyard bifold",
     architect: "shean architects",
     location: "ottawa, canada",
@@ -121,6 +129,7 @@ export const projects: Project[] = [
   },
   {
     slug: "atelier-on-the-quay",
+    brand: "wood",
     title: "atelier on the quay",
     architect: "studio okja",
     location: "porto, portugal",
@@ -142,6 +151,7 @@ export const projects: Project[] = [
   },
   {
     slug: "staircase-of-bronze",
+    brand: "both",
     title: "staircase of bronze",
     architect: "ARX architects",
     location: "comporta, portugal",
@@ -162,6 +172,7 @@ export const projects: Project[] = [
   },
   {
     slug: "courtyard-house",
+    brand: "aluminium",
     title: "courtyard house",
     architect: "shean architects",
     location: "ottawa, canada",
