@@ -1,27 +1,22 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
 import { Reveal } from "@/components/site/reveal";
-import { useBrand, type BrandName } from "@/components/site/brand-provider";
 
-// The products section shows the families for the selected range side by
-// side in a single row of cards — image on top, then code, name, a short
-// line and a "See …" link. On phones the cards stack one per row; from the
-// `sm` breakpoint up they sit together in the same row.
+// The products section shows the families for the selected range as a row of
+// cards — image on top, then code, name, a short line and a "See …" link. On
+// phones the cards stack one per row; from `sm` up they sit in the same row.
 //
-// Each brand only shows the families that belong to it, so the visitor only
-// ever sees products for the range they picked. Railings appear under both.
-const FAMILIES_BY_BRAND: Record<BrandName, string[]> = {
+// Both ranges' grids are rendered and the global [data-brand] CSS reveals
+// only the active one (railings appears under both). Rendering brand-stable
+// markup — rather than branching on client state — keeps the server and
+// client trees identical and avoids a hydration mismatch.
+const FAMILIES_BY_BRAND: Record<"wood" | "aluminium", string[]> = {
   wood: ["wooden-doors", "railings"],
   aluminium: ["glass-doors", "aluminium-doors", "railings"],
 };
 
 export function ProductOverview() {
-  const { brand } = useBrand();
-  const familyOrder = FAMILIES_BY_BRAND[brand];
-
   return (
     <section id="products" className="border-t border-line bg-paper">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12 py-12 sm:py-16 md:py-24">
@@ -32,13 +27,19 @@ export function ProductOverview() {
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {familyOrder.map((slug, i) => {
-            const product = products.find((p) => p.slug === slug);
-            if (!product) return null;
-            return <FamilyCard key={slug} product={product} index={i} />;
-          })}
-        </div>
+        {(["wood", "aluminium"] as const).map((brand) => (
+          <div
+            key={brand}
+            data-brand-tag={brand}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          >
+            {FAMILIES_BY_BRAND[brand].map((slug, i) => {
+              const product = products.find((p) => p.slug === slug);
+              if (!product) return null;
+              return <FamilyCard key={slug} product={product} index={i} />;
+            })}
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Reveal } from "@/components/site/reveal";
-import { useBrand, type BrandName } from "@/components/site/brand-provider";
+import { type BrandName } from "@/components/site/brand-provider";
 import { productBySlug } from "@/data/products";
 import { cn } from "@/lib/cn";
 
@@ -84,26 +84,29 @@ const COPY: Record<BrandName, { eyebrow: string; line: string; sub: string }> = 
   },
 };
 
+// Both ranges' strips are rendered and the global [data-brand] CSS reveals
+// only the active one. Each strip owns its own open-panel state. Rendering
+// brand-stable markup — rather than branching on client state — keeps the
+// server and client trees identical and avoids a hydration mismatch.
 export function MaterialsStrip() {
-  const { brand } = useBrand();
+  return (
+    <>
+      <MaterialsSection brand="wood" />
+      <MaterialsSection brand="aluminium" />
+    </>
+  );
+}
+
+function MaterialsSection({ brand }: { brand: BrandName }) {
   const materials = materialsFor(brand);
   const copy = COPY[brand];
   const [active, setActive] = React.useState(0);
-
-  // Reset the open panel whenever the range (and therefore the palette)
-  // changes, so we never point at an index the new list doesn't have. Done
-  // by adjusting state during render (the pattern React recommends over an
-  // effect) — no extra commit / cascading render.
-  const [prevBrand, setPrevBrand] = React.useState(brand);
-  if (prevBrand !== brand) {
-    setPrevBrand(brand);
-    setActive(0);
-  }
 
   if (materials.length === 0) return null;
 
   return (
     <section
+      data-brand-tag={brand}
       className="relative overflow-hidden border-t border-line"
       style={{ background: "var(--brand-surface)" }}
     >

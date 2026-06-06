@@ -1,18 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { news } from "@/data/news";
 import { Reveal } from "@/components/site/reveal";
-import { useBrand } from "@/components/site/brand-provider";
 
+// Every story is rendered and the global [data-brand] CSS reveals only the
+// ones for the active range; "both" items carry no tag so they always show.
+// Rendering brand-stable markup — rather than filtering on client state —
+// keeps the server and client trees identical and avoids a hydration
+// mismatch. Wood shows four cards, aluminium three; both fill the grid row.
 export function NewsRail() {
-  const { brand } = useBrand();
-  // Only show news for the selected range; "both" items always appear.
-  const items = news
-    .filter((n) => n.brand === brand || n.brand === "both")
-    .slice(0, 4);
-
   return (
     <section className="border-t border-line py-12 sm:py-16 md:py-24">
       <div className="mx-auto max-w-[1640px] px-5 md:px-8 lg:px-12">
@@ -32,8 +28,12 @@ export function NewsRail() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((n, i) => (
-            <Reveal key={n.slug} delay={i * 0.06}>
+          {news.map((n, i) => (
+            <Reveal
+              key={n.slug}
+              delay={i * 0.06}
+              data-brand-tag={n.brand === "both" ? undefined : n.brand}
+            >
               <Link href={`/news/${n.slug}`} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden bg-stone">
                   <Image

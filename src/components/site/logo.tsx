@@ -157,7 +157,8 @@ export function Logo({ className, variant = "default", tone = "dark" }: LogoProp
               subtle
             )}
           >
-            woodcrafts · india
+            <span data-brand-tag="wood">woodcrafts · india</span>
+            <span data-brand-tag="aluminium">aluminium · india</span>
           </span>
         </span>
       </Link>
@@ -194,7 +195,12 @@ export function Logo({ className, variant = "default", tone = "dark" }: LogoProp
           <span aria-hidden="true" className="hidden sm:inline">
             ·{" "}
           </span>
-          woodcrafts
+          {/* Suffix syncs with the range toggle. Both words are rendered and
+              the active one is revealed by the global [data-brand] CSS rule —
+              so the lockup stays server-rendered (no hydration mismatch) and
+              the no-flash script picks the right word before first paint. */}
+          <span data-brand-tag="wood">woodcrafts</span>
+          <span data-brand-tag="aluminium">aluminium</span>
         </span>
       </span>
     </Link>

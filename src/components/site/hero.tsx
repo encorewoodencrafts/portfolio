@@ -12,7 +12,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { useBrand, type BrandName } from "@/components/site/brand-provider";
+import { type BrandName } from "@/components/site/brand-provider";
 import { cn } from "@/lib/cn";
 
 // Imagery is served from the atelier's Shopify CDN (whitelisted in
@@ -62,11 +62,16 @@ const BRAND_HERO: Record<
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
+const BRANDS = ["wood", "aluminium"] as const;
+
+// The hero renders both ranges' media and copy; the global [data-brand] CSS
+// reveals only the active one. Rendering brand-stable markup — rather than
+// branching on client state — keeps the server and client trees identical and
+// avoids a hydration mismatch. The scrims, light-rake, scroll motion and
+// stats are shared across both ranges.
 export function Hero() {
   const ref = React.useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
-  const { brand } = useBrand();
-  const b = BRAND_HERO[brand];
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -110,35 +115,38 @@ export function Hero() {
         style={prefersReduced ? undefined : { y, scale }}
         className="absolute inset-0"
       >
-        {/* Fallback image — stays mounted under the video so a slow / failed
+        {/* Each range's media is tagged; the active one is revealed by CSS.
+            The fallback image stays mounted under the video so a slow / failed
             / reduced-motion load always shows the right brand visual. */}
-        <Image
-          key={b.image}
-          src={b.image}
-          alt={b.alt}
-          fill
-          priority
-          quality={92}
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* Brand background video — keyed on brand so switching the toggle
-            loads the correct clip. Hidden when the visitor prefers reduced
-            motion (the image fallback shows instead). */}
-        {!prefersReduced && (
-          <video
-            key={b.video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={b.image}
-            className="absolute inset-0 h-full w-full object-cover"
-          >
-            <source src={b.video} type="video/mp4" />
-          </video>
-        )}
+        {BRANDS.map((name) => {
+          const m = BRAND_HERO[name];
+          return (
+            <div key={name} data-brand-tag={name} className="absolute inset-0">
+              <Image
+                src={m.image}
+                alt={m.alt}
+                fill
+                priority
+                quality={92}
+                sizes="100vw"
+                className="object-cover"
+              />
+              {!prefersReduced && (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  poster={m.image}
+                  className="absolute inset-0 h-full w-full object-cover"
+                >
+                  <source src={m.video} type="video/mp4" />
+                </video>
+              )}
+            </div>
+          );
+        })}
 
         {/* warm/cool brand tint — very light, just enough to colour-match
             the brand without dimming the footage. */}
@@ -180,51 +188,51 @@ export function Hero() {
         }
         className="relative z-10 mx-auto flex h-full max-w-[1640px] flex-col justify-end px-5 md:px-8 lg:px-12 pb-16 md:pb-24"
       >
-        <motion.p
-          key={`${brand}-eyebrow`}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: easeOut }}
-          className="flex items-center gap-3 font-mono text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.28em] sm:tracking-[0.32em] text-cream/85"
-        >
-          <span
-            className="inline-block h-px w-6 sm:w-12"
-            style={{ background: "var(--brand-accent-light)" }}
-          />
-          <span className="truncate">
-            <span className="hidden sm:inline">{b.eyebrowLong}</span>
-            <span className="sm:hidden">{b.eyebrowShort}</span>
-          </span>
-        </motion.p>
+        {BRANDS.map((name) => {
+          const m = BRAND_HERO[name];
+          return (
+            <div key={name} data-brand-tag={name}>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.2, ease: easeOut }}
+                className="flex items-center gap-3 font-mono text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.28em] sm:tracking-[0.32em] text-cream/85"
+              >
+                <span
+                  className="inline-block h-px w-6 sm:w-12"
+                  style={{ background: "var(--brand-accent-light)" }}
+                />
+                <span className="truncate">
+                  <span className="hidden sm:inline">{m.eyebrowLong}</span>
+                  <span className="sm:hidden">{m.eyebrowShort}</span>
+                </span>
+              </motion.p>
 
-        <h1
-          key={`${brand}-headline`}
-          className="mt-4 sm:mt-5 display-tight text-[clamp(2rem,9vw,8rem)] leading-[0.98] font-light text-cream"
-          style={{ textShadow: "0 2px 28px rgba(0,0,0,0.72)" }}
-        >
-          <MaskLine
-            text={b.line1}
-            baseDelay={0.3}
-            reduced={!!prefersReduced}
-          />
-          <MaskLine
-            text={b.line2}
-            italic
-            baseDelay={0.45}
-            reduced={!!prefersReduced}
-          />
-        </h1>
+              <h1
+                className="mt-4 sm:mt-5 display-tight text-[clamp(2rem,9vw,8rem)] leading-[0.98] font-light text-cream"
+                style={{ textShadow: "0 2px 28px rgba(0,0,0,0.72)" }}
+              >
+                <MaskLine text={m.line1} baseDelay={0.3} reduced={!!prefersReduced} />
+                <MaskLine
+                  text={m.line2}
+                  italic
+                  baseDelay={0.45}
+                  reduced={!!prefersReduced}
+                />
+              </h1>
 
-        <motion.p
-          key={`${brand}-intro`}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.55, ease: easeOut }}
-          className="mt-5 sm:mt-7 max-w-md sm:max-w-2xl text-sm md:text-lg leading-relaxed text-cream/90"
-          style={{ textShadow: "0 1px 18px rgba(0,0,0,0.72)" }}
-        >
-          {b.intro}
-        </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.55, ease: easeOut }}
+                className="mt-5 sm:mt-7 max-w-md sm:max-w-2xl text-sm md:text-lg leading-relaxed text-cream/90"
+                style={{ textShadow: "0 1px 18px rgba(0,0,0,0.72)" }}
+              >
+                {m.intro}
+              </motion.p>
+            </div>
+          );
+        })}
 
         <motion.div
           initial={{ opacity: 0 }}
