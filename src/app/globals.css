@@ -3,33 +3,33 @@
 @custom-variant dark (&:is([data-mode="dark"] *));
 
 /* ------------------------------------------------------------------ */
-/* THEME · atelier (default — cream paper + walnut)                    */
+/* THEME · atelier (default — Encore slate + cool white)               */
 /* ------------------------------------------------------------------ */
 :root,
 [data-theme="atelier"] {
-  --paper: #faf7f2;
-  --paper-2: #f4efe6;
-  --ink: #1a1612;
-  --ink-2: #4a423a;
-  --walnut: #6b4423;
-  --oak: #a87c4f;
-  --brass: #b08d57;
-  --stone: #e8e2d7;
-  --stone-2: #d8cfbe;
-  --line: rgba(26, 22, 18, 0.12);
+  --paper: #f7f8fa;
+  --paper-2: #edf0f3;
+  --ink: #20252b;
+  --ink-2: #505863;
+  --walnut: #505863;
+  --oak: #697380;
+  --brass: #82909d;
+  --stone: #dfe3e8;
+  --stone-2: #c9d0d8;
+  --line: rgba(80, 88, 99, 0.16);
 }
 
 [data-theme="atelier"][data-mode="dark"] {
-  --paper: #13110e;
-  --paper-2: #1c1813;
-  --ink: #ede5d6;
-  --ink-2: #b8ad99;
-  --walnut: #c89a6f;
-  --oak: #b89070;
-  --brass: #d6b079;
-  --stone: #2b251d;
-  --stone-2: #3a322a;
-  --line: rgba(237, 229, 214, 0.14);
+  --paper: #15191e;
+  --paper-2: #1f252c;
+  --ink: #f7f8fa;
+  --ink-2: #b9c0c8;
+  --walnut: #aeb8c3;
+  --oak: #8e9aa6;
+  --brass: #d2d8df;
+  --stone: #2b323a;
+  --stone-2: #39434d;
+  --line: rgba(247, 248, 250, 0.14);
 }
 
 /* ------------------------------------------------------------------ */
@@ -131,54 +131,29 @@
 /* ------------------------------------------------------------------ */
 /* Use :root[data-brand] (specificity 0,2,0) so these always win over the   */
 /* plain :root brand fallback (0,1,0) below, regardless of source order.    */
-:root[data-brand="wood"] {
-  --brand-accent: #9c845a;
-  --brand-accent-light: #e8ddd0;
-  /* signature warm gradient — used full-strength on the home hero/band */
-  --brand-hero: linear-gradient(
-    135deg,
-    #2c1810 0%,
-    #4a3520 35%,
-    #6b5040 60%,
-    #8b7355 100%
-  );
-  /* deepest warm — used on CTAs + footer (more contrast for text) */
-  --brand-cta: linear-gradient(160deg, #140b07 0%, #2c1810 55%, #4a3520 100%);
-  /* vertical deep variant for full-bleed dark sections */
-  --brand-deep: linear-gradient(180deg, #1a0f0a 0%, #3a2917 100%);
-  /* soft warm wash for "light" section backgrounds */
-  --brand-surface: #f1e9dc;
-  /* radial accent glow for creative overlays */
-  --brand-glow: rgba(156, 132, 90, 0.22);
-}
-
+/* Both brands currently share the same corporate slate palette; if they     */
+/* diverge later, split back into separate selectors.                        */
+:root[data-brand="wood"],
 :root[data-brand="aluminium"] {
-  --brand-accent: #8b9ea8;
-  --brand-accent-light: #d6e0e5;
-  /* signature cool gradient — used full-strength on the home hero/band */
+  --brand-accent: #505863;
+  --brand-accent-light: #dce1e6;
   --brand-hero: linear-gradient(
     135deg,
-    #0f1923 0%,
-    #1a2b38 35%,
-    #253545 60%,
-    #344858 100%
+    #171b20 0%,
+    #2c333c 35%,
+    #505863 65%,
+    #77818c 100%
   );
-  /* deepest cool — used on CTAs + footer */
-  --brand-cta: linear-gradient(160deg, #080e15 0%, #152030 55%, #253545 100%);
-  /* vertical deep variant for full-bleed dark sections */
-  --brand-deep: linear-gradient(180deg, #0c1520 0%, #2a3a4a 100%);
-  /* soft cool wash for "light" section backgrounds */
-  --brand-surface: #eaeff2;
-  /* radial accent glow for creative overlays */
-  --brand-glow: rgba(139, 158, 168, 0.26);
+  --brand-cta: linear-gradient(160deg, #11151a 0%, #252c34 55%, #505863 100%);
+  --brand-deep: linear-gradient(180deg, #15191e 0%, #3a424c 100%);
+  --brand-surface: #edf0f3;
+  --brand-glow: rgba(80, 88, 99, 0.24);
 }
 
 /* dark-mode: lift the soft surface wash so it reads as a tint, not white */
-[data-mode="dark"]:root[data-brand="wood"] {
-  --brand-surface: #1d140d;
-}
+[data-mode="dark"]:root[data-brand="wood"],
 [data-mode="dark"]:root[data-brand="aluminium"] {
-  --brand-surface: #0f1620;
+  --brand-surface: #1d2229;
 }
 
 /* ------------------------------------------------------------------ */
@@ -194,26 +169,26 @@
   /* fixed colours — never theme-shift. used on permanently-dark surfaces
      such as the home hero and the transparent header over it, so text
      stays cream regardless of the active theme or light/dark mode. */
-  --cream: #faf7f2;
-  --cream-2: #f4efe6;
-  --charcoal: #0c0a08;
-  --charcoal-2: #1a1612;
+  --cream: #f7f8fa;
+  --cream-2: #edf0f3;
+  --charcoal: #11151a;
+  --charcoal-2: #20252b;
 
   /* brand defaults (wood) — overridden by the :root[data-brand] blocks once
      the no-flash script sets data-brand on <html>. */
-  --brand-accent: #9c845a;
-  --brand-accent-light: #e8ddd0;
+  --brand-accent: #505863;
+  --brand-accent-light: #dce1e6;
   --brand-hero: linear-gradient(
     135deg,
-    #2c1810 0%,
-    #4a3520 35%,
-    #6b5040 60%,
-    #8b7355 100%
+    #171b20 0%,
+    #2c333c 35%,
+    #505863 65%,
+    #77818c 100%
   );
-  --brand-cta: linear-gradient(160deg, #140b07 0%, #2c1810 55%, #4a3520 100%);
-  --brand-deep: linear-gradient(180deg, #1a0f0a 0%, #3a2917 100%);
-  --brand-surface: #f1e9dc;
-  --brand-glow: rgba(156, 132, 90, 0.22);
+  --brand-cta: linear-gradient(160deg, #11151a 0%, #252c34 55%, #505863 100%);
+  --brand-deep: linear-gradient(180deg, #15191e 0%, #3a424c 100%);
+  --brand-surface: #edf0f3;
+  --brand-glow: rgba(80, 88, 99, 0.24);
 }
 
 @theme inline {
@@ -286,6 +261,16 @@ html[data-brand="aluminium"] [data-brand-tag="wood"] {
 }
 .brand-accent-light-fg {
   color: var(--brand-accent-light);
+}
+
+/* Preserve the official slate artwork on light surfaces and switch the
+   complete lockup to white wherever the active surface is dark. */
+.logo-on-paper {
+  filter: none;
+}
+[data-mode="dark"] .logo-on-paper,
+[data-theme="ebony"] .logo-on-paper {
+  filter: brightness(0) invert(1);
 }
 
 * {
